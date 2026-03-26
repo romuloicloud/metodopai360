@@ -39,7 +39,12 @@ async function carregarBanco() {
 
         // Aplica o filtro blindado de Concurso caso o candidato já tenha passado pelo Onboarding
         if(concursoId) {
-            query = query.eq('concurso_id', concursoId);
+            const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(concursoId);
+            if(isUUID) {
+                query = query.eq('concurso_id', concursoId);
+            } else {
+                console.warn("[O PAI 360] concursoId (" + concursoId + ") não é UUID nativo. Carregando Banco Geral 360° no fallback.");
+            }
         }
 
         const { data, error } = await query;

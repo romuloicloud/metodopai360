@@ -29,14 +29,9 @@
                 
                 <button type="submit" id="btn-alistar" class="btn-giant pulse">CONFIGURAR PERFIL</button>
             </form>
-            
-            <button id="btn-ouvir-intro" class="btn-audio" style="margin-top: 20px; font-size: 1.1rem; padding: 10px 20px;">
-                🔊 Ouvir Orientação
-            </button>
         </div>
     </div>
 
-    <audio id="audio-intro" src="../assets/audios/intro.mp3"></audio>
     <script src="/backend_onboarding.js?v=6"></script>
     <script>
         // Máscara WhatsApp
@@ -44,11 +39,6 @@
         inputTel.addEventListener('input', function (e) {
             let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
             e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-        });
-
-        // Tocar Áudio Inicial
-        document.getElementById('btn-ouvir-intro').addEventListener('click', () => {
-            document.getElementById('audio-intro').play();
         });
 
         document.getElementById('form-alistamento').addEventListener('submit', async (e) => {

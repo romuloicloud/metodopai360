@@ -18,9 +18,8 @@
     },
     { 
       "c": "Exatas", 
-      "img": "https://placehold.co/500x300/1E293B/4FA5FF?text=DIAGRAMA+DE+VENN:\\nConjunto+A+(Patrulha)\\nConjunto+B+(Atiradores)\\nÁrea+Destacada:+A+%E2%88%A9+B",
-      "t": "Observe o Diagrama de Venn fornecido pela banca. Se o conjunto <b>A</b> representa policiais em patrulha e <b>B</b> policiais atiradores, a área destacada central representa:", 
-      "o": ["Interseção: Policiais que patrolham E atiram.", "União: Todos os policiais.", "Diferença: Apenas atiradores.", "Conjunto Vazio."], 
+      "t": "Raciocínio Lógico PMERJ: Um batalhão possui 120 policiais. Sabe-se que 80 são capacitados para Radiopatrulha (RP) e 60 para Batalhão de Choque (BPChq). Se 30 policiais possuem ambas as capacitações, quantos policiais não possuem <b>nenhuma</b> dessas duas capacitações?", 
+      "o": ["10 policiais.", "20 policiais.", "30 policiais.", "Nenhum policial."], 
       "a": 0 
     },
     { "c": "Direito", "t": "O princípio da <b>Vedação de Retrocesso</b> em Direitos Humanos impede que o Estado:", "o": ["Diminua ou anule direitos já consolidados", "Cobre impostos progressivos", "Extradite cidadãos naturalizados", "Revogue leis antigas"], "a": 0 },
