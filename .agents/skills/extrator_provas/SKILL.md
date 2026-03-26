@@ -18,30 +18,27 @@ Garantir que os candidatos não consumam simulados genéricos, mas sim o acervo 
 
 ## ⚙️ WORKFLOW DE EXECUÇÃO
 
-**PASSO 1: MAPEAMENTO DA URL**
-1. Acesse o domínio fornecido (Ex: `https://portal.coseac.uff.br/faetec-2026-1-inscricoes/` ou `https://dhui.cp2.g12.br/oferta/590`).
-2. Identifique onde estão ancorados os links de **"Provas Anteriores"** e/ou **"Gabaritos Oficiais"**.
-3. Se o banco for em PDF, acione um subagente em Python para processar e estruturar o RAW text.
+**PASSO 1: MAPEAMENTO DA URL E CADASTRO DO EDITAL**
+1. Acesse o domínio fornecido (Ex: Pedro II, FAETEC, PF).
+2. Se o concurso for novo, o primeiro passo é registrá-lo na tabela `concursos_gps` para gerar o UUID base. Esse UUID é a Chave Mestra.
+3. Identifique o Conteúdo Programático (Edital) e as Provas Anteriores.
 
-**PASSO 2: FILTRO ACADÊMICO E ESTRUTURAÇÃO JSON**
-As questões não podem subir cruas. O Agente Acadêmico *CORTEX* deve ler a questão e o gabarito oficial e forjar o Array JSON respeitando a tabela de dados:
-- `materia`: (Ex: Língua Portuguesa)
-- `banca`: (Ex: FAETEC Vunesp / Pedro II)
-- `pergunta`: O enunciado limpo.
-- `alternativas`: Um array de 4 ou 5 itens *limpos*, SEM o prefixo "A) " ou "A." impresso neles. Deixe apenas o corpo da resposta.
-- `correta`: O índice (index-based 0, 1, 2, 3) equivalente ao Gabarito Oficial.
-- `explicacao`: A estrutura 360° -> 1. Regra de Ouro. 2. Por que está certa. 3. A Pegadinha Focada.
-- `dica_rapida`: O mnemônico de guerra curto e agressivo.
+**PASSO 2: FUNDIÇÃO DA TRILHA INTERCALADA (TEORIA + FIXAÇÃO)**
+O Frontend atual não tolera PDFs estáticos. Ele exige a dinâmica *Teoria -> Exercício de Fixação*.
+Para cada tópico do edital extraído:
+1. O Agente deve redigir uma **Pílula de Teoria** (texto enxuto, direto e formatado para ser falado em áudio pelo TTS do navegador).
+2. O Agente deve redigir um **Exercício de Fixação Inédito** validando exatamente a pílula anterior.
+3. Inserir esse par (Teoria + Exercício) na tabela `teoria` utilizando a Chave Mestra do Edital.
 
 **PASSO 3: HIGIENE DA IMAGEM E UPLOAD LOCAL/STORE**
-Se a prova contiver gráficos ou diagramas (comum nas provas de Matemática ou Interpretação Visual da FAETEC):
+Se a prova contiver gráficos ou diagramas (Exatas/Lógica):
 1. Isole o SVG ou PNG da prova.
-2. Salve no diretório `app/` no servidor.
-3. Insira o nome do arquivo na string `image_url` do repositório SQL correspondente.
+2. Insira a URL real da imagem na coluna `image_url` das tabelas para renderização frontal.
 
-**PASSO 4: BULK INSERT NO SUPABASE**
-Com o bloco de questões finalizado e validado pelo Agente Acadêmico, gere a string de `INSERT INTO treinamento` cobrindo 10 a 20 questões por batelada.
-Rode a injeção no Supabase Cloud.
+**PASSO 4: BULK INSERT NO SUPABASE (PRÁTICA 360)**
+Com as provas reais antigas extraídas:
+1. Aplique o filtro de Persona (Explicações agressivas, 360, Dica Rápida em Mnemônico). As alternativas não podem ter as letras (A), (B).
+2. Faça a injeção em massa na tabela `treinamento` sempre linkando ao UUID do Edital Mestre.
 
 ---
-> 🛑 **TRAVA RIGOROSA DE ESTILO:** Sob NENHUMA hipótese o módulo injetará a questão com explicações curtas ("Letra A está correta porque a lei diz X"). O tom do "O Pai" deve ser rigoroso. A questão deve PUNIR o aluno que errou ensinando a "malícia" que o fez errar. 
+> 🛑 **TRAVA RIGOROSA DE ESTILO:** Sob NENHUMA hipótese o módulo injetará a questão com explicações curtas ("Letra A está correta porque a lei diz X"). O tom do "O Pai" deve ser militar e agressivo. A teoria deve ser escrita para parecer uma locução humana tática (pronta para voz mecânica). A questão prática deve PUNIR o aluno que errou ensinando a "malícia". 
