@@ -187,14 +187,14 @@
                 if (container) {
                     if (selecao.familia === 'escolar') {
                         container.innerHTML = `
-                            <div class="card-option esfera-btn" data-esf="nacional">🏛️ Colégios Federais</div>
-                            <div class="card-option" style="opacity:0.6; cursor:default;">(Sem UFs atreladas)</div>
-                            <div class="card-option esfera-btn" data-esf="estadual" style="grid-column: 1 / -1; margin-top: 10px;">🏫 Escolas Técnicas / Estaduais</div>
+                            <button class="btn-option pulse-subtle esfera-btn" data-esf="nacional"><span class="icon">🏛️</span><span>Colégios Federais</span></button>
+                            <button class="btn-option" style="opacity:0.6; cursor:default;" disabled><span>(Sem opções atreladas)</span></button>
+                            <button class="btn-option pulse-subtle esfera-btn" data-esf="estadual" style="grid-column: 1 / -1; margin-top: 10px;"><span class="icon">🏫</span><span>Escolas Técnicas / Estaduais</span></button>
                         `;
                     } else {
                         container.innerHTML = `
-                            <div class="card-option esfera-btn" data-esf="federal">👮‍♂️ Nacional / Federal</div>
-                            <div class="card-option esfera-btn" data-esf="estadual">🏛️ Estadual / Distrital</div>
+                            <button class="btn-option pulse-subtle esfera-btn" data-esf="federal"><span class="icon">👮‍♂️</span><span>Nacional / Federal</span></button>
+                            <button class="btn-option pulse-subtle esfera-btn" data-esf="estadual"><span class="icon">🏛️</span><span>Estadual / Distrital</span></button>
                         `;
                     }
                 }
