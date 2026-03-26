@@ -37,15 +37,16 @@ async function carregarBanco() {
             .select('*')
             .order('created_at', { ascending: false }); // Corrigido para ordernar por data (UUID não tem ordem cronológica)
 
-        // Aplica o filtro blindado de Concurso caso o candidato já tenha passado pelo Onboarding
-        if(concursoId) {
-            const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(concursoId);
-            if(isUUID) {
-                query = query.eq('concurso_id', concursoId);
-            } else {
-                console.warn("[O PAI 360] concursoId (" + concursoId + ") não é UUID nativo. Carregando Banco Geral 360° no fallback.");
-            }
+        let cid = concursoId;
+        let isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(cid || '');
+        
+        // Proteção de Roteamento: Se o aluno entrou via Link Direto e não concluiu o GPS, tranca na PMERJ.
+        if(!isUUID) {
+            console.warn("[O PAI 360] UUID vazio ou inválido (" + cid + "). Aplicando Tranca de Segurança PMERJ Fallback para evitar mistura de bancas.");
+            cid = '11111111-1111-1111-1111-111111111111'; // PMERJ Genoma
         }
+        
+        query = query.eq('concurso_id', cid);
 
         const { data, error } = await query;
 
@@ -205,3 +206,18 @@ function pararFalante() {
         sinteseVocais.cancel();
     }
 }
+
+// Expande o TTS para Ditar Enunciado + Opções a pedido do Usuário
+window.lerIntegra = function() {
+    if (!questoes || questoes.length === 0) return;
+    const qAtual = questoes[indiceAtual];
+    const enunciado = document.getElementById('q-texto').innerText;
+    
+    let falaComposita = enunciado + "... Alternativas: ";
+    qAtual.opcoes.forEach((opts, i) => {
+        let letra = String.fromCharCode(65 + i); // A, B, C, D
+        falaComposita += `Letra ${letra}: ${opts}. `;
+    });
+    
+    lerTexto(falaComposita);
+};

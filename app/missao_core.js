@@ -53,11 +53,21 @@ async function carregarQuestoes() {
         ui.textoQuestao.innerText = 'Sincronizando com o Cofre da Banca...';
     } catch(e) { console.error('Falha de UI Sync:', e); }
 
-    // Roteador Universal 360 (Integridade 100%): Roteamento por ID Exato (Sem Fallbacks)
-    const editalID = sessionStorage.getItem('recruta_concurso_id');
+    // Roteador Universal 360 (Integridade 100%): Roteamento por ID Exato
+    const editalUUID = sessionStorage.getItem('recruta_concurso_id');
+    
+    // Mapeamento Tático: Do UUID blindado (Servidor) para o arquivo de teste ágil em JSON
+    const cofreResolver = {
+        '11111111-1111-1111-1111-111111111111': 'edital_pmerj',
+        '9167b605-0081-4f93-adc7-ea406aa5a11a': 'edital_pedro_ii',
+        '42baa8fb-2130-4864-966b-923c0bf3f9a0': 'edital_faetec',
+        '489086a5-3172-449b-be54-fc2e9fe0ed54': 'edital_petrobras'
+    };
+    
+    const editalID = cofreResolver[editalUUID] || editalUUID;
     let targetJsonUrl = `/db_editais/${editalID}.json`;
 
-    if (editalID === 'edital_em_construcao' || !editalID) {
+    if (editalID === 'edital_em_construcao' || !editalUUID || editalID === 'undefined') {
         targetJsonUrl = null; 
     }
     try {
@@ -85,28 +95,28 @@ async function carregarQuestoes() {
         };
 
         const brasaoMap = {
-            'edital_pmerj': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg.png',
-            'edital_pf': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Bras%C3%A3o_da_Pol%C3%ADcia_Federal_do_Brasil.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Federal_do_Brasil.svg.png',
-            'edital_prf': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Bras%C3%A3o_Pol%C3%ADcia_Rodovi%C3%A1ria_Federal.svg/300px-Bras%C3%A3o_Pol%C3%ADcia_Rodovi%C3%A1ria_Federal.svg.png',
-            'edital_caixa': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/1/14/Caixa_Econ%C3%B4mica_Federal_logo.svg/300px-Caixa_Econ%C3%B4mica_Federal_logo.svg.png',
-            'edital_petrobras': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/d/de/Petrobras_Logo.png/300px-Petrobras_Logo.png',
-            'edital_bb': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Banco_do_Brasil_logo.svg/300px-Banco_do_Brasil_logo.svg.png',
-            'edital_correios': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Correios_%282014%29_logo.svg/300px-Correios_%282014%29_logo.svg.png',
-            'edital_essa': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/b/ba/S%C3%ADmbolo_do_Ex%C3%A9rcito_Brasileiro.svg/300px-S%C3%ADmbolo_do_Ex%C3%A9rcito_Brasileiro.svg.png',
-            'edital_espcex': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Bras%C3%A3o_EsPCEx.png/300px-Bras%C3%A3o_EsPCEx.png',
-            'edital_ime': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bras%C3%A3o_do_IME.png/300px-Bras%C3%A3o_do_IME.png',
-            'edital_eear': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
-            'edital_epcar': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
-            'edital_afa': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
-            'edital_ita': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
-            'edital_pedro_ii': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bras%C3%A3o_do_Col%C3%A9gio_Pedro_II.png/300px-Bras%C3%A3o_do_Col%C3%A9gio_Pedro_II.png',
-            'edital_fuzileiro': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Emblem_of_the_Brazilian_Navy.png/300px-Emblem_of_the_Brazilian_Navy.png',
-            'edital_colegio_naval': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Emblem_of_the_Brazilian_Navy.png/300px-Emblem_of_the_Brazilian_Navy.png',
-            'edital_escola_naval': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Emblem_of_the_Brazilian_Navy.png/300px-Emblem_of_the_Brazilian_Navy.png',
-            'edital_enem': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/6/69/Enem_logo.svg/300px-Enem_logo.svg.png',
-            'edital_tse': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Bras%C3%A3o_do_Tribunal_Superior_Eleitoral.svg/300px-Bras%C3%A3o_do_Tribunal_Superior_Eleitoral.svg.png',
-            'edital_tjrj': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Bras%C3%A3o_TJRJ.png/300px-Bras%C3%A3o_TJRJ.png',
-            'edital_tjsp': 'https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png/300px-Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png'
+            'edital_pmerj': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg.png',
+            'edital_pf': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Bras%C3%A3o_da_Pol%C3%ADcia_Federal_do_Brasil.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Federal_do_Brasil.svg.png',
+            'edital_prf': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Bras%C3%A3o_Pol%C3%ADcia_Rodovi%C3%A1ria_Federal.svg/300px-Bras%C3%A3o_Pol%C3%ADcia_Rodovi%C3%A1ria_Federal.svg.png',
+            'edital_caixa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Caixa_Econ%C3%B4mica_Federal_logo.svg/300px-Caixa_Econ%C3%B4mica_Federal_logo.svg.png',
+            'edital_petrobras': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Petrobras_Logo.png/300px-Petrobras_Logo.png',
+            'edital_bb': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Banco_do_Brasil_logo.svg/300px-Banco_do_Brasil_logo.svg.png',
+            'edital_correios': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Correios_%282014%29_logo.svg/300px-Correios_%282014%29_logo.svg.png',
+            'edital_essa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/S%C3%ADmbolo_do_Ex%C3%A9rcito_Brasileiro.svg/300px-S%C3%ADmbolo_do_Ex%C3%A9rcito_Brasileiro.svg.png',
+            'edital_espcex': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Bras%C3%A3o_EsPCEx.png/300px-Bras%C3%A3o_EsPCEx.png',
+            'edital_ime': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bras%C3%A3o_do_IME.png/300px-Bras%C3%A3o_do_IME.png',
+            'edital_eear': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
+            'edital_epcar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
+            'edital_afa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
+            'edital_ita': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Emblem_of_the_Brazilian_Air_Force.svg/300px-Emblem_of_the_Brazilian_Air_Force.svg.png',
+            'edital_pedro_ii': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bras%C3%A3o_do_Col%C3%A9gio_Pedro_II.png/300px-Bras%C3%A3o_do_Col%C3%A9gio_Pedro_II.png',
+            'edital_fuzileiro': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Emblem_of_the_Brazilian_Navy.png/300px-Emblem_of_the_Brazilian_Navy.png',
+            'edital_colegio_naval': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Emblem_of_the_Brazilian_Navy.png/300px-Emblem_of_the_Brazilian_Navy.png',
+            'edital_escola_naval': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Emblem_of_the_Brazilian_Navy.png/300px-Emblem_of_the_Brazilian_Navy.png',
+            'edital_enem': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Enem_logo.svg/300px-Enem_logo.svg.png',
+            'edital_tse': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Bras%C3%A3o_do_Tribunal_Superior_Eleitoral.svg/300px-Bras%C3%A3o_do_Tribunal_Superior_Eleitoral.svg.png',
+            'edital_tjrj': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Bras%C3%A3o_TJRJ.png/300px-Bras%C3%A3o_TJRJ.png',
+            'edital_tjsp': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png/300px-Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png'
         };
 
         // Escudo Tático Dinâmico: Se houver logo cadastrada, troca o ícone padrão pelo Brasão Oficial do Órgão
