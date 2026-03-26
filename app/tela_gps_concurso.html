@@ -233,7 +233,7 @@
             // 🔥 INVERSÃO DE FORÇA BRUTA: Garantir Injeções Essenciais para Testes
             if (selecao.familia === 'escolar' || selecao.familia.includes('academico')) {
                 orgaos = orgaos.filter(o => !o.orgao.toUpperCase().includes('PEDRO'));
-                orgaos.unshift({ orgao: 'Colégio Pedro II (6º Ano)', status_edital: 'aberto' });
+                orgaos.unshift({ orgao: 'Colégio Pedro II - 6º Ano (Fundamental)', id: '9167b605-0081-4f93-adc7-ea406aa5a11a', status_edital: 'aberto' });
             }
             
             if (selecao.familia === 'militar') {
@@ -247,11 +247,16 @@
             }
             
             if (selecao.familia === 'estatal') {
-                const estFaltantes = ['Petrobras (Nacional)', 'Banco do Brasil', 'Caixa Econômica Federal', 'Correios S/A'];
-                estFaltantes.forEach(arq => {
-                    const sigla = arq.split(' ')[0].toUpperCase();
+                const estFaltantes = [
+                    { orgao: 'Petrobras (Nacional)', id: '489086a5-3172-449b-be54-fc2e9fe0ed54' },
+                    { orgao: 'Banco do Brasil' },
+                    { orgao: 'Caixa Econômica Federal' },
+                    { orgao: 'Correios S/A' }
+                ];
+                estFaltantes.forEach(item => {
+                    const sigla = item.orgao.split(' ')[0].toUpperCase();
                     if (!orgaos.some(o => o.orgao.toUpperCase().includes(sigla))) {
-                        orgaos.push({ orgao: arq, status_edital: 'aberto' });
+                        orgaos.push({ orgao: item.orgao, id: item.id, status_edital: 'aberto' });
                     }
                 });
             }
@@ -260,9 +265,9 @@
             if (!orgaos || orgaos.length === 0) {
                 // Sentinela Fallback: Cobrindo 100% do Brasil c/ Exceções Custom
                 if (selecao.familia === 'escolar' && selecao.esfera === 'Nacional') {
-                    orgaos = [{ orgao: 'Colégio Pedro II (6º Ano e Ensino Médio)' }, { orgao: 'CEFET' }];
+                    orgaos = [{ orgao: 'Colégio Pedro II (6º Ano e Ensino Médio)', id: '9167b605-0081-4f93-adc7-ea406aa5a11a' }, { orgao: 'CEFET' }];
                 } else if (selecao.familia === 'escolar' && selecao.esfera === 'Estadual') {
-                    orgaos = [{ orgao: 'Colégios Técnicos (FAETEC, Escolas Técnicas Estaduais)' }];
+                    orgaos = [{ orgao: 'FAETEC (Tech)', id: '42baa8fb-2130-4864-966b-923c0bf3f9a0' }];
                 } else if (selecao.familia === 'militar' && selecao.esfera === 'Estadual') {
                     orgaos = [{ orgao: 'Polícia Militar PMERJ', id: '11111111-1111-1111-1111-111111111111' }, { orgao: 'Corpo de Bombeiros (CBM)' }];
                 } else {
