@@ -1,0 +1,69 @@
+{
+  "concurso": "Tribunal de Justiça do Rio de Janeiro (TJ-RJ)",
+  "instituicao": "Poder Judiciário Estadual (RJ)",
+  "vagas": 132,
+  "salario": "R$ 3.870,06 a R$ 6.373,89 (Técnico e Analista + Benefícios Massivos)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Específicos Tribunal de Justiça",
+        "disciplinas": [
+          "Direito Constitucional e Administrativo",
+          "Direito Processual Civil (Novo CPC)",
+          "Direito Processual Penal",
+          "Legislação Especial e CODJERJ"
+        ],
+        "quantidade_questoes": 60,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "questoes": [
+    {
+      "disciplina": "Legislação Especial e CODJERJ",
+      "assunto": "Competências do CODJERJ",
+      "enunciado": "Sobre a Divisão Judiciária e a Organização do Poder Judiciário do Estado do Rio de Janeiro (CODJERJ), assinale a estrutura hierárquica máxima de controle correta:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "O Tribunal Pleno é o órgão supremo do TJRJ, sendo facultativa a sua reunião mensal para julgamento de juízes singulares.",
+        "A Corregedoria-Geral da Justiça exerce precipuamente papel jurisdicional condenatório em face dos serventuários.",
+        "O Órgão Especial, constituído por 25 desembargadores, exerce as atribuições jurisdicionais e administrativas do Tribunal Pleno, garantido assim celeridade e pragmatismo decisório.",
+        "O Conselho Nacional de Justiça subordina integralmente o CODJERJ, podendo extinguir comarcas do interior de forma monocrática.",
+        "Os Juízes de Direito Substituto de Segundo Grau não podem lavrar acórdãos em substituição por serem juízes meramente avaliadores das sentenças criminais."
+      ],
+      "gabarito_correto": "O Órgão Especial, constituído por 25 desembargadores, exerce as atribuições jurisdicionais e administrativas do Tribunal Pleno, garantido assim celeridade e pragmatismo decisório.",
+      "justificativa_squad": "Segundo a Constituição (Art. 93, XI) e espelhado no CODJERJ, Tribunais com mais de 25 julgadores PODEM constituir Órgão Especial para atuar nas matérias do Pleno, garantindo eficiência. O TJRJ possui seu Órgão Especial exatamente para estas funções jurisdicionais de peso e administrativas maiores."
+    },
+    {
+      "disciplina": "Direito Processual Civil",
+      "assunto": "Prazos e Citação (Novo CPC)",
+      "texto_base": "Art. 219 do NCPC: 'Na contagem de prazo em dias, estabelecido por lei ou pelo juiz, computar-se-ão somente os dias úteis.'",
+      "enunciado": "Em uma Comarca da Capital (RJ), uma Fazenda Pública do Estado do Rio de Janeiro e o Ministério Público são réus numa mesma lide. Sobre o prazo para contestar conferido às prerrogativas judiciais desses órgãos, é CORRETO afirmar:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Gozarão de prazo quádruplo para contestar e em dobro para recorrer.",
+        "Gozarão de prazo em dobro para TODAS as suas manifestações processuais, contados em dias úteis.",
+        "O MP terá prazo triplo por atuar como 'custos legis' e a Fazenda prazo simples.",
+        "A defensoria possui prazo reduzido nesses casos pela isonomia estatal.",
+        "Ambos possuem 15 dias corridos, igual à pessoa jurídica de direito privado para igualar as forças econômicas (Paridade de Armas)."
+      ],
+      "gabarito_correto": "Gozarão de prazo em dobro para TODAS as suas manifestações processuais, contados em dias úteis.",
+      "justificativa_squad": "Sob a vigência do NOVO CPC (2015), o Ministério Público, a Fazenda Pública (União, Estados, Municípios) e a Defensoria Pública possuem PRAZO EM DOBRO para TODAS as manifestações processuais (Art. 180, 183 e 186 do NCPC), e não mais prazo quádruplo como no famigerado Código de 1973."
+    },
+    {
+      "disciplina": "Direito Processual Penal",
+      "assunto": "Competência e Tribunal do Júri",
+      "enunciado": "João desfere machadadas na porta do carro de Carlos (dano doloso) após uma colisão na via Dutra. Com Carlos tentando sair pela janela, João lhe aplica um golpe letal na jugular objetivando seu óbito, e aproveita para subtrair e quebrar o celular que gravou toda a cena. Neste complexo criminal:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "A competência é fragmentada: O homicídio atrai o Tribunal do Júri e o Dano atrai o Juizado Especial Criminal local.",
+        "Homicídio qualificado comete competência universal da Justiça Federal se em rodovia Dutra.",
+        "Pelo instituto da Atração (Foro de Prevalência), todos os crimes conexos (mesmo de menor potencial ofensivo) migram obrigatoriamente para o Tribunal do Júri.",
+        "Será julgado exclusivamente pelo juiz monocrático (vara criminal) caso Carlos milagrosamente sobreviva, descaracterizando o Júri.",
+        "O STJ entende que a destruição do celular é crime impunível (Princípio da Insignificância)."
+      ],
+      "gabarito_correto": "Pelo instituto da Atração (Foro de Prevalência), todos os crimes conexos (mesmo de menor potencial ofensivo) migram obrigatoriamente para o Tribunal do Júri.",
+      "justificativa_squad": "Artigo 78, I, do CPP: Ocorrendo concurso de infrações de jurisdições de categorias diversas, predomina a jurisdição do Tribunal do Júri, que atrai para si o julgamento dos crimes comuns conexos (vis attractiva do Júri)."
+    }
+  ]
+}

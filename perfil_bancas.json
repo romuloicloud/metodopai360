@@ -1,0 +1,26 @@
+[
+  {
+    "banca": "Cebraspe",
+    "estilo_cobranca": {
+      "portugues": "Interpretativo, focado em coesão, coerência textual e reescrita estrutural de frases.",
+      "direito": "Alta exigência em jurisprudência (STF/STJ), doutrina majoritária e análise de casos práticos investigativos típicos de polícia judiciária."
+    },
+    "formato": "Certo/Errado (1 errada anula 1 certa)"
+  },
+  {
+    "banca": "CPesFN (Fuzileiros Navais)",
+    "estilo_cobranca": {
+      "portugues": "Altamente focado em gramática normativa, cobrança literal de regras de crase, pontuação, ortografia, concordância e sintaxe direta.",
+      "matematica": "Objetivo, cálculo cru, aplicação de fórmulas clássicas de geometria, equações, radiciação e sistemas."
+    },
+    "formato": "Múltipla Escolha tradicional (A, B, C, D, E)"
+  },
+  {
+    "banca": "ENEM (INEP)",
+    "estilo_cobranca": {
+      "portugues": "Fortemente interpretativo, focado nos eixos de variação linguística, gêneros textuais/digitais, função social da língua e intertextualidade.",
+      "matematica": "Extremamente contextualizado (situacional). Problemas longos que exigem abstração do cotidiano para modelagem matemática (Estatística, Proporcionalidade, Regra de Três)."
+    },
+    "formato": "Múltipla Escolha estruturada via Teoria de Resposta ao Item (TRI)"
+  }
+]

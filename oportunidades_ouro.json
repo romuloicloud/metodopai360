@@ -1,0 +1,32 @@
+[
+  {
+    "Titulo": "Marinha do Brasil (Cargos de Nível Superior)",
+    "Vagas": "Vários cargos (diversas áreas)",
+    "Salario": "Até R$ 9.663,60",
+    "Nivel": "Superior"
+  },
+  {
+    "Titulo": "PCDF (Polícia Civil do Distrito Federal) - Delegado",
+    "Vagas": "150",
+    "Salario": "R$ 26.690,15",
+    "Nivel": "Superior (Direito)"
+  },
+  {
+    "Titulo": "Marinha do Brasil - Comando do Pessoal de Fuzileiros Navais (FN)",
+    "Vagas": "1.680",
+    "Salario": "Até R$ 2.505,10",
+    "Nivel": "Médio"
+  },
+  {
+    "Titulo": "SAEB e ADAB - Bahia (Edital Reaberto)",
+    "Vagas": "200",
+    "Salario": "Até R$ 7.445,86",
+    "Nivel": "Médio e Superior"
+  },
+  {
+    "Titulo": "Ministério Público de Alagoas (MP-AL)",
+    "Vagas": "27",
+    "Salario": "Até R$ 6.243,37",
+    "Nivel": "Médio e Superior"
+  }
+]

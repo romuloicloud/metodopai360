@@ -1,0 +1,107 @@
+{
+  "concurso": "Escola Preparatória de Cadetes do Exército (EsPCEx)",
+  "instituicao": "Exército Brasileiro",
+  "vagas": 440,
+  "salario": "R$ 7.315,00 (Aspirante a Oficial)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Dia 1 - Exatas e Humanas Básicas",
+        "disciplinas": [
+          "Matemática",
+          "Física",
+          "Química",
+          "História",
+          "Geografia",
+          "Português",
+          "Inglês"
+        ],
+        "quantidade_questoes": 88,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D, E)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Física",
+      "assunto": "Dinâmica (Leis de Newton)",
+      "enunciado": "Um bloco de 10 kg repousa sobre uma superfície horizontal sem atrito. Uma força constante de 50 N é aplicada horizontalmente. A aceleração adquirida é de:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "2 m/s²",
+        "5 m/s²",
+        "10 m/s²",
+        "20 m/s²",
+        "50 m/s²"
+      ],
+      "gabarito_correto": "5 m/s²",
+      "justificativa_squad": "Segunda Lei de Newton: F = m*a -> 50 = 10*a -> a = 5 m/s²."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Trigonometria",
+      "enunciado": "O valor exato de sen(75°) é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "(√2 + √6) / 4",
+        "(√6 - √2) / 4",
+        "√3 / 2",
+        "1 / 2",
+        "√2 / 2"
+      ],
+      "gabarito_correto": "(√2 + √6) / 4",
+      "justificativa_squad": "sen(75) = sen(45+30) = sen45.cos30 + sen30.cos45 = (√2/2)(√3/2) + (1/2)(√2/2) = √6/4 + √2/4 = (√6+√2)/4."
+    },
+    {
+      "disciplina": "Química",
+      "assunto": "Estequiometria",
+      "enunciado": "A combustão completa de 1 mol de gás metano (CH4) produz quantos mols de H2O?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "1 mol",
+        "2 mols",
+        "3 mols",
+        "4 mols",
+        "Nenhum mol, a reação produz apenas de CO2."
+      ],
+      "gabarito_correto": "2 mols",
+      "justificativa_squad": "Equação balanceada: CH4 + 2O2 -> CO2 + 2H2O. Um mol de CH4 gera 2 mols de H2O."
+    },
+    {
+      "disciplina": "Geografia",
+      "assunto": "Agropecuária Brasileira",
+      "enunciado": "A expansão da fronteira agrícola brasileira recente em direção à Amazônia legal é liderada historicamente por qual cultura comercial?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Cana-de-Açúcar",
+        "Café",
+        "Trigo",
+        "Soja",
+        "Cacau"
+      ],
+      "gabarito_correto": "Soja",
+      "justificativa_squad": "A soja, cultivada fortemente no Centro-Oeste (Mato Grosso), avança no chamado 'Arco do Desmatamento' na borda da Amazônia e região MATOPIBA."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Prepositions",
+      "enunciado": "The cadets arrived ___ the military academy exactly ___ 6 AM.",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "in / in",
+        "at / at",
+        "on / at",
+        "to / in",
+        "at / on"
+      ],
+      "gabarito_correto": "at / at",
+      "justificativa_squad": "Arrival at a specific building uses 'at' (arrived at the academy). Exact time also uses 'at' (at 6 AM)."
+    }
+  ]
+}

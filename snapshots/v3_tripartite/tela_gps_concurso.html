@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS do Concurso - Método do Pai 360º</title>
+    <link rel="icon" href="/app-icon.png?v=5" type="image/png">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .card-boletim { background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)); border: 1px solid #D4AF37; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); border-radius: 12px; padding: 18px; width: 280px; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; position: relative; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="gps-screen" class="screen active">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="/app-icon.png?v=5" alt="Método do Pai 360" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+            </div>
+            <h2 style="text-align: center; margin-top: 0; color: #FFD700;">GPS de Aprovação</h2>
+            <p id="subtitle" style="text-align: center;">Qual é a sua grande trincheira?</p>
+
+            <!-- NOTIFICAÇÕES (PUSH INTELLIGENCE) -->
+            <div id="boletim-header" style="display: flex; justify-content: space-between; align-items: center; margin: 25px 0 15px 0; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 215, 0, 0.2);">
+                <h3 style="color: #FFD700; margin: 0; display: flex; align-items: center; gap: 8px;">📡 Radar de Editais 360º</h3>
+                <div style="position: relative; display: inline-block;">
+                    <span style="font-size: 1.5rem; cursor: pointer;">🔔</span>
+                    <span id="badge-alertas" class="pulse" style="display: none; position: absolute; top: -5px; right: -8px; background: #EF4444; color: white; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; text-align: center; line-height: 20px; box-shadow: 0 0 10px rgba(239, 68, 68, 0.9);">0</span>
+                </div>
+            </div>
+            
+            <div id="boletim-container" style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 30px;" class="hide-scrollbar">
+                <!-- Cards assíncronos injetados aqui -->
+            </div>
+            
+            <!-- PASSO 1: Família -->
+            <div id="step-1" class="step-container">
+                <h3 style="margin-bottom: 15px; color: #4FA5FF;">1. Escolha a sua Família Tática:</h3>
+                <div class="shield-grid">
+                    <div class="shield-card familia-btn" data-fam="policial">🚓 Policiais</div>
+                    <div class="shield-card familia-btn" data-fam="tribunal">⚖️ Tribunais / Direito</div>
+                    <div class="shield-card familia-btn" data-fam="militar">⚔️ Forças Armadas</div>
+                    <div class="shield-card familia-btn" data-fam="academico">🎓 Acadêmicos / Colégios</div>
+                </div>
+            </div>
+
+            <!-- PASSO 2: Esfera e UF -->
+            <div id="step-2" class="step-container" style="display: none;">
+                <h3 style="margin-bottom: 15px; color: #FFD700;">2. Esfera de Atuação:</h3>
+                <div class="shield-grid" style="grid-template-columns: 1fr 1fr; max-width: 400px; margin: 0 auto;">
+                    <div class="shield-card esfera-btn" data-esf="nacional">🇧🇷 Nacional</div>
+                    <div class="shield-card esfera-btn" data-esf="estadual">📍 Estadual</div>
+                </div>
+                
+                <div id="uf-selector" style="display: none; margin-top: 20px;">
+                    <h3 style="margin-bottom: 10px; color: #4FA5FF; font-size: 1.1rem;">Selecione seu Estado (UF):</h3>
+                    <select id="select-uf" class="select-modern" style="padding: 12px; margin-bottom: 20px; width: 100%; max-width: 300px; border-radius: 8px; border: 2px solid #334155; background: #0F172A; color: white;">
+                        <option value="">-- Escolha o Estado --</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+                
+                <button id="btn-next-step2" class="btn-audio" style="display: none; margin-top: 15px;">Avançar ></button>
+            </div>
+
+            <!-- PASSO 3: Órgão / Alvo -->
+            <div id="step-3" class="step-container" style="display: none;">
+                <h3 style="margin-bottom: 15px; color: #4FA5FF;">3. Selecione o Órgão / Concurso:</h3>
+                <div class="shield-grid" id="grid-orgaos">
+                    <!-- Dinamicamente populado -->
+                </div>
+                <p id="msg-sem-orgaos" style="display:none; color: #ef4444;">Nenhuma inteligência cadastrada para esta região no momento.</p>
+            </div>
+
+            <!-- CONFIRMAÇÃO CENTRAL -->
+            <div id="step-confirmacao" class="step-container" style="display: none; text-align: center;">
+                <h3 style="color: #10B981; font-size: 1.5rem; margin-bottom: 10px;">🎯 Alvo Confirmado!</h3>
+                <p id="txt-confirmacao" style="font-size: 1.1rem; line-height: 1.5; color: #e2e8f0;"></p>
+                <button id="btn-iniciar-diagnostico" class="btn-giant pulse" style="margin-top: 25px;">
+                    INICIAR DIAGNÓSTICO DO ÓRGÃO
+                </button>
+            </div>
+
+            <!-- Botões Inferiores -->
+            <div style="margin-top: 20px; text-align: center;">
+                <button id="btn-voltar" class="btn-audio" style="display: none; background-color: #334155; padding: 8px 15px;">< Voltar Etapa</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/backend_onboarding.js?v=7"></script>
+    <script>
+        // Estado
+        let step = 1;
+        let selecao = {
+            familia: '',
+            esfera: '',
+            uf: 'BR',
+            orgao: ''
+        };
+
+        const screens = {
+            1: document.getElementById('step-1'),
+            2: document.getElementById('step-2'),
+            3: document.getElementById('step-3'),
+            4: document.getElementById('step-confirmacao')
+        };
+        const btnVoltar = document.getElementById('btn-voltar');
+
+        function goStep(n) {
+            Object.values(screens).forEach(s => s.style.display = 'none');
+            screens[n].style.display = 'block';
+            step = n;
+            btnVoltar.style.display = (step > 1 && step < 4) ? 'inline-block' : 'none';
+        }
+
+        function reattacharEventosEsfera() {
+            document.querySelectorAll('.esfera-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.esfera-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    selecao.esfera = btn.getAttribute('data-esf');
+                    if (selecao.esfera === 'estadual' || selecao.esfera === 'Estadual') {
+                        document.getElementById('uf-selector').style.display = 'block';
+                        document.getElementById('select-uf').value = '';
+                        selecao.uf = '';
+                        document.getElementById('btn-next-step2').style.display = 'none';
+                    } else {
+                        document.getElementById('uf-selector').style.display = 'none';
+                        selecao.uf = 'BR';
+                        document.getElementById('btn-next-step2').style.display = 'inline-block';
+                    }
+                });
+            });
+        }
+
+        // STEP 1: Família
+        document.querySelectorAll('.familia-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                selecao.familia = btn.getAttribute('data-fam');
+                goStep(2);
+                document.getElementById('uf-selector').style.display = 'none';
+                document.getElementById('btn-next-step2').style.display = 'none';
+                
+                const container = document.getElementById('esferas-container');
+                if (selecao.familia === 'militar') {
+                    container.innerHTML = `
+                        <div class="card-option esfera-btn" data-esf="Nacional">🦅 Exército Brasileiro</div>
+                        <div class="card-option esfera-btn" data-esf="Marinha">⚓ Marinha do Brasil</div>
+                        <div class="card-option esfera-btn" data-esf="Aeronáutica">✈️ Força Aérea (FAB)</div>
+                        <div class="card-option esfera-btn" data-esf="Estadual">🚔 Polícias Militares</div>
+                    `;
+                } else if (selecao.familia === 'escolar') {
+                    container.innerHTML = `
+                        <div class="card-option esfera-btn" data-esf="Nacional">🏛️ Colégios Federais</div>
+                        <div class="card-option esfera-btn" data-esf="Estadual">🏫 Escolas Técnicas / Estaduais</div>
+                    `;
+                } else {
+                    container.innerHTML = `
+                        <div class="card-option esfera-btn" data-esf="federal">👮‍♂️ Nacional / Federal</div>
+                        <div class="card-option esfera-btn" data-esf="estadual">🏛️ Estadual / Distrital</div>
+                    `;
+                }
+                
+                reattacharEventosEsfera();
+            });
+        });
+        
+        // Ativar listeners originais no boot
+        reattacharEventosEsfera();
+
+        document.getElementById('select-uf').addEventListener('change', (e) => {
+            selecao.uf = e.target.value;
+            if (selecao.uf) {
+                document.getElementById('btn-next-step2').style.display = 'inline-block';
+            } else {
+                document.getElementById('btn-next-step2').style.display = 'none';
+            }
+        });
+
+        document.getElementById('btn-next-step2').addEventListener('click', async () => {
+            goStep(3);
+            carregarOrgaosDaBase();
+        });
+
+        // STEP 3: Órgãos do DB
+        async function carregarOrgaosDaBase() {
+            const grid = document.getElementById('grid-orgaos');
+            const msgSem = document.getElementById('msg-sem-orgaos');
+            grid.innerHTML = '<p class="pulse-working" style="font-size: 1.15rem; color: #D4AF37; margin: 20px 0;">⏳ Inteligência do Pai trabalhando em tempo real...<br><span style="font-size:0.9rem; color:#94A3B8;">Escaneando banco nacional.</span></p>';
+            msgSem.style.display = 'none';
+
+            // Chamada Supabase
+            let orgaos = await buscarOrgaos(selecao.familia, selecao.esfera, selecao.uf);
+            
+            grid.innerHTML = '';
+            if (!orgaos || orgaos.length === 0) {
+                // Sentinela Fallback: Cobrindo 100% do Brasil
+                const nomeUf = selecao.esfera === 'estadual' ? selecao.uf : 'Federais';
+                orgaos = [{
+                    orgao: `Concurso Unificado ${selecao.familia.toUpperCase()} - ${nomeUf}`,
+                    status_edital: 'fechado',
+                    ano_ultimo_edital: new Date().getFullYear() - 1,
+                    banca_ultimo_edital: 'Banca Institucional Especializada',
+                    data_prova: null
+                }];
+                msgSem.style.display = 'none';
+            }
+
+            orgaos.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'shield-card orgao-btn';
+                div.innerText = item.orgao;
+                div.onclick = () => {
+                    selecao.orgao = item.orgao;
+                    mostrarConfirmacao(item);
+                };
+                grid.appendChild(div);
+            });
+        }
+
+        function mostrarConfirmacao(item) {
+            goStep(4);
+            const txt = document.getElementById('txt-confirmacao');
+            
+            // Lógica do Radar Sentinela (Edital Histórico x Edital Aberto)
+            let alertaSentinela = '';
+            
+            if (item.status_edital === 'fechado') {
+                alertaSentinela = `<div style="margin-top: 20px; padding: 18px; background: rgba(30, 58, 138, 0.3); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 12px; font-size: 0.95rem; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                    <strong style="color: #D4AF37; font-size: 1.05rem;">🧭 Estratégia de Antecipação:</strong><br>
+                    <div style="margin: 8px 0;"><span style="display: inline-block; background: linear-gradient(135deg, #FFD700, #D4AF37); color: #0F172A; padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 900; box-shadow: 0 2px 5px rgba(212, 175, 55, 0.3); letter-spacing: 0.5px;">ROTA BASEADA NO ÚLTIMO EDITAL</span></div>
+                    Matriz genética extraída do ano de <strong>${item.ano_ultimo_edital || 'referência'}</strong> (Banca: <strong>${item.banca_ultimo_edital || 'Institucional'}</strong>). A largada antes do edital é a sua maior vantagem competitiva.
+                </div>`;
+            } else if (item.status_edital === 'aberto') {
+                alertaSentinela = `<div style="margin-top: 20px; padding: 18px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 12px; font-size: 0.95rem; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                    <strong style="color: #10b981; font-size: 1.05rem;">🔥 ALERTA DE EDITAL ABERTO:</strong><br>
+                    A janela de oportunidade disparou. O Cronômetro On-Time será ativado na sua base visual. Bancas confirmadas: <strong>${item.banca_ultimo_edital || 'Institucional'}</strong>.
+                </div>`;
+            }
+
+            // Armazenando metadados importantes para o Cronômetro na Missão
+            sessionStorage.setItem('recruta_status_edital', item.status_edital || 'aberto');
+            sessionStorage.setItem('recruta_data_prova', item.data_prova || '');
+            sessionStorage.setItem('recruta_idade_alvo', item.idade_alvo || 'Adulto, +18');
+
+            txt.innerHTML = `Você selecionou <strong>${selecao.orgao}</strong>.<br><br>O DNA da banca está sendo extraído para o nivelamento.
+            ${alertaSentinela}`;
+        }
+
+        document.getElementById('btn-voltar').addEventListener('click', () => {
+            goStep(step - 1);
+        });
+
+        document.getElementById('btn-iniciar-diagnostico').addEventListener('click', async () => {
+            const btn = document.getElementById('btn-iniciar-diagnostico');
+            btn.innerText = "PROCESSANDO...";
+            btn.disabled = true;
+
+            const success = await salvarPerfilGPS(selecao.familia, selecao.esfera, selecao.uf, selecao.orgao);
+            if(success) {
+                window.location.href = 'missao.html';
+            } else {
+                alert("Erro ao reportar Inteligência ao QG.");
+                btn.innerText = "INICIAR DIAGNÓSTICO DO ÓRGÃO";
+                btn.disabled = false;
+            }
+        });
+
+        // Carregamento Assíncrono do Push Intelligence (Boletim)
+        document.addEventListener('DOMContentLoaded', () => {
+            inicializarBoletimDoPai();
+        });
+
+        async function inicializarBoletimDoPai() {
+            const container = document.getElementById('boletim-container');
+            const badge = document.getElementById('badge-alertas');
+            const header = document.getElementById('boletim-header');
+            
+            container.innerHTML = '<span style="color: #94A3B8; font-size: 0.9rem; padding: 10px;">Monitorando o banco nacional...</span>';
+            
+            const editaisQuentes = await carregarBoletimDoPai();
+            
+            if (!editaisQuentes || editaisQuentes.length === 0) {
+                header.style.display = 'none';
+                container.style.display = 'none';
+                return;
+            }
+
+            container.innerHTML = '';
+            badge.innerText = editaisQuentes.length;
+            badge.style.display = 'block';
+            
+            editaisQuentes.forEach(edital => {
+                const div = document.createElement('div');
+                div.className = 'card-boletim';
+                let shareText = encodeURIComponent('🔥 Vazou o Mapeamento da Aprovação para o ' + edital.orgao + '! Destrave seu Diagnóstico Genético de Corte antes que a banca descubra: https://metododopai360.com');
+                div.innerHTML = `
+                    <span style="background: #EF4444; color: #FFF; padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 900; position: absolute; top: -12px; right: 15px; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4); letter-spacing: 1px;">URGENTE</span>
+                    <div style="flex-grow: 1; display: flex; flex-direction: column;">
+                        <div style="color: #4FA5FF; font-size: 0.75rem; font-weight: bold; text-transform: uppercase;">Aberto - Escopo ${edital.esfera || 'Nacional'}</div>
+                        <strong style="color: #FFF; font-size: 1.05rem; display: block; margin: 8px 0; line-height: 1.3;">${edital.orgao}</strong>
+                        <div style="color: #94A3B8; font-size: 0.8rem; margin-bottom: 12px; flex-grow: 1;">Banca: ${edital.banca_ultimo_edital || 'Não definida'}</div>
+                    </div>
+                    <button class="btn-giant" style="width: 100%; padding: 8px 0; font-size: 0.85rem; margin-top: auto; margin-bottom: 8px;" onclick="dispararAlertaDourado('${edital.familia}', '${edital.esfera}', '${edital.uf}', '${edital.orgao}', '${edital.idade_alvo}')">DIAGNÓSTICO AGORA</button>
+                    <a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" style="display: block; text-align: center; color: #25D366; text-decoration: none; font-size: 0.85rem; font-weight: bold; margin-top: 5px;">📲 Compartilhar Edital</a>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function dispararAlertaDourado(fam, esf, uf, org, idade) {
+            sessionStorage.setItem('recruta_familia', fam);
+            sessionStorage.setItem('recruta_esfera', esf);
+            sessionStorage.setItem('recruta_uf', uf || 'BR');
+            sessionStorage.setItem('recruta_orgao', org);
+            sessionStorage.setItem('recruta_status_edital', 'aberto');
+            sessionStorage.setItem('recruta_data_prova', new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString());
+            sessionStorage.setItem('recruta_idade_alvo', idade || 'Fundamental (10-14)');
+            
+            // Bypass Direto pro Diagnóstico (Cortando extensão p/ preservar query hash sem 301)
+            window.location.href = '/missao?v=' + Date.now();
+        }
+
+    </script>
+</body>
+</html>

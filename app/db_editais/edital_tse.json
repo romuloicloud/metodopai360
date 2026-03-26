@@ -1,0 +1,86 @@
+{
+  "concurso": "Tribunal Superior Eleitoral (TSE Unificado)",
+  "instituicao": "Poder Judiciário Federal",
+  "vagas": 412,
+  "salario": "R$ 8.529,65 (Técnico) a R$ 13.994,78 (Analista)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Conhecimentos Específicos e Básicos",
+        "disciplinas": [
+          "Direito Eleitoral",
+          "Direito Constitucional",
+          "Direito Administrativo",
+          "Língua Portuguesa",
+          "Noções de Informática"
+        ],
+        "quantidade_questoes": 120,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "questoes": [
+    {
+      "disciplina": "Direito Eleitoral",
+      "assunto": "Elegibilidade e Inelegibilidade (Lei Ficha Limpa)",
+      "texto_base": "A Lei Complementar nº 135/2010 (Lei da Ficha Limpa) alterou profundamente os critérios de elegibilidade, estabelecendo prazos de inelegibilidade de 8 anos para diversas infrações político-eleitorais e crimes comuns.",
+      "enunciado": "Um prefeito municipal tem suas contas rejeitadas pelo Tribunal de Contas do Estado (TCE) devido a irregularidades insanáveis que configuram ato doloso de improbidade administrativa, sendo a decisão irrecorrível no âmbito da Corte de Contas. De acordo com a Lei Complementar nº 64/90, alterada pela Lei da Ficha Limpa, para que incida a causa de inelegibilidade:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "A decisão do TCE constitui título executivo extrajudicial, prescindindo de decisão judicial, mas a inelegibilidade só ocorrerá se a rejeição transitar em julgado criminal.",
+        "A simples rejeição pelo TCE já o torna inelegível, cabendo à Justiça Comum apenas a suspensão liminar se houver comprovação de viés político no TCE.",
+        "Tratando-se de contas de prefeito, a competência para o julgamento final das contas de governo é da Câmara Municipal, cabendo ao TCE apenas o parecer prévio.",
+        "A inelegibilidade será de 5 anos improrrogáveis, contados a partir da data de término do seu mandato anterior.",
+        "A Justiça Eleitoral não tem a competência privativa para apreciar se há conduta culposa, bastando o carimbo da rejeição financeira para suspender os direitos políticos passivos."
+      ],
+      "gabarito_correto": "Tratando-se de contas de prefeito, a competência para o julgamento final das contas de governo é da Câmara Municipal, cabendo ao TCE apenas o parecer prévio.",
+      "justificativa_squad": "Jurisprudência fundamental (Tema 835 do STF): O parecer técnico do Tribunal de Contas (TCE) sobre as contas do Prefeito só gera inelegibilidade após o julgamento e rejeição política pela Câmara de Vereadores (com 2/3 dos votos)."
+    },
+    {
+      "disciplina": "Direito Constitucional",
+      "assunto": "Alistamento e Sufrágio",
+      "enunciado": "Sobre o alistamento eleitoral e o sufrágio universal, previstos no Capítulo dos Direitos Políticos, analise a afirmativa correta:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "O alistamento eleitoral e o voto são obrigatórios para os maiores de 18 anos, e facultativos para os analfabetos, maiores de 70 anos e para jovens entre 16 e 18 anos incompletos.",
+        "Os conscritos, durante o período do serviço militar obrigatório, têm o alistamento facultativo deferido pelo Comandante da Unidade.",
+        "A cassação de direitos políticos é permitida nos casos de cancelamento da naturalização por sentença com recurso pendente.",
+        "Os estrangeiros podem votar em eleições municipais caso comprovem residência fixa e recolhimento ininterrupto de impostos prediais por cinco anos.",
+        "Militares estaduais não podem votar e nem ser votados em nenhuma hipótese enquanto na ativa."
+      ],
+      "gabarito_correto": "O alistamento eleitoral e o voto são obrigatórios para os maiores de 18 anos, e facultativos para os analfabetos, maiores de 70 anos e para jovens entre 16 e 18 anos incompletos.",
+      "justificativa_squad": "Art. 14, § 1º da CF/88. Exceções clássicas ao voto obrigatório: maiores de 70 anos, de 16 a 18 anos, e analfabetos. (Cuidado: Conscritos são inalistáveis, não facultativos. Cassação é vedada; só ocorre Perda ou Suspensão)."
+    },
+    {
+      "disciplina": "Direito Administrativo",
+      "assunto": "Atos Administrativos (Atributos e Poderes)",
+      "texto_base": "A Polícia Federal apreendeu material falsificado que seria usado para coação eleitoral. O material foi instantaneamente destruído sem autorização judicial prévia, amparado pela doutrina administrativa.",
+      "enunciado": "Esta prerrogativa que a Administração Pública possui de executar, por via direta, as suas decisões administrativas, limitando direitos individuais em benefício do interesse público, sem a prévia intervenção do Poder Judiciário, advém fundamentalmente de qual atributo do Ato Administrativo conjugado com qual Poder?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Presunção de Legitimidade / Poder Disciplinar",
+        "Tipicidade / Poder Normativo",
+        "Autoexecutoriedade / Poder de Polícia",
+        "Imperatividade / Poder Hierárquico",
+        "Exigibilidade / Poder Regulamentar"
+      ],
+      "gabarito_correto": "Autoexecutoriedade / Poder de Polícia",
+      "justificativa_squad": "A Autoexecutoriedade é o atributo que dispensa o Judiciário para que o ato surta efeitos fáticos (ex: destruição de alimentos estragados, apreensão de mercadorias). Isso reflete materialmente a força coercitiva do Poder de Polícia estatal."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Integração Semântica Judicial",
+      "enunciado": "Em '... deferindo a liminar com efeito ex tunc, a instância retroagiu as consequências para extirpar a mácula originária', o advérbio/expressão grifados indicam que o ato jurisdicional possui capacidade de:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Suspender o ato de hoje em diante (Efeito Prospectivo).",
+        "Invalidar o ato desde a sua gênese, anulando os efeitos passados.",
+        "Vincular tribunais inferiores imediatamente.",
+        "Transferir a competência recursal ao STF.",
+        "Declarar a nulidade absoluta sem direito a honorários."
+      ],
+      "gabarito_correto": "Invalidar o ato desde a sua gênese, anulando os efeitos passados.",
+      "justificativa_squad": "Efeito 'ex tunc' (bate na 'T'esta e vai para trás): age de forma retroativa, anulando o ato desde o seu nascimento. Oposto de 'ex nunc' (bate na 'N'uca e vai para frente): nunca retroage, só de agora em diante."
+    }
+  ]
+}

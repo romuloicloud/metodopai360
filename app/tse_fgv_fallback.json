@@ -1,0 +1,12 @@
+[
+    { "c": "Direito Eleitoral", "t": "Sobre a obrigatoriedade do alistamento eleitoral e do voto administrativo, assinale a correta:", "o": ["É facultativo para maiores de 70 anos.", "É obrigatório para menores de 18 anos.", "É facultativo para mulheres casadas.", "É permitido para estrangeiros."], "a": 0 },
+    { "c": "Direito Eleitoral", "t": "Quem é competente para julgar recurso contra decisão de junta eleitoral?", "o": ["TSE", "TRE", "STF", "Juiz de Direito"], "a": 1 },
+    { "c": "Direito", "t": "Qual o prazo mínimo de filiação partidária exigido pela legislação para concorrer a um cargo eletivo?", "o": ["1 ano", "6 meses", "3 meses", "30 dias"], "a": 1 },
+    { "c": "Direito Constitucional", "t": "A soberania popular será exercida pelo sufrágio universal e pelo voto direto e secreto, mediante:", "o": ["Plebiscito, referendo e iniciativa popular", "Processo legislativo, impeachment e CPI", "Ação civil pública, amparo e indulto", "Decreto, portaria e resolução"], "a": 0 },
+    { "c": "Direito Eleitoral", "t": "Nos termos da Lei nº 9.096/95, é vedado aos partidos políticos ministrar instrução:", "o": ["Ideológica", "Religiosa", "Militar ou paramilitar", "Econômica"], "a": 2 },
+    { "c": "Direito Administrativo", "t": "O servidor da Justiça Eleitoral pode exercer atividade político-partidária?", "o": ["Sim, livremente", "Não, sob pena de demissão", "Apenas fora do expediente", "Apenas em anos não eleitorais"], "a": 1 },
+    { "c": "Português", "t": "Identifique a correção gramatical: 'Haja visto os prazos eleitorais.'", "o": ["Correto", "O correto é 'Haja vista'", "O correto é 'Hajam vistos'", "Gíria jurídica"], "a": 1 },
+    { "c": "Exatas", "t": "Se a zona eleitoral XYZ tem 15.000 eleitores aptos e a taxa de abstenção histórica é 20%. Quantos votos válidos máximos teremos se 5% votarem nulo?", "o": ["11.400", "12.000", "15.000", "10.000"], "a": 0 },
+    { "c": "Informática", "t": "A segurança da urna eletrônica baseia-se fortemente em:", "o": ["Conexão direta com a internet via 5G", "Uso de disquetes redundantes", "Criptografia e assinaturas digitais offline", "Senhas de 4 dígitos do presidente de mesa"], "a": 2 },
+    { "c": "Específicas", "t": "Segundo o Código Eleitoral, o cancelamento do registro do candidato dar-se-á:", "o": ["Por vontade de qualquer eleitor", "Se o partido for extinto", "Por ausência em debate televisivo", "Se ele não votar na eleição anterior"], "a": 1 }
+]

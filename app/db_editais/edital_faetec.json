@@ -1,0 +1,17 @@
+{
+  "orgao": "FAETEC",
+  "nivel": "Acesso Básico (Ensino Médio e Técnico)",
+  "versao_edital": "2024.1",
+  "questoes": [
+    { "c": "Matemática", "t": "Equações do 1º Grau (FAETEC): Um técnico de manutenção consertou 3 computadores a mais que seu colega. Juntos, eles consertaram 15 computadores. Quantos computadores o colega consertou?", "o": ["6", "9", "5", "8"], "a": 0 },
+    { "c": "Matemática", "t": "Regra de Três Simples: Para montar 20 motores, uma impressora 3D leva 4 horas. Quantas horas a mesma máquina levará para montar 50 motores?", "o": ["8 horas", "10 horas", "12 horas", "15 horas"], "a": 1 },
+    { "c": "Português", "txtRef": "No laboratório de química, o professor instruiu aos alunos: 'Misturem com extremo cuidado, haja vista que a reação é exotérmica'.", "t": "Interpretação e Gramática: A locução destacada 'haja vista que' estabelece uma relação semântica estrita de:", "o": ["Consequência", "Concessão", "Causa", "Condição"], "a": 2 },
+    { "c": "Português", "t": "Figuras de Linguagem: 'O choro da mangueira no quintal avisava que a chuva havia terminado.' Qual a figura de linguagem predominante no texto?", "o": ["Metáfora", "Prosopopeia (Personificação)", "Eufemismo", "Pleonasmo"], "a": 1 },
+    { "c": "Matemática", "t": "Geometria Plana (Teorema de Pitágoras): Uma escada de 5 metros está encostada em uma parede. A base da escada está a 3 metros de distância da parede. Qual a altura que a escada alcança na parede?", "o": ["3 metros", "3,5 metros", "4 metros", "4,5 metros"], "a": 2 },
+    { "c": "Informática (Conhecimento Básico FAETEC)", "t": "Hardware: A placa-mãe (Motherboard) de um computador desktop é responsável principalmente por:", "o": ["Gerar a energia necessária diretamente da tomada.", "Interligar e permitir a comunicação entre todos os componentes de hardware.", "Rodar exclusivamente o Sistema Operacional sem uso do HD.", "Refrigerar o processador com fluido líquido."], "a": 1 },
+    { "c": "Matemática", "t": "Porcentagem: Um curso técnico da FAETEC tem 40 alunos matriculados, mas 15% faltou no dia da prova de desenho industrial. Quantos alunos estavam PRESENTES na prova?", "o": ["34 alunos reais presentes e fazendo o certame.", "25 alunos", "6", "30"], "a": 0 },
+    { "c": "Física Integrada", "t": "Mecânica: Qual das seguintes unidades do Sistema Internacional (SI) mede puramente a grandeza associada à Força Mecânica Numérica Dinâmica?", "o": ["Newton (N)", "Joules (J)", "Watts (W)", "Pascais Exatos"], "a": 0 },
+    { "c": "Português", "txtRef": "O aluno estava <u style='color:#EF4444'>ansioso</u> pelo resultado brilhante da matriz.", "t": "Morfologia e Sintaxe: A palavra sublinhada no período atua morfologicamente na nossa língua limpa padrão legal culta como um:", "o": ["Substantivo Limpo Absoluto", "Adjetivo Lógico Real e Gramatical Tático", "Verbo", "Pronome Relativo Fechado"], "a": 1 },
+    { "c": "Matemática", "t": "Frações e Probabilidade: Em uma urna há 3 bolas vermelhas, 2 azuis e 5 verdes. Sorteando uma bola ao acaso, qual a probabilidade de ela NÃO SER verde?", "o": ["100% de margem", "Exatamente Metade, 1/2.", "2/5 puros.", "3/10"], "a": 1 }
+  ]
+}

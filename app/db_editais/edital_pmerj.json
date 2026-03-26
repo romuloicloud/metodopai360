@@ -1,0 +1,34 @@
+{
+  "orgao": "Polícia Militar do Estado do Rio de Janeiro (PMERJ)",
+  "nivel": "Nível Médio/Superior (Policial)",
+  "versao_edital": "2024.1",
+  "questoes": [
+    { 
+      "c": "Direito", 
+      "txtRef": "<b>SITUAÇÃO HIPOTÉTICA:</b> O Comandante do 12º BPM decide exonerar um soldado da função de motorista, preenchendo o ato apenas com a expressão 'por motivos de conveniência'.",
+      "t": "[PMERJ 2024] Avaliando a situação acima e com base na Teoria dos Motivos Determinantes, o ato administrativo é configurado como:", 
+      "o": ["Nulo (Falta de Motivação adequda)", "Válido, pois é discricionário", "Anulável a critério do Governador", "Revogado imediatamente"], 
+      "a": 0 
+    },
+    { 
+      "c": "Português", 
+      "t": "Em provas FGV, a regência exigida para o verbo <u style='color:#FFD700;'>Assistir (no sentido de ver)</u> é:", 
+      "o": ["Direta sem preposição", "Indireta (com uso do 'a')", "Totalmente Facultativa", "Pronominal reflexiva"], 
+      "a": 1 
+    },
+    { 
+      "c": "Exatas", 
+      "img": "https://placehold.co/500x300/1E293B/4FA5FF?text=DIAGRAMA+DE+VENN:\\nConjunto+A+(Patrulha)\\nConjunto+B+(Atiradores)\\nÁrea+Destacada:+A+%E2%88%A9+B",
+      "t": "Observe o Diagrama de Venn fornecido pela banca. Se o conjunto <b>A</b> representa policiais em patrulha e <b>B</b> policiais atiradores, a área destacada central representa:", 
+      "o": ["Interseção: Policiais que patrolham E atiram.", "União: Todos os policiais.", "Diferença: Apenas atiradores.", "Conjunto Vazio."], 
+      "a": 0 
+    },
+    { "c": "Direito", "t": "O princípio da <b>Vedação de Retrocesso</b> em Direitos Humanos impede que o Estado:", "o": ["Diminua ou anule direitos já consolidados", "Cobre impostos progressivos", "Extradite cidadãos naturalizados", "Revogue leis antigas"], "a": 0 },
+    { "c": "Informática", "t": "Em protocolos de Segurança Tática, qual o atalho que <u>bloqueia a tela do Windows</u> caso o Recruta precise levantar da mesa?", "o": ["Ctrl+Alt+Del", "Win+L", "Alt+F4", "F5"], "a": 1 },
+    { "c": "Processo Penal", "txtRef": "No ordenamento pátrio, 'asilo inviolável' (Art. 5º, XI CF) abrange habitação, escritório e aposento coletivo ocupado.", "t": "No <b>Flagrante Delito</b>, é correto afirmar que o policial:", "o": ["Pode entrar a qualquer hora sem mandado judicial", "Precisa de mandado do Juiz de plantão sempre", "Deve aguardar autorização do Ministério Público", "Só pode invadir fisicamente durante o dia"], "a": 0 },
+    { "c": "Direito", "t": "Na <u style='text-decoration-color: #EF4444;'>Lei Maria da Penha (Violência Doméstica)</u>, a Medida Protetiva de Urgência:", "o": ["Depende de inquérito concluído e trânsito em julgado", "Deve ser concedida pelo Juiz independentemente de provas cabais (Cognição Sumária)", "É dada apenas por Delegado de Polícia classe especial", "Foi revogada em 2023"], "a": 1 },
+    { "c": "Legislação", "t": "A <b>precedência hierárquica</b> entre PMs da exata mesma graduação é definida primeiramente pela:", "o": ["Idade biológica", "Antiguidade e data de promoção original", "Indicação Política do Governador", "Ordem Alfabética"], "a": 1 },
+    { "c": "Processo Penal", "t": "O Inquérito Policial Militar (IPM) tem caráter exclusivamente:", "o": ["Judicial definitivo", "Acusatório Inquisitivo provisório", "Informativo e Inquisitivo", "Contraditório e Pleno"], "a": 2 },
+    { "c": "Exatas", "t": "Raciocínio Lógico PMERJ: Na condicional (<i>Se P -> Q</i>), a proposição só atinge o valor <u style='color:#EF4444;'>FALSO</u> quando:", "o": ["P é Falsa e Q é Verdadeira", "P é Verdadeira e Q é Falsa", "Ambas são Falsas absolutas", "Ambas são Verdadeiras"], "a": 1 }
+  ]
+}

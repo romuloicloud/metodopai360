@@ -1,0 +1,90 @@
+{
+  "concurso": "Escola Naval",
+  "instituicao": "Marinha do Brasil",
+  "vagas": 69,
+  "salario": "R$ 7.315,00 (Aspirante de Marinha - Oficial)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Matemática e Física Profunda",
+        "disciplinas": [
+          "Matemática",
+          "Física",
+          "Português",
+          "Inglês"
+        ],
+        "quantidade_questoes": 80,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Física",
+      "assunto": "Circuitos de Corrente Contínua",
+      "enunciado": "Em um circuito simples, uma bateria ideal de 12 V é ligada em série a dois resistores de 2 Ω e 4 Ω. Qual é a corrente no circuito?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "1",
+        "2 A",
+        "3 A",
+        "4 A",
+        "6 A"
+      ],
+      "gabarito_correto": "2 A",
+      "justificativa_squad": "Resistência equivalente (série) = 2 + 4 = 6 ohms. Pela 1ª Lei de Ohm: i = U / R = 12 / 6 = 2 Amperes."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Geometria Espacial (Cone de Revolução)",
+      "enunciado": "Calcule a área lateral de um cone equilátero cujo raio da base é 3 cm.",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "9π",
+        "12π",
+        "18π",
+        "27π",
+        "36π"
+      ],
+      "gabarito_correto": "18π",
+      "justificativa_squad": "Cone equilátero: geratriz g = 2R. Como R = 3, g = 6. Área Lateral = π*R*g = π*3*6 = 18π cm²."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Cálculo Diferencial I",
+      "enunciado": "A derivada primeira da função f(x) = x³ - 3x² + 5x - 7 é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "3x² - 6x + 5",
+        "x² - 3x + 5",
+        "3x² - 3",
+        "3x² - 6x - 7",
+        "x³ - 6x + 5"
+      ],
+      "gabarito_correto": "3x² - 6x + 5",
+      "justificativa_squad": "Pela regra do tombo: d/dx(x^n) = n*x^(n-1). Derivando cada termo: 3x² - 2*3x + 5 - 0 = 3x² - 6x + 5."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Maritime Vocabulary / Prepositions",
+      "texto_base": "The frigate dropped anchor ___ the deep waters outside the bay.",
+      "enunciado": "Choose the best preposition to complete the sentence:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "on",
+        "at",
+        "inside",
+        "in",
+        "above"
+      ],
+      "gabarito_correto": "in",
+      "justificativa_squad": "Para águas/oceanos/mares usa-se 'in' (in the water, in the sea). Logo, 'in the deep waters'."
+    }
+  ]
+}

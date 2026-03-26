@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pai 360 - Seleção de Alvo Operacional</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="config.js"></script>
+    <style>
+        body { padding-top: 20px; }
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Hero Card PMERJ */
+        .hero-target {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 58, 138, 0.9) 100%);
+            border: 2px solid #EF4444;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-target::before {
+            content: "ALVO PRIMÁRIO (PROJETO Ouro)";
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            background: #EF4444;
+            color: #FFF;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 4px 0;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            color: #FFF;
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 20px 0 10px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Grid de Sub-Alvos */
+        .grid-targets {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .target-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .target-card:hover {
+            border-color: #4FA5FF;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(79, 165, 255, 0.2);
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .target-info h3 {
+            color: #F8FAFC;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .target-info span {
+            color: #94A3B8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .target-icon {
+            font-size: 1.8rem;
+            color: #4FA5FF;
+        }
+        
+        .badge-ouro {
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            border: 1px solid #D4AF37;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header style="text-align: center; margin-bottom: 25px;">
+            <img src="/app-icon.png?v=5" alt="Pai 360" style="width: 60px; border-radius: 8px; margin-bottom: 10px;">
+            <h1 style="color: #4FA5FF; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Central de Operações</h1>
+            <p style="color: #94A3B8; font-size: 0.9rem;">Selecione o seu edital para iniciar o rastreamento genético.</p>
+        </header>
+
+        <!-- ALVO PRINCIPAL: PMERJ -->
+        <div class="hero-target">
+            <h2 class="hero-title">Polícia Militar do Estado do Rio de Janeiro</h2>
+            <p style="color: #CBD5E1; margin-bottom: 25px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                O maior concurso Policial da década acaba de sofrer vazamento estrutural. Inicie seu nivelamento tático e descubra o seu Gap exato até a farda antes da prova.
+            </p>
+            <button class="btn-giant pulse" style="max-width: 400px; margin: 0 auto; background: #EF4444; border-color: #B91C1C; box-shadow: 0 0 15px rgba(239,68,68,0.4);" onclick="direcionarCatalogo('policial', 'estadual', 'RJ', 'Polícia Militar RJ', 'edital_pmerj')">
+                <i class="fa-solid fa-crosshairs"></i> INICIAR MAPA PMERJ AGORA
+            </button>
+        </div>
+
+        <h3 style="color: #F8FAFC; margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Forças Policiais / Segurança</h3>
+        <div class="grid-targets">
+            <div class="target-card" onclick="direcionarCatalogo('policial', 'federal', 'BR', 'Polícia Federal', 'edital_pf')">
+                <div class="target-info">
+                    <h3>Polícia Federal <span class="badge-ouro">Elite</span></h3>
+                    <span>Nacional</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-building-shield"></i></div>
+            </div>
+            <div class="target-card" onclick="direcionarCatalogo('policial', 'federal', 'BR', 'Polícia Rodoviária Federal', 'edital_prf')">
+                <div class="target-info">
+                    <h3>Polícia Rodoviária</h3>
+                    <span>Nacional</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-car-on"></i></div>
+            </div>
+            <div class="target-card" onclick="direcionarCatalogo('policial', 'estadual', 'RJ', 'Polícia Civil RJ', 'edital_pcerj')">
+                <div class="target-info">
+                    <h3>Polícia Civil RJ</h3>
+                    <span>Estadual</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-fingerprint"></i></div>
+            </div>
+        </div>
+
+        <h3 style="color: #F8FAFC; margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Colégios e Estatais</h3>
+        <div class="grid-targets">
+            <div class="target-card" onclick="direcionarCatalogo('escolar', 'federal', 'RJ', 'Colégio Pedro II', 'edital_pedro_ii')">
+                <div class="target-info">
+                    <h3>Colégio Pedro II</h3>
+                    <span>Fundamental / Médio</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-school"></i></div>
+            </div>
+            <div class="target-card" onclick="direcionarCatalogo('escolar', 'estadual', 'RJ', 'FAETEC', 'edital_faetec')">
+                <div class="target-info">
+                    <h3>FAETEC RJ</h3>
+                    <span>Sistemas Técnicos</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-microchip"></i></div>
+            </div>
+            <div class="target-card" onclick="direcionarCatalogo('estatal', 'nacional', 'BR', 'Correios S/A', 'edital_correios')">
+                <div class="target-info">
+                    <h3>Correios</h3>
+                    <span>Volume Massivo</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-box"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Roteamento -->
+    <script src="/backend_onboarding.js?v=9"></script>
+    <script>
+        function direcionarCatalogo(familia, esfera, uf, orgao, cid) {
+            // Guarda na sessão as chaves do candidato para o funneling de prova
+            sessionStorage.setItem('recruta_familia', familia);
+            sessionStorage.setItem('recruta_esfera', esfera);
+            sessionStorage.setItem('recruta_uf', uf || 'BR');
+            sessionStorage.setItem('recruta_orgao', orgao);
+            sessionStorage.setItem('recruta_status_edital', 'aberto');
+            sessionStorage.setItem('recruta_concurso_id', cid);
+            
+            // Direciona o soldado para a Missão Base (o funil de teste diagnóstico antes do Paywall)
+            window.location.href = 'missao.html';
+        }
+    </script>
+</body>
+</html>

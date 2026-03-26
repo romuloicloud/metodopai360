@@ -1,0 +1,70 @@
+{
+  "concurso": "Tribunal de Justiça de São Paulo (TJ-SP)",
+  "instituicao": "Poder Judiciário Estadual (SP)",
+  "vagas": 572,
+  "salario": "R$ 6.043,54 (Escrevente Técnico Judiciário + Auxílio Saúde/Alimentação)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Blocos do Escrevente",
+        "disciplinas": [
+          "Língua Portuguesa",
+          "Informática (Office e Internet)",
+          "Normas da Corregedoria",
+          "Direito Processual Civil",
+          "Direito Constitucional",
+          "Matemática e Raciocínio Lógico"
+        ],
+        "quantidade_questoes": 100,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "questoes": [
+    {
+      "disciplina": "Normas da Corregedoria",
+      "assunto": "Tramitação Processual Eletrônica e Livros Típicos",
+      "enunciado": "A Corregedoria Geral da Justiça estadual de São Paulo institui rígidas normas de controle administrativo e protocolar das Serventias. Considerando o Tomo I, Capítulo II das Normas da Corregedoria (Ofícios de Justiça em Geral), assinale a resposta exigida legalmente para a correição Ordinária:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "A correição ordinária consiste em fiscalização extraordinária realizada sem qualquer aviso para apurar queixas-crime sigilosas contra juízes.",
+        "É a fiscalização prevista e executada pelo Juiz Corregedor Permanente todo ano (geralmente dezembro), independentemente de denúncia, abrangendo de forma minuciosa toda a serventia.",
+        "A correição só é gerada através da ouvidoria presencial, dependendo de autorização da presidência do Tribunal Pleno.",
+        "Ata de correição ordinária não possui efeito vinculante caso discorde do regulamento do STJ.",
+        "O Chefe do Ministério Público atua com supremacia na Correição dos Cartórios de Protestos em conjunto com o corregedor permanente."
+      ],
+      "gabarito_correto": "É a fiscalização prevista e executada pelo Juiz Corregedor Permanente todo ano (geralmente dezembro), independentemente de denúncia, abrangendo de forma minuciosa toda a serventia.",
+      "justificativa_squad": "Correição Ordinária (Normas da Corregedoria - CGJ) é a inspeção rotineira e anual na qual o Juiz Corregedor Permanente verifica todo o funcionamento do ofício (livros, andamentos, assiduidade, mandados retidos) de modo corriqueiro e independente de reclamações, contrastando com a extraordinária que é inopinada e direcionada."
+    },
+    {
+      "disciplina": "Direito Constitucional",
+      "assunto": "Repartição de Competências e Poder Judiciário",
+      "enunciado": "A Constituição do Estado de São Paulo é simétrica aos ditames de 1988 na estruturação dos juízes e justiças especializadas estaduais.\nA Justiça Militar do Estado atua no âmbito de:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Crimes de guerra provocados contra o Estado pelas Unidades Federativas vizinhas.",
+        "Processar e julgar de forma criminal, e também civil, todo cidadão que agredir verbal ou moralmente um coronel da PM atuante em protestos civis.",
+        "Processar e julgar os militares dos Estados, nos crimes militares definidos em lei, bem como decidir sobre a perda do posto e da patente dos oficiais, cabendo ao Júri popular atuar mesmo se o Militar cometer crime em horário livre fora da caserna (A não ser que atraia o Júri Estadual Civil por cometer dolosamente contra civil).",
+        "Competência exclusiva no patrulhamento aduaneiro Estadual no porto de Santos, em colaboração ao Ministério do Exército.",
+        "Ser a Corte Marcial da Federação de Segunda Instância das punições do TSE."
+      ],
+      "gabarito_correto": "Processar e julgar os militares dos Estados, nos crimes militares definidos em lei, bem como decidir sobre a perda do posto e da patente dos oficiais, cabendo ao Júri popular atuar mesmo se o Militar cometer crime em horário livre fora da caserna (A não ser que atraia o Júri Estadual Civil por cometer dolosamente contra civil).",
+      "justificativa_squad": "Artigo 125, § 4º da CF/88. A competência da Justiça Militar Estadual (JME) restringe-se EXCLUSIVAMENTE ao processamento e julgamento dos Policiais Militares e Bombeiros Militares que cometem 'crimes militares' (segundo CPM), excetuados explicitamente na constituição os crimes dolosos contra a vida praticados contra civil, estes puxados para o Tribunal do Júri tradicional (como no exemplo acima sobre a atração legal)."
+    },
+    {
+      "disciplina": "Informática",
+      "assunto": "Funções Microsoft Excel",
+      "enunciado": "Um escrevente técnico judiciário do TJSP precisa filtrar as penas de diversos processos penais lançadas num laudo técnico pericial pelo sistema SAJ. Sabendo que o laudo forneceu os valores em milhões nas células de {A1:A50}, qual a fórmula que apresenta O EXATO Segundo Maior Valor dentre os citados?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "=MÁXIMO(A1:A50; 2)",
+        "=MENOR(A1:A50; 2)",
+        "=SEGUNDOMAIOR(A1;A50)",
+        "=MAIOR(A1:A50; 2)",
+        "=MED(A1:A50) * 2"
+      ],
+      "gabarito_correto": "=MAIOR(A1:A50; 2)",
+      "justificativa_squad": "A fórmula '=MÁXIMO(A1:A50)' trará SEMPRE O MAIOR ABSOLUTO. Para pegar uma colocação ou ranking específico de valor máximo, utiliza-se obrigatóriamente a fórmula =MAIOR(intervalo; posição_k). O '2' denota a medalha de Prata (O 2º Maior)."
+    }
+  ]
+}

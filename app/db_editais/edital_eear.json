@@ -1,0 +1,85 @@
+{
+  "concurso": "Escola de Especialistas de Aeronáutica (EEAR)",
+  "instituicao": "Força Aérea Brasileira (FAB)",
+  "vagas": 250,
+  "salario": "R$ 3.825,00 (Terceiro-Sargento Especialista)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Especialidades Diversas",
+        "disciplinas": [
+          "Matemática",
+          "Física",
+          "Língua Portuguesa",
+          "Inglês"
+        ],
+        "quantidade_questoes": 96,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Física",
+      "assunto": "Hidrostática",
+      "enunciado": "Um cubo de madeira flutua na água com 60% do seu volume submerso. Sendo a densidade da água 1,0 g/cm³, a densidade da madeira é, aproximadamente:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "0,4 g/cm³",
+        "0,6 g/cm³",
+        "1,0 g/cm³",
+        "6,0 g/cm³"
+      ],
+      "gabarito_correto": "0,6 g/cm³",
+      "justificativa_squad": "Empuxo = Peso. (densidade_liquido * volumesub * g) = (densidade_corpo * volume_total * g). densidade_corpo = (0,6 * vol_total / vol_total) * 1,0 = 0,6 g/cm³."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Sistemas Lineares",
+      "enunciado": "O sistema {2x + y = 5; 4x + 2y = 10} é classificado como:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Possível e Determinado (SPD)",
+        "Possível e Indeterminado (SPI)",
+        "Impossível (SI)",
+        "Invariante"
+      ],
+      "gabarito_correto": "Possível e Indeterminado (SPI)",
+      "justificativa_squad": "A segunda equação é múltipla (dobro) da primeira. Há infinitas soluções, definindo retas coincidentes."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Phrasal Verbs aplicados ao tráfego aéreo",
+      "enunciado": "The aircraft was authorized to ___ at 14:00 hours.",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "take off",
+        "take in",
+        "take apart",
+        "take out"
+      ],
+      "gabarito_correto": "take off",
+      "justificativa_squad": "'Take off' significa decolar. Nenhuma outra opção se aplica semanticamente a 'aircraft'."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Regência Verbal",
+      "enunciado": "Assinale a alternativa cuja regência do verbo ESSENCIAL obedece à norma culta:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Assisti o avião pousar na pista.",
+        "Aspiro ao cargo de sargento especialista.",
+        "Preferimos mais a infantaria do que a intendência.",
+        "Obedeça o regulamento."
+      ],
+      "gabarito_correto": "Aspiro ao cargo de sargento especialista.",
+      "justificativa_squad": "'Aspirar' (desejar) é transitivo indireto e pede preposição 'a'. Assistir (ver) pede 'a'. Preferir rejeita 'mais... do que'. Obedecer pede 'ao'."
+    }
+  ]
+}

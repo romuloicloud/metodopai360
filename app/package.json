@@ -1,0 +1,10 @@
+{
+  "name": "motor-diagnostico",
+  "version": "1.0.0",
+  "description": "Fase 1 do Front e Back do motor de diagnostico",
+  "main": "backend_diagnostico.js",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "gtts": "^0.2.1"
+  }
+}

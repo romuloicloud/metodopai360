@@ -1,0 +1,17 @@
+{
+  "orgao": "Roteiro Universal para Tribunais (TJ, TRT, TRE, TRF)",
+  "nivel": "Técnico Administrativo / Analista Judiciário",
+  "versao_edital": "2024.1",
+  "questoes": [
+    { "c": "Direito Constitucional", "t": "Garantias Fundamentais: O 'Habeas Corpus' é um remédio constitucional destinado exclusivamente a proteger o direito de:", "o": ["Petição aos Poderes Públicos", "Acesso à Informação Pessoal", "Liberdade de Locomoção", "Certidão em Repartições"], "a": 2 },
+    { "c": "Direito Administrativo", "t": "Licitações (Lei 14.133): O critério de julgamento que busca a proposta mais vantajosa analisando preço e qualidade técnica chama-se:", "o": ["Menor Preço", "Melhor Técnica ou Conteúdo Artístico", "Técnica e Preço", "Maior Retorno Econômico"], "a": 2 },
+    { "c": "Direito Processual", "txtRef": "No Tribunal de Justiça, os prazos processuais são a alma do sistema judicial para que as decisões sejam céleres.", "t": "Prazos Cíveis: A contagem de prazos em dias no Novo Código de Processo Civil ocorre exclusivamente em dias:", "o": ["Corridos", "Alternados", "Úteis", "Comerciais"], "a": 2 },
+    { "c": "Raciocínio Lógico", "t": "Lógica Proposicional: Se a proposição 'A' é verdadeira e a 'B' é falsa, o resultado da conjunção (A e B) será:", "o": ["Verdadeiro", "Falso", "Indeterminado", "Inconclusivo"], "a": 1 },
+    { "c": "Português", "t": "Análise Sintática (FGV): Na frase 'A decisão do Juiz <u>ao réu</u> foi favorável', o termo sublinhado exerce a função de:", "o": ["Complemento Nominal", "Objeto Indireto", "Adjunto Adnominal", "Agente da Passiva"], "a": 0 },
+    { "c": "Direito Administrativo", "t": "Atos Administrativos: Qual dos atributos abaixo garante ao ato administrativo a presunção de que nasceu de acordo com a Lei?", "o": ["Autoexecutoriedade", "Imperatividade", "Tipicidade", "Presunção de Legitimidade"], "a": 3 },
+    { "c": "Direito Processual Penal", "t": "Inquérito Policial: Característica base do ICP é ser um procedimento de natureza:", "o": ["Acusatória", "Inquisitiva", "Judicial", "Contraditória"], "a": 1 },
+    { "c": "Português", "txtRef": "O magistrado interveio bruscamente na sessão, <u style='color:#EF4444'>conquanto</u> a defesa ainda falasse.", "t": "Conectivos: A palavra destacada expressa uma ideia de:", "o": ["Condição", "Tempo", "Concessão", "Conformidade"], "a": 2 },
+    { "c": "Legislação Específica", "t": "Estatuto do Servidor: A vacância do cargo público decorrerá de, EXCETO:", "o": ["Promoção", "Exoneração", "Aposentadoria", "Nomeação"], "a": 3 },
+    { "c": "Informática", "t": "Ferramentas do Microsoft Word 365: O recurso 'Mala Direta' tem como objetivo principal:", "o": ["Verificar ortografia e gramática automaticamente", "Enviar e-mails em massa contendo dados exclusivos por destinatário", "Criar gráficos dinâmicos a partir do Excel", "Traduzir documentos para múltiplos idiomas"], "a": 1 }
+  ]
+}

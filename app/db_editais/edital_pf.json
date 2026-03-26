@@ -1,0 +1,85 @@
+{
+  "concurso": "Polícia Federal (PF)",
+  "instituicao": "Ministério da Justiça e Segurança Pública",
+  "vagas": 1500,
+  "salario": "R$ 13.649,00",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Específicos de Segurança Policial (Estilo CESPE)",
+        "disciplinas": [
+          "Língua Portuguesa",
+          "Noções de Direito Penal",
+          "Noções de Direito Processual Penal",
+          "Informática",
+          "Estatística"
+        ],
+        "quantidade_questoes": 120,
+        "peso_por_questao": 1.0,
+        "fator_correcao": "Uma errada anula uma certa."
+      }
+    ]
+  },
+  "questoes": [
+    {
+      "disciplina": "Noções de Direito Penal",
+      "assunto": "Crimes contra a Administração Pública",
+      "enunciado": "Situação Hipotética: Um agente da Polícia Federal, durante o cumprimento de mandado de busca e apreensão, exige do investigado o pagamento de R$ 50.000,00 para não apreender computadores vitais para a empresa do mesmo. Assertiva: O agente cometeu o crime de corrupção passiva, pois obteve vantagem indevida em razão da sua função pública.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Errado",
+      "justificativa_squad": "No crime de concussão (art. 316 do CP), o funcionário público 'exige' vantagem indevida. Na corrupção passiva (art. 317 do CP), ele 'solicita' ou 'recebe'. Como o enunciado diz 'exige', trata-se de Concussão e não de corrupção passiva."
+    },
+    {
+      "disciplina": "Informática",
+      "assunto": "Segurança da Informação e Redes",
+      "enunciado": "A deep web constitui uma porção da internet não indexada pelos motores de busca tradicionais, sendo que a criptografia, como mecanismo de segurança em suas redes (a exemplo da rede Tor), visa assegurar a confidencialidade e a integridade da comunicação. É correto afirmar que o ataque de ransomware, que codifica arquivos e cobra resgate, utiliza nativamente o Tor para invadir fisicamente o computador alvo.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Errado",
+      "justificativa_squad": "A rede Tor assegura alto anonimato de rastreio, mas NÃO é a ferramenta ou o meio utilizado para a 'invasão física/lógica' da máquina pelo Ransomware. Ransomwares infectam dispositivos via engenharia social, phishing e vulnerabilidades expostas, utilizando a rede Tor apenas para mascarar a transação do resgate ou seu painel de comando de controle."
+    },
+    {
+      "disciplina": "Estatística",
+      "assunto": "Amostragem e Probabilidade",
+      "enunciado": "Se a probabilidade de um dispositivo eletrônico apreendido pela Polícia Federal conter arquivos criminosos é de 0,40, e as extrações feitas em diferentes dispositivos são eventos independentes, então a probabilidade de que os dois primeiros dispositivos inspecionados não contenham arquivos criminosos é superior a 0,35.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Certo",
+      "justificativa_squad": "A probabilidade de NÃO conter arquivo criminoso (insucesso) é P(X) = 1 - 0,40 = 0,60.\nA probabilidade de ocorrer o insucesso no 1º dispositivo E no 2º dispositivo (eventos independentes) é = 0,60 * 0,60 = 0,36. Como 0,36 é estritamente MAIOR que 0,35, a assertiva está correta."
+    },
+    {
+      "disciplina": "Noções de Direito Processual Penal",
+      "assunto": "Inquérito Policial",
+      "enunciado": "A respeito do inquérito policial (IP), julgue o item seguinte: A autoridade policial não poderá mandar arquivar autos de inquérito, sendo essa prerrogativa exclusiva do membro do Ministério Público responsável (promotor), cabendo ao juiz a homologação do pedido de arquivamento.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Certo",
+      "justificativa_squad": "Corretíssimo. Dispõe expressamente o artigo 17 do Código de Processo Penal: 'A autoridade policial não poderá mandar arquivar os autos do inquérito'. O IP é indisponível para o Delegado de Polícia."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Compreensão e Interpretação de Textos Judiciais",
+      "enunciado": "No jargão policial, a palavra 'prescindir' é largamente utilizada nos relatórios. Na frase: 'A interceptação telefônica prescinde de autorização judicial para produzir efeitos em inquéritos primários', afirma-se rigorosamente que o grampo pode ser feito sem a intervenção do juiz, tornando-se lícito se ratificado posteriormente.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Errado",
+      "justificativa_squad": "A interceptação telefônica 'NÃO prescinde' (não dispensa) a autorização do Juiz para acontecer licitamente, pelo preceito Constitucional e da Lei 9.296/96 (Cláusula de Reserva de Jurisdição). Portanto, a assertiva falha mortalmente no aspecto jurídico do procedimento material da prova."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "antigravity-kit",
+  "version": "2.1.0",
+  "description": "Kit oficial de ferramentas do Agente Antigravity para suporte e padronização e segurança de Squads (OpenSquad).",
+  "main": "src/index.js",
+  "bin": {
+    "ag-kit": "./bin/index.js"
+  },
+  "scripts": {
+    "start": "node ./bin/index.js"
+  },
+  "author": "Antigravity",
+  "license": "ISC"
+}

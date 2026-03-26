@@ -1,0 +1,85 @@
+{
+  "concurso": "Escola Preparatória de Cadetes do Ar (EPCAR)",
+  "instituicao": "Força Aérea Brasileira (FAB)",
+  "vagas": 130,
+  "salario": "Ensino Médio Federal Gratuito + Soldo de Aluno",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Unificado (Matemática, Português, Inglês)",
+        "disciplinas": [
+          "Matemática",
+          "Língua Portuguesa",
+          "Inglês"
+        ],
+        "quantidade_questoes": 48,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D) e Redação",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Matemática",
+      "assunto": "Polinômios e Álgebra Básica",
+      "enunciado": "Qual o resto da divisão do polinômio P(x) = x³ - 2x² + x + 1 por D(x) = (x - 2)?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "gabarito_correto": "3",
+      "justificativa_squad": "Pelo Teorema do Resto, R = P(2). Temos P(2) = 2³ - 2(2)² + 2 + 1 = 8 - 8 + 3 = 3."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Pronouns",
+      "texto_base": "John told Mary that he would buy the car himself.",
+      "enunciado": "The pronoun 'himself' in the sentence is used as a(n):",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "reflexive pronoun",
+        "emphatic pronoun",
+        "possessive pronoun",
+        "relative pronoun"
+      ],
+      "gabarito_correto": "emphatic pronoun",
+      "justificativa_squad": "Como o objeto do verbo 'buy' já está presente ('the car'), 'himself' serve apenas para enfatizar que foi o próprio sujeito (John) quem fez a ação. Função enfática."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Geometria Espacial",
+      "enunciado": "Um cilindro circular reto possui raio da base 3 cm e altura 10 cm. Seu volume é de (Use π=3):",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "90 cm³",
+        "270 cm³",
+        "30 cm³",
+        "180 cm³"
+      ],
+      "gabarito_correto": "270 cm³",
+      "justificativa_squad": "V = π * R² * H. V = 3 * 3² * 10 = 3 * 9 * 10 = 270 cm³."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Morfologia e Sintaxe",
+      "enunciado": "Na oração: 'Aeronaves cruzaram os céus VELOZMENTE.', o termo em destaque é acessório com papel de:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Adjunto Adnominal",
+        "Predicativo do Sujeito",
+        "Adjunto Adverbial de Modo",
+        "Objeto Direto"
+      ],
+      "gabarito_correto": "Adjunto Adverbial de Modo",
+      "justificativa_squad": "'Velozmente' é um advérbio modificando o verbo cruzar, atuando de forma acessória na sintaxe (adjunto adverbial de modo)."
+    }
+  ]
+}

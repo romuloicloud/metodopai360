@@ -1,0 +1,86 @@
+{
+  "concurso": "Academia da Força Aérea (AFA)",
+  "instituicao": "Força Aérea Brasileira (FAB)",
+  "vagas": 85,
+  "salario": "R$ 7.315,00 (Aspirante a Oficial Intendente/Aviador/Infante)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Exatas, Códigos e Aerodinâmica",
+        "disciplinas": [
+          "Matemática",
+          "Física",
+          "Língua Portuguesa",
+          "Inglês"
+        ],
+        "quantidade_questoes": 64,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Física",
+      "assunto": "Cinemática e Movimento Circular",
+      "enunciado": "O rotor principal de um helicóptero da AFA gira a 300 rpm. A frequência dessa hélice em Hertz (Hz) é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "5 Hz",
+        "50 Hz",
+        "300 Hz",
+        "18000 Hz"
+      ],
+      "gabarito_correto": "5 Hz",
+      "justificativa_squad": "Frequência em Hz é rotações por segundo. 300 rpm / 60 s = 5 r/s = 5 Hz."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Geometria Analítica Complexa",
+      "enunciado": "A equação da circunferência com centro C(2, -1) que é tangente à reta x = 5 é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "(x - 2)² + (y + 1)² = 9",
+        "(x - 2)² + (y + 1)² = 3",
+        "(x + 2)² + (y - 1)² = 9",
+        "(x - 5)² + (y + 1)² = 9"
+      ],
+      "gabarito_correto": "(x - 2)² + (y + 1)² = 9",
+      "justificativa_squad": "O raio é a distância do centro x_c=2 até a reta vertical x=5. R = |5 - 2| = 3. A equação é (x-xc)² + (y-yc)² = R². Formando (x-2)² + (y+1)² = 9."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Grammar (If Clauses)",
+      "texto_base": "If the pilot ___ the weather warning, the crash ___ avoided.",
+      "enunciado": "Choose the correct sequence to fill the blanks:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "had noticed / could have been",
+        "has noticed / can be",
+        "noticed / would be",
+        "notices / will be"
+      ],
+      "gabarito_correto": "had noticed / could have been",
+      "justificativa_squad": "Trata-se da Terceira Condicional (passado irreal). Regra: If + Past Perfect, Modal + Have + Particípio."
+    },
+    {
+      "disciplina": "Física",
+      "assunto": "Dinâmica do Voo (Gás Ideal)",
+      "enunciado": "Um balão meteorológico sobe e atinge uma altura onde a pressão e a temperatura equivalem à metade daquelas no nível de lançamento. Considerando gás ideal, seu volume:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Dobrou",
+        "Permaneceu Constante",
+        "Caiu pela metade",
+        "Quadruplicou"
+      ],
+      "gabarito_correto": "Permaneceu Constante",
+      "justificativa_squad": "P1*V1/T1 = P2*V2/T2. Se P2 = P1/2 e T2 = T1/2, a fração corta e V2 = V1."
+    }
+  ]
+}

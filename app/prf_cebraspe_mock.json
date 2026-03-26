@@ -1,0 +1,98 @@
+{
+  "concurso": "Polícia Rodoviária Federal",
+  "instituicao": "CEBRASPE",
+  "ano": 2021,
+  "vagas": 1500,
+  "salario": "R$ 9.899,88",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Bloco I",
+        "disciplinas": [
+          "Língua Portuguesa",
+          "Raciocínio Lógico-Matemático",
+          "Informática",
+          "Física",
+          "Ética no Serviço Público",
+          "Geopolítica Brasileira",
+          "História da PRF"
+        ],
+        "quantidade_questoes": 55,
+        "peso_por_questao": 1.0
+      },
+      {
+        "bloco": "Bloco II",
+        "disciplinas": [
+          "Legislação de Trânsito",
+          "CTB - Código de Trânsito Brasileiro",
+          "Resoluções do CONTRAN"
+        ],
+        "quantidade_questoes": 30,
+        "peso_por_questao": 1.0
+      },
+      {
+        "bloco": "Bloco III",
+        "disciplinas": [
+          "Direito Administrativo",
+          "Direito Constitucional",
+          "Direito Penal",
+          "Direito Processual Penal",
+          "Legislação Especial",
+          "Direitos Humanos e Cidadania"
+        ],
+        "quantidade_questoes": 35,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Certo/Errado",
+    "acerto": 1.0,
+    "erro": -1.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes_amostra_2021": [
+    {
+      "id": "PRF_2021_Q1",
+      "disciplina": "Língua Portuguesa",
+      "bloco": "Bloco I",
+      "assunto": "Compreensão de Texto",
+      "texto_base": "No trânsito, a educação e a gentileza são ferramentas fundamentais para a preservação de vidas. A fiscalização, por sua vez, age como mecanismo corretivo sobre aqueles que desobedecem as normas estabelecidas.",
+      "enunciado": "A substituição do termo 'desobedecem as' por 'desobedecem às' no trecho acima manteria a correção gramatical do texto.",
+      "tipo_questao": "Certo/Errado",
+      "gabarito": "Certo",
+      "justificativa_squad": "O verbo desobedecer é transitivo indireto (exige a preposição 'a'), logo a fusão da preposição 'a' com o artigo 'as' de 'normas' forma a crase 'às'."
+    },
+    {
+      "id": "PRF_2021_Q2",
+      "disciplina": "Legislação de Trânsito",
+      "bloco": "Bloco II",
+      "assunto": "Sistema Nacional de Trânsito",
+      "enunciado": "A Polícia Rodoviária Federal tem a competência de realizar o patrulhamento ostensivo, executando operações relacionadas à segurança pública nas rodovias e estradas federais.",
+      "tipo_questao": "Certo/Errado",
+      "gabarito": "Certo",
+      "justificativa_squad": "Conforme o Art. 20, inciso II, do CTB, a PRF realiza patrulhamento ostensivo."
+    },
+    {
+      "id": "PRF_2021_Q3",
+      "disciplina": "Física",
+      "bloco": "Bloco I",
+      "assunto": "Cinemática e Dinâmica Básica (Colisões)",
+      "texto_base": "Um veículo A, de massa 1.000 kg, segue em linha reta a uma velocidade de 20 m/s e colide frontalmente com um veículo B, de massa 1.500 kg, que vinha em sentido contrário a 10 m/s. Considerando o choque perfeitamente inelástico.",
+      "enunciado": "Após a colisão, a velocidade dos veículos unidos (A e B) será de 2 m/s na mesma direção inicial do veículo A.",
+      "tipo_questao": "Certo/Errado",
+      "gabarito": "Certo",
+      "justificativa_squad": "Quantidade de Movimento: Q_inicial = (1000 * 20) + (1500 * (-10)) = 20000 - 15000 = +5000 kg.m/s. Após o choque inelástico: Q_final = (1000 + 1500) * V_final = 2500 * V_final. Igualando: 2500 * V_final = 5000 => V_final = 2 m/s."
+    },
+    {
+      "id": "PRF_2021_Q4",
+      "disciplina": "Direitos Humanos",
+      "bloco": "Bloco III",
+      "assunto": "Declaração Universal dos Direitos Humanos",
+      "enunciado": "Ninguém será submetido a tortura, nem a tratamento ou castigo cruel, desumano ou degradante, embora em situações de terrorismo nacional o Estado possa flexibilizar temporariamente essa regra.",
+      "tipo_questao": "Certo/Errado",
+      "gabarito": "Errado",
+      "justificativa_squad": "A DUDH e a Constituição Federal proíbem a tortura de forma absoluta. Não há flexibilização mesmo em estado de sítio ou ameaça terrorista."
+    }
+  ]
+}

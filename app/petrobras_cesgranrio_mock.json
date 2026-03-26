@@ -1,0 +1,57 @@
+[
+    {
+        "c": "Língua Portuguesa",
+        "t": "Segundo o texto de apoio (figura acima), o autor utiliza a ironia como principal recurso argumentativo. Assinale a opção em que a palavra destacada foi empregada com essa <u>mesma ênfase estilística</u> da Cesgranrio:<br><br><img src='https://placehold.co/600x200/0f172a/D4AF37?text=Figura+1+-+Charge+Textual+Petrobras' alt='Charge de Apoio' style='max-width:100%; border-radius: 8px; margin: 15px 0; border: 1px solid #334155;'>",
+        "o": [
+            "A situação na plataforma é <u>completamente</u> estável e serena.",
+            "O diretor foi um <u>verdadeiro</u> herói ao demitir a equipe técnica.",
+            "O maquinário apresentava desgaste <u>muito</u> acima do esperado.",
+            "Os acionistas lucraram de maneira <u>extraordinária</u> neste trimestre."
+        ],
+        "a": 1
+    },
+    {
+        "c": "Matemática Financeira",
+        "t": "Um investimento em debêntures da Petrobras rende juros compostos. Considerando o gráfico de dispersão financeira, se a taxa <u>mensal</u> é de 10%, qual será o montante aproximado de um capital de R$ 5.000,00 após 3 meses corretos? <br><br><img src='https://placehold.co/400x300/1e293b/D4AF37?text=Gráfico+de+Rendimento+Cesgranrio' alt='Gráfico de Rendimento' style='max-width:100%; border-radius: 8px; margin: 15px 0; border: 1px solid #334155;'>",
+        "o": [
+            "R$ 6.150,00",
+            "R$ 6.300,50",
+            "R$ 6.655,00",
+            "R$ 7.000,00"
+        ],
+        "a": 2
+    },
+    {
+        "c": "Específicas (Engenharia)",
+        "t": "De acordo com o diagrama P&ID da unidade de craqueamento catalítico ilustrado a seguir, a válvula de controle <var>V-102</var> <u>não</u> deve ser operada na configuração 'Fail-Open' (Falha Aberta) devido ao risco iminente de:<br><br><img src='https://placehold.co/600x300/0f172a/4fa5ff?text=Diagrama+P%26ID+-+Sistema+de+Craqueamento' alt='Diagrama P&ID' style='max-width:100%; border-radius: 8px; margin: 15px 0; border: 1px solid #334155;'>",
+        "o": [
+            "Transbordo seguro do tanque separador.",
+            "Vazamento catastrófico de nafta pelo flare.",
+            "Desaceleração térmica das tubulações.",
+            "Fechamento <u>imediato</u> e isolamento de linha."
+        ],
+        "a": 1
+    },
+    {
+        "c": "Informática",
+        "t": "Analise a planilha MS Excel abaixo, utilizada rotineiramente na logística de perfuração de águas profundas (Petrobras):<br><br><img src='https://placehold.co/700x250/1e293b/FFF?text=Planilha_Logistica_Offshore.xlsx' alt='Planilha MS Excel' style='max-width:100%; border-radius: 8px; margin: 15px 0; border: 1px solid #334155;'><br>A fórmula exata para somar os custos da coluna B <u>apenas</u> quando o status na coluna C for 'Em Trânsito' é:",
+        "o": [
+            "=SOMASES(B:B; C:C; \"Em Trânsito\")",
+            "=SOMASE(C:C; \"Em Trânsito\"; B:B)",
+            "=SOMACONDICIONAL(B:B; C:C=\"Em Trânsito\")",
+            "=SOMA(SE(C:C=\"Em Trânsito\"; B:B))"
+        ],
+        "a": 1
+    },
+    {
+        "c": "Língua Inglesa",
+        "t": "Select the option that <u>best</u> translates the technical term highlighted in the following safety manual excerpt: <br><br><i style='color: #cbd5e1; border-left: 3px solid #D4AF37; padding-left: 10px; display: block; margin: 10px 0;'>\"The operator must ensure that the <u>blowout preventer</u> is fully engaged during the drilling process to avoid loss of well control.\"</i>",
+        "o": [
+            "Previsor de explosão ativado.",
+            "Manifold de contenção secundária.",
+            "Dispositivo preventor de erupção (BOP).",
+            "Mecanismo <u>obrigatório</u> de extração."
+        ],
+        "a": 2
+    }
+]

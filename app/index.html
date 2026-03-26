@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alistamento Militar - Método do Pai 360º</title>
+    <link rel="icon" href="/app-icon.png?v=5" type="image/png">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="config.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="onboarding" class="screen active">            
+            <img src="/app-icon.png?v=5" alt="Método do Pai 360" style="width: 80px; height: 80px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+            
+            <h1 style="margin-top: 0;">Criação de Perfil Estratégico</h1>
+            <p>Mapeamento de DNA da aprovação. Prepare seu arsenal.</p>
+            
+            <div class="alerta-estudo">
+                <strong>ATENÇÃO CANDIDATO:</strong><br>O estudo de alto nível exige rigor técnico. Tenha sempre <strong>papel e caneta</strong> em mãos para cálculos matemáticos, raciocínio lógico e rascunhos. O preparo começa na base.
+            </div>
+            
+            <form id="form-alistamento" class="form-container">
+                <input type="text" id="nome_guerra" placeholder="Nome Completo do Candidato" required>
+                <input type="email" id="email" placeholder="E-mail de Acesso" required>
+                <input type="text" id="whatsapp" placeholder="WhatsApp Principal (com DDD)" required maxlength="15">
+                
+                <button type="submit" id="btn-alistar" class="btn-giant pulse">CONFIGURAR PERFIL</button>
+            </form>
+            
+            <button id="btn-ouvir-intro" class="btn-audio" style="margin-top: 20px; font-size: 1.1rem; padding: 10px 20px;">
+                🔊 Ouvir Orientação
+            </button>
+        </div>
+    </div>
+
+    <audio id="audio-intro" src="../assets/audios/intro.mp3"></audio>
+    <script src="/backend_onboarding.js?v=6"></script>
+    <script>
+        // Máscara WhatsApp
+        const inputTel = document.getElementById('whatsapp');
+        inputTel.addEventListener('input', function (e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        // Tocar Áudio Inicial
+        document.getElementById('btn-ouvir-intro').addEventListener('click', () => {
+            document.getElementById('audio-intro').play();
+        });
+
+        document.getElementById('form-alistamento').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-alistar');
+            btn.innerText = "Configurando...";
+            btn.disabled = true;
+
+            const nome = document.getElementById('nome_guerra').value;
+            const email = document.getElementById('email').value;
+            const zap = document.getElementById('whatsapp').value;
+
+            try {
+                const success = await salvarAlistamento(nome, email, zap);
+                if(success) {
+                    window.location.href = 'tela_gps_concurso.html';
+                } else {
+                    alert("Falha na conexão com o QG. Tente novamente.");
+                    btn.innerText = "CONFIGURAR PERFIL";
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error("Erro crítico:", err);
+                alert("Erro crítico no sistema.");
+                btn.innerText = "CONFIGURAR PERFIL";
+                btn.disabled = false;
+            }
+        });
+
+        // Verificação de PWA e Display de Instrução
+        document.addEventListener('DOMContentLoaded', () => {
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone || document.referrer.includes('android-app://');
+            if (!isStandalone) {
+                const pwaPrompt = document.createElement('div');
+                pwaPrompt.className = 'pwa-prompt';
+                pwaPrompt.innerHTML = `<strong>Atenção:</strong> Para a melhor experiência e foco total, adicione este aplicativo à sua Tela Inicial. (No navegador, use "Adicionar à Tela Principal" ou Compartilhar > Adicionar à Tela de Início)`;
+                document.getElementById('app').prepend(pwaPrompt);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "concurso": "Polícia Rodoviária Federal (PRF)",
+  "instituicao": "Ministério da Justiça e Segurança Pública",
+  "vagas": 1500,
+  "salario": "R$ 10.790,87",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Bloco de Avaliação de Conhecimentos PRF",
+        "disciplinas": [
+          "Legislação de Trânsito",
+          "Física Mecânica Aplicada",
+          "Raciocínio Lógico-Matemático",
+          "Direito Penal"
+        ],
+        "quantidade_questoes": 120,
+        "peso_por_questao": 1.0,
+        "fator_correcao": "Uma errada anula uma certa."
+      }
+    ]
+  },
+  "questoes": [
+    {
+      "disciplina": "Legislação de Trânsito",
+      "assunto": "Sistema Nacional de Trânsito e Enquadramentos",
+      "enunciado": "Um motorista foi flagrado na Rodovia Presidente Dutra transitando a 160 km/h num trecho em que a máxima permitida é de 100 km/h. De acordo com o Código de Trânsito Brasileiro (CTB), essa infração caracteriza-se como infração gravíssima com incidência de multa suspensiva pelo fator de multiplicidade gravada pelo excesso além de 50%, gerando suspensão sumária do direito de dirigir.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Certo",
+      "justificativa_squad": "Exato. Exceder a máxima em MAIS DE 50% constitui infração gravíssima com fator multiplicador penal para a multa pecuniária e leva OBRIGATORIAMENTE à abertura imediata de Processo de Suspensão do Direito de Dirigir, além da retenção da carteira (Art. 218, III do Código Trânsito Nacional)."
+    },
+    {
+      "disciplina": "Física Mecânica Aplicada",
+      "assunto": "Cinemática do Acidente de Trânsito",
+      "enunciado": "Uma viatura da PRF, cuja massa é de 2.000 kg, persegue um criminoso fugindo a bordo de uma caminhonete de mesma massa e a mesma velocidade escalar extrema numa rodovia completamente plana e retilínea. Caso ambos freiem idêntica e simultaneamente travando todas as quatro rodas num piso de asfalto seco, a viatura precisará obrigatoriamente do dobro de distância para estancar caso estivesse transportando armamento pesado que gerasse uma taxa adicional de atrito cinético.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Errado",
+      "justificativa_squad": "Errado. Na Cinemática Dinâmica (Freagem com rodas travadas sem ABS), a distância de frenagem NÃO depende da MASSA do veículo (a massa anula-se na equação atrito-desaceleração: mgµ = ma, e assim a = gµ). Somente a velocidade inicial (v²) e o coeficiente de atrito (µ) alteram a frenagem em escorregamento livre constante."
+    },
+    {
+      "disciplina": "Direito Penal",
+      "assunto": "Excludentes de Ilicitude",
+      "enunciado": "Durante uma fiscalização rodoviária da PRF, ocorre um acidente brutal com engavetamento envolvendo um carro preso às ferragens em chamas. O agente policial arromba um veículo aleatório particular, que estava bloqueando a passagem da ambulância, destruindo totalmente os vidros e para-choque em desespero para tirar do perigo imediato os civis queimando vivos. A conduta do policial está abarcada pelo Estado de Necessidade, o que afasta a criminosidade do dano imposto ao veículo particular.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Certo",
+      "justificativa_squad": "Correto. O policial sacrificou intencionalmente um bem jurídico de menor peso relativo (O veículo de um terceiro cível: o direito de propriedade material) para proteger um bem jurídico exponencialmente maior em xeque inadiável (A vida humana dos presos nas ferragens), configurando clássico Estado de Necessidade sem nenhuma responsabilidade penal pelo dano ao patrimônio alheio (embora persista responsabilidade cível indenizatória estatal)."
+    },
+    {
+      "disciplina": "Raciocínio Lógico-Matemático",
+      "assunto": "Tautologia e Implicação Material",
+      "enunciado": "A proposição composta 'Se o motorista não parou no radar e estava alcoolizado, então ele não cometeu infração nem será multado' é classificada obrigatoriamente como uma proposição condicional contraditória (falsidade matemática) independente do valor verdade da ação de embriaguez, porque o crime material induz a falsa contingência lógica.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Errado",
+      "justificativa_squad": "Em lógica proposicional matemática rigorosa, não existe subordinação à lei humana. Se o motorista NÃO parou E NÃO estava alcoolizado ('F' para as duas premissas formadoras do lado esquerdo do 'Se...então'), a primeira premissa será Falsa, e na condicional Lógica ('Se Falso então Qualquer Coisa'), a tabela verdade avalia incondicionalmente para Verdadeiro. Logo não constitui contraditório."
+    },
+    {
+      "disciplina": "Informática",
+      "assunto": "Gestão e Sistemas Operacionais",
+      "enunciado": "A Polícia Rodoviária Federal tem frotas de computadores operando baseados em nuvem. A funcionalidade RAID 1, fortemente sugerida na segurança contra sinistros físicos em Unidades Remotas da PRF, serve primordialmente para melhorar o desempenho (alta performance transacional) dividindo e escalafonando os fragmentos de blocos de leitura nas gravações de Banco de Dados entre dois ou mais discos rígidos simultaneamente.",
+      "tipo_questao": "Julgamento (Certo/Errado)",
+      "opcoes": [
+        "Certo",
+        "Errado"
+      ],
+      "gabarito_correto": "Errado",
+      "justificativa_squad": "A assertiva tenta confundir RAID 1 com RAID 0. RAID 1 fornece ESPELHAMENTO de banco ou disco (redundância pura e segurança anti-falha), replicando 100% o dado e sacrificando velocidade (pelo arrasto de escritas duplas), visando evitar perda com pane local (foco na seguridade estática e não no 'alto desempenho fragmentado' pertencente ao Data-Striping / RAID 0)."
+    }
+  ]
+}

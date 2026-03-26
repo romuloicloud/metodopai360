@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Combate - Método do Pai 360º</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div id="perfil-screen" class="screen active">
+            <h2>Seu DNA de Aprovação</h2>
+            <p>Selecione a sua atual jornada de foco para configurarmos sua inteligência.</p>
+            
+            <!-- NÍVEL 1: MACRO-CARREIRAS -->
+            <div id="step-1">
+                <h3 style="margin-bottom: 10px; color: #4FA5FF;">I. Identifique sua Força-Tarefa:</h3>
+                <div class="shield-grid" id="grid-macro">
+                    <div class="shield-card macro-card" data-sub="militares">⚔️ Forças Armadas</div>
+                    <div class="shield-card macro-card" data-sub="policiais">🚓 Policiais</div>
+                    <div class="shield-card macro-card" data-sub="academicos">📝 Acadêmicos (ENEM/Vest)</div>
+                    <div class="shield-card macro-card" data-sub="colegios">🛡️ Colégios de Base</div>
+                </div>
+            </div>
+
+            <!-- NÍVEL 2: MULTI-SELEÇÃO ESPECÍFICA (Escondido inicialmente) -->
+            <div id="step-2" style="display: none; margin-top: 25px;">
+                <h3 style="margin-bottom: 10px; color: #FFD700;">II. Selecione seus Alvos (Pode ser mais de 1):</h3>
+                
+                <!-- Sub-grids dinâmicas (Só uma aparece por vez baseado no Macro) -->
+                <div class="shield-grid sub-grid" id="sub-militares" style="display: none;">
+                    <div class="shield-card target-card" data-value="EsSA">Exército (EsSA/Sargento)</div>
+                    <div class="shield-card target-card" data-value="EsPCEx">Exército (EsPCEx/Oficial)</div>
+                    <div class="shield-card target-card" data-value="EFOMM">Marinha (EFOMM)</div>
+                    <div class="shield-card target-card" data-value="Fuzileiros Navais">Fuzileiros Navais</div>
+                    <div class="shield-card target-card" data-value="EEAR">Aeronáutica (EEAR)</div>
+                </div>
+
+                <div class="shield-grid sub-grid" id="sub-policiais" style="display: none;">
+                    <div class="shield-card target-card" data-value="PCDF">Polícia Civil (PCDF)</div>
+                    <div class="shield-card target-card" data-value="PF">Polícia Federal (PF)</div>
+                    <div class="shield-card target-card" data-value="PMERJ">Polícia Militar (PMERJ)</div>
+                </div>
+
+                <div class="shield-grid sub-grid" id="sub-academicos" style="display: none;">
+                    <div class="shield-card target-card" data-value="ENEM">ENEM</div>
+                    <div class="shield-card target-card" data-value="FUVEST">FUVEST (USP)</div>
+                    <div class="shield-card target-card" data-value="UERJ">UERJ</div>
+                </div>
+
+                <div class="shield-grid sub-grid" id="sub-colegios" style="display: none;">
+                    <div class="shield-card target-card" data-value="Colégio Militar">Colégio Militar (CM)</div>
+                    <div class="shield-card target-card" data-value="Pedro II">Colégio Pedro II</div>
+                    <div class="shield-card target-card" data-value="FAETEC">FAETEC / IFRJ</div>
+                </div>
+            </div>
+            
+            <button id="btn-iniciar-missao" class="btn-giant pulse" style="margin-top: 30px; display: none;">
+                CONFIRMAR E GERAR DIAGNÓSTICO
+            </button>
+            <button id="btn-voltar" class="btn-audio" style="margin-top: 15px; display: none; margin-left: auto; margin-right: auto; background-color: #334155;">
+                < Voltar Categoria
+            </button>
+        </div>
+    </div>
+
+    <script src="backend_onboarding.js"></script>
+    <script>
+        let macroSelecionado = null;
+        let alvosSelecionados = [];
+
+        const step1 = document.getElementById('step-1');
+        const step2 = document.getElementById('step-2');
+        const btnIniciar = document.getElementById('btn-iniciar-missao');
+        const btnVoltar = document.getElementById('btn-voltar');
+
+        // Nível 1: Clique no Macro
+        document.querySelectorAll('.macro-card').forEach(card => {
+            card.addEventListener('click', () => {
+                macroSelecionado = card.getAttribute('data-sub');
+                
+                // Esconde Step 1
+                step1.style.display = 'none';
+                
+                // Mostra Step 2
+                step2.style.display = 'block';
+                document.querySelectorAll('.sub-grid').forEach(g => g.style.display = 'none');
+                document.getElementById('sub-' + macroSelecionado).style.display = 'flex';
+                
+                btnIniciar.style.display = 'block';
+                btnVoltar.style.display = 'block';
+            });
+        });
+
+        // Voltar
+        btnVoltar.addEventListener('click', () => {
+            step2.style.display = 'none';
+            btnIniciar.style.display = 'none';
+            btnVoltar.style.display = 'none';
+            step1.style.display = 'block';
+            alvosSelecionados = [];
+            document.querySelectorAll('.target-card').forEach(c => c.classList.remove('active'));
+        });
+
+        // Nível 2: Clique nos Alvos Específicos
+        document.querySelectorAll('.target-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('active');
+                const val = card.getAttribute('data-value');
+                if(alvosSelecionados.includes(val)) {
+                    alvosSelecionados = alvosSelecionados.filter(v => v !== val);
+                } else {
+                    alvosSelecionados.push(val);
+                }
+            });
+        });
+
+        // Submissão Final
+        btnIniciar.addEventListener('click', async () => {
+            if (alvosSelecionados.length === 0) {
+                alert("General, você precisa selecionar pelo menos um alvo final.");
+                return;
+            }
+
+            btnIniciar.innerText = "CONFIGURANDO INTELIGÊNCIA...";
+            btnIniciar.disabled = true;
+
+            // Determinar nível base pro Diagnóstico Demo
+            let nivelBase = 'Médio';
+            if (macroSelecionado === 'colegios') nivelBase = 'Fundamental';
+            if (macroSelecionado === 'policiais' || macroSelecionado === 'militares') nivelBase = 'Superior';
+
+            const success = await salvarPerfil(nivelBase, alvosSelecionados);
+            if(success) {
+                window.location.href = 'missao.html';
+            } else {
+                alert("Erro ao conectar com a base de dados central.");
+                btnIniciar.innerText = "CONFIRMAR E GERAR DIAGNÓSTICO";
+                btnIniciar.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

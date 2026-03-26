@@ -1,0 +1,89 @@
+{
+  "concurso": "Colégio Naval",
+  "instituicao": "Marinha do Brasil",
+  "vagas": 130,
+  "salario": "Ensino Médio + Estímulo à Carreira de Oficial Naval",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Exame Acadêmico (Nível Fundamental Forte)",
+        "disciplinas": [
+          "Matemática",
+          "Português",
+          "Estudos Sociais",
+          "Ciências"
+        ],
+        "quantidade_questoes": 90,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D, E)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Matemática",
+      "assunto": "Raízes e Radiciação",
+      "enunciado": "O valor da expressão √144 + ∛27 - √81 é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "15"
+      ],
+      "gabarito_correto": "6",
+      "justificativa_squad": "√144 = 12. ∛27 = 3. √81 = 9. Logo, 12 + 3 - 9 = 15 - 9 = 6."
+    },
+    {
+      "disciplina": "História",
+      "assunto": "Era Vargas e Segunda Guerra Mundial",
+      "enunciado": "A entrada do Brasil na Segunda Guerra Mundial em 1942 esteve fortemente associada ao afundamento de navios mercantes brasileiros. Que força foi criada para lutar na Itália?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "A Força Expedicionária Brasileira (FEB).",
+        "A Guarda Nacional Brasileira.",
+        "O Pelotão de Fronteira do Prata.",
+        "Os Voluntários da Pátria.",
+        "A Legião Estrangeira Brasileira."
+      ],
+      "gabarito_correto": "A Força Expedicionária Brasileira (FEB).",
+      "justificativa_squad": "A FEB, enviada pelo presidente Getúlio Vargas para atuar no teatro de operações na Itália junto aos Aliados."
+    },
+    {
+      "disciplina": "Ciências",
+      "assunto": "Botânica / Fotossíntese",
+      "enunciado": "Durante a fotossíntese, as plantas absorvem qual gás principal da atmosfera para produzir glicose?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Oxigênio",
+        "Metano",
+        "Nitrogênio",
+        "Dióxido de Carbono (CO2)",
+        "Argônio"
+      ],
+      "gabarito_correto": "Dióxido de Carbono (CO2)",
+      "justificativa_squad": "A planta utiliza energia solar, água e o dióxido de carbono (CO2) presente no ar para sintetizar açúcares."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Figuras de Linguagem",
+      "enunciado": "Na frase 'As pedras choraram a morte do grande almirante', temos a seguinte figura de linguagem:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Metáfora",
+        "Prosopopeia (Personificação)",
+        "Eufemismo",
+        "Antítese",
+        "Pleonasmo"
+      ],
+      "gabarito_correto": "Prosopopeia (Personificação)",
+      "justificativa_squad": "Chorar é atribuição humana dada a um ser inanimado (pedras), caracterizando a Prosopopeia ou Personificação."
+    }
+  ]
+}

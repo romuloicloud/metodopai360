@@ -1,0 +1,151 @@
+{
+  "concurso": "Escola de Sargentos das Armas (EsSA)",
+  "instituicao": "Exército Brasileiro",
+  "vagas": 1100,
+  "salario": "R$ 3.825,00 (Terceiro-Sargento)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Geral e Aviação",
+        "disciplinas": [
+          "Matemática",
+          "Língua Portuguesa",
+          "História e Geografia do Brasil",
+          "Inglês"
+        ],
+        "quantidade_questoes": 50,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D, E)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Matemática",
+      "assunto": "Equações Exponenciais",
+      "enunciado": "A soma das raízes da equação 4^(x) - 5 * 2^(x) + 4 = 0 é igual a:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "gabarito_correto": "2",
+      "justificativa_squad": "Substituindo 2^x = y, temos y^2 - 5y + 4 = 0. As raízes dessa quadrática são y = 1 ou y = 4. Retornando: 2^x = 1 (x=0) e 2^x = 4 (x=2). A soma das raízes em x é 0 + 2 = 2."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Geometria Analítica",
+      "enunciado": "A distância entre os pontos A(1, 2) e B(4, 6) no plano cartesiano é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "gabarito_correto": "5",
+      "justificativa_squad": "Aplicando a fórmula da distância: d = √[(xb - xa)² + (yb - ya)²] = √[(4-1)² + (6-2)²] = √[3² + 4²] = √[9+16] = √25 = 5."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Classes de Palavras",
+      "texto_base": "O combatente avançou rapidamente pelo flanco esquerdo.",
+      "enunciado": "Constata-se que o termo 'rapidamente' exerce função morfológica de:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Adjetivo, qualificando o combatente.",
+        "Advérbio, indicando o modo da ação.",
+        "Preposição, ligando termos essenciais.",
+        "Substantivo abstrato.",
+        "Verbo no gerúndio."
+      ],
+      "gabarito_correto": "Advérbio, indicando o modo da ação.",
+      "justificativa_squad": "Palavras terminadas em '-mente' ligadas a verbos costumam ser advérbios de modo. Aqui modifica 'avançou', informando como a ação ocorreu."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Crase",
+      "enunciado": "Assinale a alternativa que apresenta o uso CORRETO do acento grave indicador de crase.",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "A tropa começou à marchar cedo.",
+        "Entregou o documento à Vossa Excelência.",
+        "Referia-se à situação caótica da fronteira.",
+        "Caminhavam passo à passo na trincheira.",
+        "O pelotão avançou à cavalo."
+      ],
+      "gabarito_correto": "Referia-se à situação caótica da fronteira.",
+      "justificativa_squad": "Usa-se crase diante de palavras femininas claras (situação) exigidas por termo regente que pede preposição (referiu-se A + A situação). Nas demais: marchar (verbo), Vossa (pron. trat.), palavra repetida e masculina (cavalo) rejeitam crase."
+    },
+    {
+      "disciplina": "História do Brasil",
+      "assunto": "Brasil República",
+      "enunciado": "A Revolta da Chibata (1910) ocorreu na cidade do Rio de Janeiro e foi protagonizada por:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Operários de fábricas têxteis reivindicando 8h de trabalho.",
+        "Militares do Exército de baixa patente contra o governo.",
+        "Marinheiros que se amotinaram contra os castigos físicos na Marinha.",
+        "Integrantes da classe média insatisfeitos com a inflação.",
+        "Escravizados libertos exigindo terras."
+      ],
+      "gabarito_correto": "Marinheiros que se amotinaram contra os castigos físicos na Marinha.",
+      "justificativa_squad": "Liderada pelo Almirante Negro (João Cândido), a revolta estourou após marinheiros serem punidos com chibatadas, exigindo o fim dos castigos corporais na Armada."
+    },
+    {
+      "disciplina": "Geografia do Brasil",
+      "assunto": "Domínios Morfoclimáticos",
+      "enunciado": "O domínio morfoclimático brasileiro caracterizado pelo relevo de mares de morros e por sofrer intensa degradação histórica desde a colonização é o:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Cerrado.",
+        "Caatinga.",
+        "Amazônico.",
+        "Mata Atlântica (Mares de Morros).",
+        "Araucárias."
+      ],
+      "gabarito_correto": "Mata Atlântica (Mares de Morros).",
+      "justificativa_squad": "O domínio dos mares de morros (faixa litorânea) é coberto originalmente pela floresta tropical (Mata Atlântica), epicentro da ocupação e desmatamento desde 1500."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Compreensão de Texto e Gramática",
+      "texto_base": "The general ordered his troops to hold the line until reinforcements arrived.",
+      "enunciado": "The word 'troops', in this sentence, is a:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "singular noun",
+        "plural noun",
+        "verb in simple present",
+        "adjective",
+        "preposition"
+      ],
+      "gabarito_correto": "plural noun",
+      "justificativa_squad": "'Troops' (tropas) é o plural do substantivo (noun) que denota grupos de soldados."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Simple Past",
+      "enunciado": "Choose the correct option to complete the sentence: 'Last night, the sergeant ___ an important report to the commander.'",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "send",
+        "sends",
+        "sent",
+        "sending",
+        "is holding"
+      ],
+      "gabarito_correto": "sent",
+      "justificativa_squad": "A frase inicia com 'Last night', exigindo o verbo no passado simples (Simple Past). O passado irregular de 'send' é 'sent'."
+    }
+  ]
+}

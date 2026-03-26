@@ -1,0 +1,108 @@
+{
+  "concurso": "Exame Nacional do Ensino Médio (ENEM)",
+  "instituicao": "Ministério da Educação (INEP)",
+  "vagas": 999999,
+  "salario": "Acesso Direto ao Ensino Superior Público (SISU) e Privado (Prouni/Fies)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Matriz de Referência Completa (Linguagens, Humanas, Natureza e Matemática)",
+        "disciplinas": [
+          "Matemática e suas Tecnologias",
+          "Linguagens, Códigos e suas Tecnologias",
+          "Ciências Humanas e suas Tecnologias",
+          "Ciências da Natureza e suas Tecnologias"
+        ],
+        "quantidade_questoes": 180,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha e Teoria de Resposta ao Item (TRI)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Linguagens, Códigos e suas Tecnologias",
+      "assunto": "Estratégia Argumentativa e Função Social",
+      "texto_base": "\"É água que não acaba mais.\nDados preliminares de um mapeamento feito por pesquisadores em geologia apontam a existência de um imenso reservatório de água subterrânea – o Aquífero Alter do Chão – escondido debaixo dos estados do Amazonas, Pará e Amapá. [...] O volume estimado é de 86 mil quilômetros cúbicos.\"",
+      "enunciado": "A notícia em tela visa informar um fato científico com alto impacto socioambiental. No texto, a passagem \"É água que não acaba mais\" atua estrategicamente para:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Apresentar uma crítica irônica ao desperdício generalizado.",
+        "Facilitar a adesão do leitor leigo, usando um registro de linguagem mais coloquial e expressivo.",
+        "Desmentir a comunidade científica, indicando que as águas subterrâneas são inesgotáveis.",
+        "Provocar medo acerca de um provável afundamento tectônico.",
+        "Garantir ao leitor o fornecimento de água no Sudeste durante crises hídricas."
+      ],
+      "gabarito_correto": "Facilitar a adesão do leitor leigo, usando um registro de linguagem mais coloquial e expressivo.",
+      "justificativa_squad": "A frase usa uma linguagem hiperbólica e cotidiana para aproximar e ilustrar ao leitor comum, de maneira impactante, a imensidão técnica do aquífero citado logo em seguida pelos geólogos."
+    },
+    {
+      "disciplina": "Matemática e suas Tecnologias",
+      "assunto": "Análise Combinatória e Eventos",
+      "texto_base": "O Código de Trânsito Brasileiro (CTB) permite que o proprietário de um veículo escolha os caracteres de sua placa (atualmente 3 letras e 4 números tradicionais ou o padrão Mercosul com 4 letras e 3 números).",
+      "enunciado": "Considerando o sistema antigo (Padrão: LLL-NNNN), e sabendo que o Brasil usa 26 letras e 10 algarismos (0 a 9) e que repetições SÃO permitidas. O cômputo matemático exato para determinar a placa de um carro seria:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "26 * 25 * 24 * 10 * 9 * 8 * 7",
+        "26³ * 10⁴",
+        "26⁴ * 10³",
+        "(26 + 10)!",
+        "3! * 4!"
+      ],
+      "gabarito_correto": "26³ * 10⁴",
+      "justificativa_squad": "No padrão antigo (LLL-NNNN), as 3 primeiras posições podem receber qualquer das 26 letras, e as 4 últimas qualquer dos 10 dígitos numéricos. Como há repetição: 26*26*26 * 10*10*10*10 = 26³ * 10⁴."
+    },
+    {
+      "disciplina": "Ciências da Natureza e suas Tecnologias",
+      "assunto": "Física - Termodinâmica e Troca de Calor",
+      "texto_base": "A refrigeração de garrafas d'água no interior de geladeiras domésticas baseia-se na troca de energia térmica.",
+      "enunciado": "A troca de calor que resfria a água engarrafada até o equilíbrio térmico no interior da geladeira acontece por quais processos termodinâmicos dominantes?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Apenas condução, devido ao contato do vidro.",
+        "Condução (no vidro da garrafa) e convecção (do ar interno da geladeira).",
+        "Irradiação e fricção induzida.",
+        "Ebulição sublimada.",
+        "Apenas irradiação do gás freon."
+      ],
+      "gabarito_correto": "Condução (no vidro da garrafa) e convecção (do ar interno da geladeira).",
+      "justificativa_squad": "A água troca calor com o ar frio (convecção no ar da geladeira) por meio das paredes da garrafa (condução térmica através do vidro/plástico)."
+    },
+    {
+      "disciplina": "Ciências Humanas e suas Tecnologias",
+      "assunto": "História - Antiguidade Clássica (Grécia)",
+      "texto_base": "Para os gregos antigos, as pólis (cidades-estado) eram o epicentro da vida cívica e política. O surgimento de regimes democráticos, especificamente em Atenas, estabeleceu direitos políticos sem precedentes.",
+      "enunciado": "Contudo, o conceito de 'democracia ateniense' difere amplamente do modelo representativo atual porque a democracia grega antiga era caracterizada por ser:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Representativa, com deputados eleitos pelos metecos e servos.",
+        "Focada nos direitos universais da mulher, sendo as mulheres as principais legisladoras.",
+        "Direta e excludente, com participação centralizada apenas em homens adultos, livres, nascidos em Atenas.",
+        "Comandada por um conselho aristocrático hereditário sem debates na Ágora.",
+        "Imposta de forma ditatorial pelos espartanos após a Guerra do Peloponeso."
+      ],
+      "gabarito_correto": "Direta e excludente, com participação centralizada apenas em homens adultos, livres, nascidos em Atenas.",
+      "justificativa_squad": "A democracia ateniense era direta (o cidadão votava as leis na praça), porém extremamente excludente, não permitindo mulheres, escravos e estrangeiros (metecos)."
+    },
+    {
+      "disciplina": "Matemática e suas Tecnologias",
+      "assunto": "Proporção e Grandezas",
+      "enunciado": "Um atleta de alta performance corre 60 km em 5 horas mantendo um ritmo constante. Se ele precisar correr 96 km nesse mesmo ritmo, quantas horas levará o seu treinamento?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "6 horas",
+        "7 horas",
+        "8 horas",
+        "9 horas",
+        "10 horas"
+      ],
+      "gabarito_correto": "8 horas",
+      "justificativa_squad": "Ritmo = 60 km / 5 h = 12 km/h. Para percorrer 96 km a 12 km/h: Tempo = 96 / 12 = 8 horas."
+    }
+  ]
+}

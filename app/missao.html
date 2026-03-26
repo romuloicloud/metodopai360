@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método do Pai 360 - Diagnóstico de Guerra</title>
+    <link rel="icon" href="/app-icon.png?v=5" type="image/png">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="config.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header Global (Logo + Cronômetro) -->
+        <div style="text-align: center; margin-bottom: 15px;">
+            <img src="/app-icon.png?v=5" alt="Método do Pai 360" style="display: block; margin: 0 auto 15px auto; width: 80px; height: 80px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+        </div>
+        <div id="cronometro-container" style="text-align: center; margin-bottom: 15px; padding: 12px; background: rgba(15, 23, 42, 0.8); border-radius: 8px; border: 1px solid #4FA5FF; color: #e2e8f0; font-weight: bold; font-size: 1.1rem; box-shadow: 0 0 10px rgba(79, 165, 255, 0.2);">
+            ⏳ Carregando relógio tático...
+        </div>
+
+        <!-- Dashboard / Diagnóstico -->
+        <div id="diagnostico" class="screen active" style="padding-top: 0;">
+            <div style="text-align: left; width: 100%; margin-bottom: 15px;">
+                <h3 style="color: #4FA5FF; margin-bottom: 5px; font-size: 1.1rem;">📊 Painel de Prontidão Tática</h3>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #94A3B8;">
+                    <span>Mapeamento em andamento...</span>
+                    <span id="txt-progresso">0%</span>
+                </div>
+                <div class="progress-bar" style="position: relative; top: 0; margin: 10px 0 0 0;">
+                    <div class="progress-fill pulse-working" id="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="questao-container" id="questao-container" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 100%; position: relative; overflow: hidden;">
+                
+                <!-- Área de Teste Rápido (Cards Deslizantes) -->
+                <div id="quiz-area">
+                    <h2 id="texto-questao" style="font-size: 1.3rem; color: #F8FAFC; min-height: 60px;">Preparando Teste Tático...</h2>
+                    <div id="meta-questao" style="font-size: 0.85rem; color: #D4AF37; margin-bottom: 15px; font-weight: bold;">Mapeando...</div>
+                    <div class="opcoes-grid" id="opcoes-grid" style="transition: transform 0.3s ease-in-out;">
+                        <!-- Botões injetados dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Dashboard de Prontidão (Oculto Inicialmente) -->
+                <div id="dashboard-prontidao" style="display: none;">
+                    <h2 style="color: #FFD700; font-size: 1.5rem; text-align: center; margin-bottom: 20px;">DNA Processado</h2>
+                    
+                    <div style="background: rgba(0,0,0,0.3); border-radius: 12px; padding: 10px; margin-bottom: 20px;">
+                        <canvas id="radarChart" height="250"></canvas>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px;">
+                        <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #4FA5FF; padding: 15px; border-radius: 10px;">
+                            <span style="color: #94A3B8; font-size: 0.85rem; display: block; text-transform: uppercase;">Nível de Memorização</span>
+                            <strong id="dash-memorizacao" style="color: #F8FAFC; font-size: 1.2rem;">Calculando...</strong>
+                            <p id="dash-mem-detalhe" style="font-size: 0.8rem; color: #CBD5E1; margin: 4px 0 0 0;"></p>
+                        </div>
+                        <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #EF4444; padding: 15px; border-radius: 10px;">
+                            <span style="color: #94A3B8; font-size: 0.85rem; display: block; text-transform: uppercase;">Gap de Aprovação Real</span>
+                            <strong id="dash-gap" style="color: #EF4444; font-size: 1.2rem;">- X% da Nota de Corte</strong>
+                            <p style="font-size: 0.8rem; color: #CBD5E1; margin: 4px 0 0 0;">Projeção de corte da banca: <span id="dash-corte" style="color:#FFF;">85%</span></p>
+                        </div>
+                    </div>
+
+                    <div id="btn-container-vaga" style="text-align: center;">
+                        <button id="btn-conquistar-vaga" class="btn-giant pulse-working" style="width: 100%; font-size: 1.3rem;">
+                            CONQUISTAR MINHA VAGA
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="feedback" class="feedback-toast hidden"></div>
+        </div>
+        
+        <!-- Paywall -->
+        <div id="paywall" class="screen">
+            <h2 style="color: #FFD700; margin-bottom: 10px;">Missão Inicial Concluída! 🎯</h2>
+            <div class="relatorio-lock" style="border: 2px solid #FFD700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); background: rgba(15, 23, 42, 0.6); border-radius: 15px; padding: 25px; width: 100%; max-width: 500px;">
+                <p style="font-size: 1.2rem; margin-bottom: 15px; font-weight: bold;">🔒 Seu mapa genético da Aprovação está trancado.</p>
+                <div class="message-parents" style="background: rgba(30, 41, 59, 1); padding: 15px; border-radius: 10px; border-left: 4px solid #4FA5FF; margin-bottom: 20px;">
+                    <p style="font-size: 1.1rem; color: #4FA5FF; margin-top: 0;"><strong>Método do Pai 360° - O Guia Definitivo</strong></p>
+                    <p style="margin-bottom: 0; line-height: 1.5; font-size: 0.95rem;">Isolamos as falhas no seu DNA de estudos e geramos uma rota imbatível focada nas bancas do seu concurso. Antecipe-se à concorrência nacional e destrave sua vaga agora.</p>
+                </div>
+                
+                <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed rgba(255,255,255,0.2);">
+                    <div style="text-decoration: line-through; color: #94A3B8; font-size: 1rem;">Lote Padrão: R$ 147,00</div>
+                    <div style="color: #10B981; font-size: 2rem; font-weight: 900; margin: 5px 0;">R$ 97,00 <span style="font-size: 0.9rem; font-weight: normal; color: #FFF;">(Acesso Principal)</span></div>
+                    <div style="color: #FBBF24; font-size: 0.85rem; font-weight: bold; margin-top: 5px;">⚠️ Lote Exclusivo de Lançamento: Válido APENAS para os 100 primeiros candidatos! Após o limite, o valor retornará a R$ 147,00.</div>
+                </div>
+
+                <!-- Adicionando o Order Bump / Upsell -->
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #10B981;">
+                    <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+                        <input type="checkbox" checked id="simulados-addon" style="width: 22px; height: 22px; margin-top: 2px; accent-color: #10B981; cursor: pointer;">
+                        <div style="margin-left: 10px;">
+                            <span style="font-size: 1rem; font-weight: bold; color: #10B981;">[ SIM ] Quero destravar os Simulados Semanais Táticos</span>
+                            <p style="font-size: 0.85rem; color: #CBD5E1; margin: 6px 0 0 0;">(Oferta Única) Adicione acesso ininterrupto a <strong>provas semanais completas</strong> com rankings e métricas de guerra por apenas <strong>R$ 9,90 mensais</strong>. Essa assinatura otimizará seus tempos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- O Link do Kiwify será inserido aqui. Substituir o href quando o cliente gerar o link -->
+                <a href="https://pay.kiwify.com.br/" target="_blank" style="text-decoration: none;">
+                    <button class="btn-giant pulse" style="width: 100%; background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);">DESBLOQUEAR MEU ACESSO E REIVINDICAR VAGA</button>
+                </a>
+                
+                <div style="margin-top: 15px; font-size: 0.8rem; color: #64748B;">
+                    🔒 Pagamento 100% Seguro via Kiwify. Acesso imediato à plataforma.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio-player"></audio>
+    <script src="/missao_core.js?v=9999"></script>
+    <script>
+        console.log('[HTML BOOT] Analisando ambiente de Missão. Scripts carregados.');
+        
+        // Start do Cronômetro Tático (isolado para não conflitar com script.js)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('[HTML BOOT] DOMContentLoaded disparado. Iniciando Relógio.');
+            iniciarCronometroTatico();
+            
+            // Bypass de Segurança Máxima (Double Kick)
+            setTimeout(() => {
+                if(typeof carregarQuestoes === 'function') {
+                    console.log('[HTML BOOT] carregarQuestoes EXISTE. Forçando double kick.');
+                    // Executa somente se a Questão 1 ainda estiver morta (textoQuestao for original)
+                    const titleText = document.getElementById('texto-questao').innerText;
+                    if(titleText.includes('Preparando Teste Tático')) {
+                        console.warn('[HTML BOOT] ALERTA: missao_core.js não assumiu a tela sozinho. Empurrando.');
+                        carregarQuestoes();
+                    }
+                } else {
+                    console.error('[ERRO ABSOLUTO] carregarQuestoes NÃO É FUNÇÃO. O missao_core.js quebrou ou não foi carregado!');
+                    document.getElementById('texto-questao').innerText = 'ERRO DE COMUNICAÇÃO (SCRIPT MORTO)';
+                }
+            }, 600);
+        });
+
+        // Lógica do Cronômetro On-Time
+        function iniciarCronometroTatico() {
+            const container = document.getElementById('cronometro-container');
+            const statusEdital = sessionStorage.getItem('recruta_status_edital');
+            const dataProvaStr = sessionStorage.getItem('recruta_data_prova');
+
+            if (statusEdital === 'fechado' || !dataProvaStr) {
+                container.innerHTML = "🎯 Foco na Meta: Construindo a Base Perene";
+                container.style.borderColor = '#10B981';
+                container.style.boxShadow = '0 0 10px rgba(16, 185, 129, 0.2)';
+                return;
+            }
+
+            // Edital Aberto -> Contagem Regressiva
+            const dataProva = new Date(dataProvaStr).getTime();
+            container.style.borderColor = '#EF4444';
+            container.style.color = '#EF4444';
+            container.style.boxShadow = '0 0 10px rgba(239, 68, 68, 0.4)';
+
+            setInterval(() => {
+                const agora = new Date().getTime();
+                const dist = dataProva - agora;
+
+                if (dist < 0) {
+                    container.innerHTML = "🔥 A HORA CHEGOU. PROVA EM ANDAMENTO!";
+                    return;
+                }
+
+                const dias = Math.floor(dist / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const min = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+                const seg = Math.floor((dist % (1000 * 60)) / 1000);
+
+                container.innerHTML = `⏳ TEMPO PARA A MISSÃO: ${dias}d ${horas}h ${min}m ${seg}s`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

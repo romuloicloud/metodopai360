@@ -1,0 +1,90 @@
+{
+  "concurso": "Instituto Tecnológico de Aeronáutica (ITA)",
+  "instituicao": "Força Aérea Brasileira (FAB)",
+  "vagas": 150,
+  "salario": "R$ 8.245,00 (Primeiro-Tenente Engenheiro)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Fase Única / 1ª Fase Exatas Extrema",
+        "disciplinas": [
+          "Matemática",
+          "Física",
+          "Química",
+          "Língua Portuguesa",
+          "Inglês"
+        ],
+        "quantidade_questoes": 60,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D, E)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Matemática",
+      "assunto": "Polinômios Equações Algébricas",
+      "enunciado": "Seja P(x) um polinômio de grau n >= 1 com coeficientes reais. Se 1+i e 2-3i são raízes de P(x)=0, o grau mínimo de P(x) é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "1"
+      ],
+      "gabarito_correto": "4",
+      "justificativa_squad": "Por ter coef. reais, o teorema das raízes complexas conjugadas dita que 1-i e 2+3i também são raízes. Logo, no mínimo 4 raízes."
+    },
+    {
+      "disciplina": "Física",
+      "assunto": "Eletromagnetismo (Força de Lorentz)",
+      "enunciado": "Um feixe de elétrons cruza ortogonalmente um campo magnético uniforme de 2.0 T a 1.0x10^6 m/s. Sendo a carga elementar 1.6x10^-19 C, a magnitude da força magnética em cada elétron é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "3.2 x 10^-13 N",
+        "1.6 x 10^-13 N",
+        "2.0 x 10^-13 N",
+        "6.4 x 10^-13 N",
+        "0 N"
+      ],
+      "gabarito_correto": "3.2 x 10^-13 N",
+      "justificativa_squad": "F = |q|*v*B*sen(90). F = (1.6x10^-19)*(10^6)*(2.0)*1 = 3.2 x 10^-13 N."
+    },
+    {
+      "disciplina": "Química",
+      "assunto": "Termodinâmica Química",
+      "enunciado": "Uma reação exotérmica possui variação de entalpia ∆H < 0 e aumenta a desordem do sistema (∆S > 0). Pode-se afirmar que esta reação será:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Sempre espontânea, independente da temperatura.",
+        "Espontânea apenas a altas temperaturas.",
+        "Espontânea apenas a baixas temperaturas.",
+        "Sempre não espontânea.",
+        "Atingirá o equilíbrio indiferente à temperatura."
+      ],
+      "gabarito_correto": "Sempre espontânea, independente da temperatura.",
+      "justificativa_squad": "Energia Livre de Gibbs: ∆G = ∆H - T∆S. Se ∆H é negativo e ∆S é positivo, o termo -T∆S é sempre negativo. Logo, ∆G < 0 (espontâneo) para qualquer T."
+    },
+    {
+      "disciplina": "Inglês",
+      "assunto": "Vocabulário Técnico Acadêmico",
+      "enunciado": "In the sentence 'The tensile strength of the new aerospace alloy is paramount', the word 'paramount' is closest in meaning to:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Dispensable",
+        "Negligible",
+        "Supreme / of highest importance",
+        "Variable",
+        "Weak"
+      ],
+      "gabarito_correto": "Supreme / of highest importance",
+      "justificativa_squad": "'Paramount' significa supremo, da mais alta importância. Essencial na engenharia (resistência à tração de liga metálica)."
+    }
+  ]
+}

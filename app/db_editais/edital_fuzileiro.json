@@ -1,0 +1,87 @@
+{
+  "concurso": "Corpo de Fuzileiros Navais (Soldado)",
+  "instituicao": "Marinha do Brasil",
+  "vagas": 1080,
+  "salario": "R$ 2.294,50 (Após o Curso de Formação)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Exame Intelectual Essencial",
+        "disciplinas": [
+          "Matemática",
+          "Língua Portuguesa"
+        ],
+        "quantidade_questoes": 50,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D, E)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Matemática",
+      "assunto": "Porcentagem e Juros Simples",
+      "enunciado": "Um recruta comprou um coturno de R$ 300,00 com 15% de desconto à vista. O valor final pago foi:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "R$ 255,00",
+        "R$ 285,00",
+        "R$ 250,00",
+        "R$ 230,00",
+        "R$ 245,00"
+      ],
+      "gabarito_correto": "R$ 255,00",
+      "justificativa_squad": "Desconto = 15% de 300 = (15/100)*300 = 45. O valor pago = 300 - 45 = R$ 255,00."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Sintaxe",
+      "enunciado": "Na oração 'A Marinha protege a costa verde-amarela', o núcleo do sujeito é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "protege",
+        "A",
+        "costa",
+        "verde-amarela",
+        "Marinha"
+      ],
+      "gabarito_correto": "Marinha",
+      "justificativa_squad": "O sujeito é 'A Marinha'. O núcleo, a palavra principal, é o substantivo 'Marinha'."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Equação do 1º Grau",
+      "enunciado": "Se o dobro da munição de um esquadrão mais 20 caixas equivale a 100 caixas, qual é a quantidade de munição do esquadrão?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "20",
+        "30",
+        "40",
+        "50",
+        "60"
+      ],
+      "gabarito_correto": "40",
+      "justificativa_squad": "A equação é: 2x + 20 = 100. -> 2x = 80 -> x = 40."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Concordância Verbal",
+      "enunciado": "Assinale a frase gramaticalmente CORRETA em relação à concordância verbal.",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Haviam muitos fuzileiros no navio.",
+        "Faziam dez anos que ele se alistou.",
+        "Fazem dois meses que a tropa embarcou.",
+        "Havia muitos fuzileiros no navio.",
+        "Existe muitos navios no mar."
+      ],
+      "gabarito_correto": "Havia muitos fuzileiros no navio.",
+      "justificativa_squad": "O verbo 'haver' no sentido de existir ou 'fazer' de tempo são impessoais e ficam no singular. Ex: Havia, Faz dois meses, Faz dez anos. Por isso, 'Havia muitos fuzileiros' está perfeitamente certo."
+    }
+  ]
+}

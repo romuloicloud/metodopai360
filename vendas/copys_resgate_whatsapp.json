@@ -1,0 +1,22 @@
+{
+  "sequencia_resgate_24h": [
+    {
+      "toque": 1,
+      "timing": "Imediato (ao acionar fallback)",
+      "tom": "Empatia e Suporte",
+      "mensagem": "Olá, {{nome_responsavel}}! Vimos que o seu/sua recruta completou a missão inicial com absoluto sucesso 🚀, mas percebemos que o relatório de elite ainda está trancado. Você teve alguma dificuldade com a liberação ou precisa de ajuda com o acesso ao Método do Pai 360º?"
+    },
+    {
+      "toque": 2,
+      "timing": "+4 horas após Toque 1",
+      "tom": "Autoridade e Urgência Lógica",
+      "mensagem": "Comandante {{nome_responsavel}}, o tempo é o maior inimigo do aprovado. A análise de DNA com base no desempenho do seu/sua filho(a) para {{meta_objetivo}} expira em breve no nosso sistema. Não deixe esse potencial esfriar!"
+    },
+    {
+      "toque": 3,
+      "timing": "+20 horas após Toque 1 (Fechamento 24h)",
+      "tom": "Oferta Irrecusável (FOMO)",
+      "mensagem": "🚨 Última chamada para a missão, {{nome_responsavel}}! O Quartel General do Método do Pai 360º liberou uma condição de bolsa especial exclusiva para você iniciar o treinamento HOJE. É a sua última chance de desbloquear a Rota de Aprovação com suporte integral. Vamos iniciar?"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "orgao": "Petrobras (Nacional)",
+  "nivel": "Técnico de Operação / Engenharia",
+  "versao_edital": "2024.1",
+  "questoes": [
+    { "c": "Física Aplicada", "t": "Termodinâmica Operacional: Em uma refinaria, ao se expandir adiabaticamente um gás ideal em uma válvula, a temperatura do fluido gasoso tende a:", "o": ["Aumentar devido ao atrito", "Diminuir (Resfriamento Joule-Thomson)", "Permanecer constante (Processo Isotérmico)", "Aumentar a entropia para zero"], "a": 1 },
+    { "c": "Matemática", "t": "Geometria Espacial (Cesgranrio): Um tanque cilíndrico de armazenamento de diesel possui raio da base igual a 10m e altura de 5m. Sabendo que pi ≈ 3, qual o volume máximo de capacidade do tanque?", "o": ["1.500 m³", "500 m³", "3.000 m³", "7.500 m³"], "a": 0 },
+    { "c": "Português", "txtRef": "A extração de petróleo na camada pré-sal exige tecnologias pioneiras em águas ultraprofundas.", "t": "Morfossintaxe: No sintagma 'águas ultraprofundas', o termo sublinhado exerce a função de:", "o": ["Substantivo abstrato", "Adjunto adverbial de lugar", "Adjunto adnominal (adjetivo qualificativo)", "Complemento Nominal"], "a": 2 },
+    { "c": "Conhecimentos Específicos", "t": "Segurança Industrial (SMS): A NR-33 trata da segurança e saúde nos trabalhos em Espaços Confinados. É correto afirmar que:", "o": ["A ventilação com oxigênio puro é recomendada em todos os casos", "É obrigatório o uso de medidor multigás antes e durante a entrada", "O Vigia pode entrar no espaço confinado para resgate sem autorização", "A PET (Permissão de Entrada) tem validade semanal"], "a": 1 },
+    { "c": "Matemática", "t": "Trigonometria e Tubulações: Um cano deve ser instado ligando o solo ao topo de um tanque de 10m com inclinação de 30º. Sabendo que sen(30º) = 0,5, qual o comprimento do tubo?", "o": ["10m", "15m", "20m", "5m"], "a": 2 },
+    { "c": "Inglês Técnico", "t": "Terminologia de Óleo e Gás: O termo técnico 'Blowout Preventer' (BOP) em uma sonda de perfuração refere-se a:", "o": ["Uma bomba centrífuga de sucção de lama", "Um equipamento de segurança para evitar erupções (explosões) do poço", "Um filtro de separação de água e óleo", "Uma broca adiamantada offshore"], "a": 1 },
+    { "c": "Física Aplicada", "t": "Mecânica dos Fluidos: Pelo Princípio de Bernoulli, ao passar por um estrangulamento em um duto horizontal, a velocidade do fluido aumenta e a sua pressão:", "o": ["Também aumenta", "Permanece inalterada", "Diminui proporcionalmente", "Oscila caoticamente"], "a": 2 },
+    { "c": "Química", "t": "Refino e Petroquímica: O processo físico responsável pela separação das diferentes frações do petróleo cru na torre da refinaria é a:", "o": ["Craqueamento Catalítico", "Destilação Fracionada", "Reforma Térmica", "Isomerização"], "a": 1 },
+    { "c": "Português", "txtRef": "Por haver muito vazamento, a operação foi suspensa.", "t": "Concordância (Cesgranrio): Se substituirmos 'haver' por 'existir', a frase correta será:", "o": ["Por existir muito vazamento, a operação foi suspensa.", "Por existirem muito vazamento, a operação foi suspensa.", "Por existirem muitos vazamentos, as operação foi suspensas.", "Por existir muitos vazamentos, a operação foi suspensa."], "a": 0 },
+    { "c": "Lógica Especializada", "t": "Probabilidade: Em um lote de 100 válvulas, 5 apresentam defeito. Qual a probabilidade de se escolher uma válvula ao acaso e ela estar DEFEITUOSA?", "o": ["1%", "5%", "10%", "50%"], "a": 1 }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "concurso": "Instituto Militar de Engenharia (IME)",
+  "instituicao": "Exército Brasileiro",
+  "vagas": 90,
+  "salario": "R$ 8.245,00 (Primeiro-Tenente Engenheiro)",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Exame Intelectual de Altíssimo Nível",
+        "disciplinas": [
+          "Matemática Avançada",
+          "Física Clássica e Moderna",
+          "Química Geral e Físico-Química"
+        ],
+        "quantidade_questoes": 40,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha na 1ª Fase, Discursiva na 2ª Fase (Afloramento Adaptado)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Matemática",
+      "assunto": "Números Complexos e Geometria",
+      "enunciado": "Considere o conjunto dos números complexos Z tais que |Z - 3 + 4i| = 5. O lugar geométrico descrito no plano complexo (Argand-Gauss) é:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Uma elipse.",
+        "Uma hipérbole.",
+        "Uma circunferência de raio 5 e centro (3, -4).",
+        "Uma reta passando pela origem.",
+        "Uma parábola com vértice na origem."
+      ],
+      "gabarito_correto": "Uma circunferência de raio 5 e centro (3, -4).",
+      "justificativa_squad": "A equação |Z - Z0| = R descreve uma circunferência isolada ao redor de Z0 com raio R. Aqui Z0 = 3 - 4i."
+    },
+    {
+      "disciplina": "Física",
+      "assunto": "Mecânica Quântica / Relatividade Restrita",
+      "enunciado": "Se a energia cinética de uma partícula de massa de repouso m0 for igual a sua energia de repouso, o fator de Lorentz (γ) da partícula valerá:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "1",
+        "1.5",
+        "2",
+        "2.5",
+        "5"
+      ],
+      "gabarito_correto": "2",
+      "justificativa_squad": "Energia Total E = E_rest + K. Se K = E_rest, E = 2*E_rest. Pela relatividade de Einstein, E = γ*E_rest. Logo, 2*E_rest = γ*E_rest. Então γ = 2."
+    },
+    {
+      "disciplina": "Química",
+      "assunto": "Eletroquímica Avançada",
+      "enunciado": "Numa célula galvânica padrão Zn/Cu, qual a DDP gerada sabendo que Cu (E°_red = +0.34V) e Zn (E°_red = -0.76V)?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "0.42V",
+        "-1.10V",
+        "+1.10V",
+        "+0.76V",
+        "0.00V"
+      ],
+      "gabarito_correto": "+1.10V",
+      "justificativa_squad": "Cátodo (maior p. de redução) = Cu (+0.34). / Ânodo = Zn (-0.76). DDP = E_cátodo - E_ânodo = +0.34 - (-0.76) = +1.10 V."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Análise Combinatória",
+      "enunciado": "Qual a quantidade de anagramas da palavra 'MÉTODO' sem a restrição gráfica acentuada (metodo)?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "720",
+        "360",
+        "120",
+        "180",
+        "6"
+      ],
+      "gabarito_correto": "360",
+      "justificativa_squad": "6 letras no total. As letras 'O' se repetem 2 vezes. Permutação P(6, 2) = 6! / 2! = 720 / 2 = 360 anagramas."
+    }
+  ]
+}

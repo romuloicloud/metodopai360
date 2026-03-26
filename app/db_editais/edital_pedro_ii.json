@@ -1,0 +1,85 @@
+{
+  "concurso": "Colégio Pedro II (Admissão 6º Ano)",
+  "instituicao": "Colégio Pedro II Federal / Ensino Fundamental",
+  "vagas": 800,
+  "salario": "Ensino Gratuito Federal de Excelência",
+  "prova_objetiva": {
+    "estrutura": [
+      {
+        "bloco": "Prova Objetiva de Múltipla Escolha e Redação",
+        "disciplinas": [
+          "Língua Portuguesa",
+          "Matemática"
+        ],
+        "quantidade_questoes": 20,
+        "peso_por_questao": 1.0
+      }
+    ]
+  },
+  "criterio_pontuacao": {
+    "tipo": "Múltipla Escolha (A, B, C, D)",
+    "acerto": 1.0,
+    "erro": 0.0,
+    "branco_ou_nula": 0.0
+  },
+  "questoes": [
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Compreensão Textual",
+      "texto_base": "Era uma vez um menino chamado João, que passava as tardes no pátio do Colégio Pedro II desenhando as estrelas que imaginava ver durante o dia. 'O céu não dorme', costumava dizer aos colegas. Um dia, a professora de ciências o observou e sorriu.",
+      "enunciado": "A atitude da professora de ciências ao observar João desenhando sugere que ela:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Desaprovou a distração do aluno durante o intervalo.",
+        "Considerou a imaginação de João uma atitude positiva e acolhedora.",
+        "Ignorou o menino, focando apenas nos alunos maiores.",
+        "Avisou à direção sobre o comportamento inadequado do estudante no pátio."
+      ],
+      "gabarito_correto": "Considerou a imaginação de João uma atitude positiva e acolhedora.",
+      "justificativa_squad": "No texto, a professora observou João e 'sorriu', indicando aprovação, empatia e incentivo à imaginação da criança. Um sorriso no contexto escolar traduz acolhimento."
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "assunto": "Sinônimos e Vocabulário",
+      "texto_base": "O silêncio no auditório era absoluto; o diretor iria anunciar o resultado com sua voz INABALÁVEL.",
+      "enunciado": "O termo em destaque, no contexto em que foi empregado, poderia ser substituído sem alteração de sentido por:",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "Hesitante",
+        "Trêmula",
+        "Firme",
+        "Inaudível"
+      ],
+      "gabarito_correto": "Firme",
+      "justificativa_squad": "Inabalável significa aquilo que não se abala, inquebrantável, ou seja, Firme. Hesitante e trêmula seriam o oposto (antônimos)."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "Regra de Ouro: Frações",
+      "enunciado": "Para a festa do Colégio Pedro II, a turma do 6º ano comprou uma torta e a dividiu em 12 fatias iguais. Maria comeu 2 fatias e Carlos comeu 3 fatias. Qual a fração que representa a parte da torta que SOBROU?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "5/12",
+        "7/12",
+        "1/2",
+        "1/12"
+      ],
+      "gabarito_correto": "7/12",
+      "justificativa_squad": "Maria e Carlos comeram, juntos, 2 + 3 = 5 fatias. Como o total de fatias era 12, a quantidade de fatias que sobrou foi 12 - 5 = 7. A representação fracionária do que sobrou é 7 fatias de 12, ou seja, 7/12."
+    },
+    {
+      "disciplina": "Matemática",
+      "assunto": "MMC (Mínimo Múltiplo Comum) aplicado",
+      "enunciado": "No Colégio Pedro II, o sinal do recreio do 6º ano toca a cada 40 minutos. O sinal do laboratório de leitura toca a cada 50 minutos. Se os dois sinais tocaram juntos exatamente às 08h00, a que horas eles voltarão a tocar juntos novamente?",
+      "tipo_questao": "Múltipla Escolha",
+      "opcoes": [
+        "09h30",
+        "10h00",
+        "11h20",
+        "12h00"
+      ],
+      "gabarito_correto": "11h20",
+      "justificativa_squad": "Para descobrir o tempo simultâneo, tiramos o MMC de 40 e 50. Fatorando: 40, 50 = (por 2) -> 20, 25 = (por 2) -> 10, 25 = (por 2) -> 5, 25 = (por 5) -> 1, 5 = (por 5) -> 1, 1. MMC = 2*2*2*5*5 = 200 minutos. 200 min equivalem a 3h20min. Somando a 08h00 + 03h20 = 11h20."
+    }
+  ]
+}
