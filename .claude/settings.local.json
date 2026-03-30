@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:portal.coseac.uff.br)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''mcpServers'''', {}\\), indent=2\\)\\)\")",
+      "Bash(SUPA_URL=\"https://xeimqibtnjchbfgsjqsk.supabase.co\" SUPA_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlaW1xaWJ0bmpjaGJmZ3NqcXNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyNzUyNTksImV4cCI6MjA4Njg1MTI1OX0.63yaHW4qGnDvDrsaAzqxGU875fLYVBTJgZCVJl0D7Pc\" __NEW_LINE_8a5e418ba2d9bc11__ echo \"=== SCHEMA concursos_gps \\(1 row\\) ===\" curl -s \"$SUPA_URL/rest/v1/concursos_gps?limit=1\" -H \"apikey: $SUPA_KEY\" -H \"Authorization: Bearer $SUPA_KEY\")",
+      "Bash(SUPA_URL=\"https://xeimqibtnjchbfgsjqsk.supabase.co\" SUPA_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlaW1xaWJ0bmpjaGJmZ3NqcXNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyNzUyNTksImV4cCI6MjA4Njg1MTI1OX0.63yaHW4qGnDvDrsaAzqxGU875fLYVBTJgZCVJl0D7Pc\" __NEW_LINE_9e7f40787ff0405f__ echo \"=== FAETEC existente ===\" curl -s \"$SUPA_URL/rest/v1/concursos_gps?orgao=ilike.*faetec*\" -H \"apikey: $SUPA_KEY\" -H \"Authorization: Bearer $SUPA_KEY\")",
+      "Bash(node -e \"process.stdin.on\\(''''data'''',d=>console.log\\(JSON.stringify\\(JSON.parse\\(d\\),null,2\\)\\)\\)\" __NEW_LINE_9e7f40787ff0405f__ echo \"\" echo \"=== SCHEMA disciplinas \\(1 row\\) ===\" curl -s \"$SUPA_URL/rest/v1/disciplinas?limit=1\" -H \"apikey: $SUPA_KEY\" -H \"Authorization: Bearer $SUPA_KEY\")",
+      "Bash(SUPA_URL=\"https://xeimqibtnjchbfgsjqsk.supabase.co\" SUPA_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhlaW1xaWJ0bmpjaGJmZ3NqcXNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyNzUyNTksImV4cCI6MjA4Njg1MTI1OX0.63yaHW4qGnDvDrsaAzqxGU875fLYVBTJgZCVJl0D7Pc\" FAETEC_ID=\"42baa8fb-2130-4864-966b-923c0bf3f9a0\" __NEW_LINE_980768b3c7de458f__ echo \"=== DISCIPLINAS do FAETEC ===\" curl -s \"$SUPA_URL/rest/v1/disciplinas?concurso_id=eq.$FAETEC_ID\" -H \"apikey: $SUPA_KEY\" -H \"Authorization: Bearer $SUPA_KEY\")",
+      "Bash(node -e \"process.stdin.on\\(''''data'''',d=>console.log\\(JSON.stringify\\(JSON.parse\\(d\\),null,2\\)\\)\\)\" __NEW_LINE_980768b3c7de458f__ echo \"\" echo \"=== SCHEMA pilulas_forja \\(1 row\\) ===\" curl -s \"$SUPA_URL/rest/v1/pilulas_forja?limit=1\" -H \"apikey: $SUPA_KEY\" -H \"Authorization: Bearer $SUPA_KEY\")",
+      "Bash(node:*)",
+      "Bash(grep -r \"service_role\\\\|SERVICE_ROLE\\\\|serviceRole\\\\|supabase_key\\\\|SUPABASE_KEY\\\\|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\" /c/opensquad/squad_da_vitoria/ --include=*.js --include=*.env --include=*.json --include=*.ts --include=*.env.local -l)",
+      "Bash(find /c/opensquad/squad_da_vitoria -name *.env* -o -name .env*)",
+      "WebSearch",
+      "WebFetch(domain:dhui.cp2.g12.br)",
+      "WebFetch(domain:www.cp2.g12.br)",
+      "Bash(node -e \":*)",
+      "WebFetch(domain:conhecimento.fgv.br)",
+      "WebFetch(domain:www.direcaoconcursos.com.br)"
+    ]
+  }
+}

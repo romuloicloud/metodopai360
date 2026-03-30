@@ -1,0 +1,19 @@
+{
+  "buildCommand": null,
+  "outputDirectory": "app",
+  "framework": null,
+  "installCommand": "echo 'sem dependencias de build'",
+  "env": {
+    "SUPABASE_URL": "@supabase_url",
+    "SUPABASE_ANON_KEY": "@supabase_anon_key"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada 360 - Trilha Tática</title>
+    <link rel="icon" href="/app-icon.png?v=5" type="image/png">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            min-height: 100vh;
+        }
+
+        .journey-container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .journey-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .journey-header h1 {
+            color: #4FA5FF;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .user-tag {
+            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px dashed rgba(255,255,255,0.2);
+            font-weight: bold;
+        }
+
+        /* TIMELINE STYLES */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+
+        .milestone {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .milestone:last-child {
+            margin-bottom: 0;
+        }
+
+        .milestone-marker {
+            position: absolute;
+            left: -40px;
+            top: 10px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #0F172A;
+            border: 3px solid #64748B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        
+        .milestone-marker i {
+            font-size: 0.8rem;
+            color: #64748B;
+        }
+
+        .milestone.active .milestone-marker {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.2);
+        }
+        .milestone.active .milestone-marker i { color: #10B981; }
+
+        .milestone.locked .milestone-marker {
+            border-color: #EF4444;
+        }
+        .milestone.locked .milestone-marker i { color: #EF4444; }
+
+        .milestone-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+        }
+
+        .milestone-card:hover {
+            transform: translateY(-3px);
+            border-color: #4FA5FF;
+            box-shadow: 0 5px 15px rgba(79, 165, 255, 0.2);
+        }
+
+        .milestone.locked .milestone-card {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+            cursor: not-allowed;
+        }
+
+        .milestone.locked .milestone-card:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .milestone-step {
+            font-size: 0.75rem;
+            color: #94A3B8;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .milestone-title {
+            font-size: 1.4rem;
+            color: #F8FAFC;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .milestone.active .milestone-title {
+            color: #10B981;
+        }
+
+        .milestone-desc {
+            font-size: 0.95rem;
+            color: #CBD5E1;
+            line-height: 1.4;
+        }
+
+        .action-button {
+            margin-top: 15px;
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+            border: 1px solid #10B981;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .milestone.locked .action-button {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+            border-color: #EF4444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="journey-container">        <header class="journey-header">
+            <img src="app-icon.png?v=7" alt="Pai 360" style="width: 70px; border-radius: 12px; margin-bottom: 15px;">
+            <h1>JORNADA TÁTICA</h1>
+            <div class="user-tag" id="greetingUser">Bem-vindo(a), Candidato(a)</div>
+            <p style="color: #94A3B8;" id="map-subtitle">O diagnóstico mapeou suas deficiências críticas. Siga os passos sequenciais abaixo para cicatrizar suas falhas antes da prova.</p>
+        </header>
+
+        <div class="timeline" id="timeline-container">
+            <!-- CARREGADO VIA JS E ROTEADOR MAPA GAMIFICADO -->
+            <div style="text-align:center; color:#94A3B8; padding:40px;"><i class="fa-solid fa-spinner fa-spin fa-2x"></i><br><br>Carregando Matérias do Edital...</div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nome = sessionStorage.getItem('recruta_nome');
+            const target = sessionStorage.getItem('recruta_orgao');
+            
+            if (nome) {
+                document.getElementById('greetingUser').innerHTML = `Candidato(a) ${nome.split(' ')[0]} <span style="color:#10B981;">[STATUS: DESTRANCADO]</span><br><span style="font-size: 0.75rem; color: #94A3B8; font-weight: normal;">Edital Alvo: ${target || 'Alvo Geral'}</span>`;
+            }
+        });
+    </script>
+    <!-- Modals de Confirmação (Não usados dinamicamente aqui mas mantidos como helper global) -->
+    
+    <script src="roteador_mapa.js?v=7"></script>
+</body>
+</html>

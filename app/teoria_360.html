@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pai 360 - Teoria Tática (Áudio)</title>
+    <link rel="icon" href="app-icon.png?v=5" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <style>
+        body {
+            padding: 15px 15px 30px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .top-bar, .audio-player-panel, .theory-content, .bottom-nav, #exercise-options {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .top-bar {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 2px solid #4FA5FF;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        .audio-player-panel {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid #10B981;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 0 auto 20px;
+            max-width: 800px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-play-audio {
+            background: #10B981;
+            color: #FFF;
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+            transition: transform 0.2s;
+        }
+
+        .btn-play-audio:active { transform: scale(0.9); }
+        .btn-play-audio.playing {
+            background: #EF4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            animation: pulse-red 2s infinite;
+        }
+        
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .theory-content {
+            background: #1E293B;
+            padding: 25px;
+            border-radius: 8px;
+            color: #F8FAFC;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .theory-content highlight {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .bottom-nav {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-nav {
+            background: #334155;
+            color: #F8FAFC;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-nav.primary {
+            background: #4FA5FF;
+            color: #0F172A;
+            box-shadow: 0 4px 10px rgba(79, 165, 255, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="top-bar">
+        <div>
+            <a href="rota_estudos.html" style="color:#94A3B8; font-size: 1.2rem; margin-right: 15px; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Rota</a>
+        </div>
+        <div>
+            <span style="color:#4FA5FF; font-weight:900; letter-spacing: 1px; text-transform: uppercase;" id="lbl-edital">MÓDULO DE TEORIA</span>
+        </div>
+        <div style="font-size: 0.8rem; font-weight: bold; color: #CBD5E1;"><i class="fa-solid fa-book"></i> PÍLULA <span id="lbl-pill">1/1</span></div>
+    </div>
+
+    <!-- PAINEL DE ÁUDIO -->
+    <div class="audio-player-panel">
+        <h3 style="color: #10B981; margin-bottom: 5px;" id="theory-title">Inicializando Motor TTS...</h3>
+        <p style="color: #94A3B8; font-size: 0.85rem; margin-bottom: 20px;">Use fones de ouvido para concentração tática extrema.</p>
+        
+        <button class="btn-play-audio" id="btn-audio" onclick="toggleAudio()">
+            <i class="fa-solid fa-play" id="icon-audio"></i>
+        </button>
+        <p style="color: #F8FAFC; font-weight: bold; font-size: 0.9rem; margin-top: 15px;" id="status-audio">CLIQUE PARA OUVIR A MATÉRIA</p>
+    </div>
+
+    <!-- CONTEÚDO TEXTUAL / PERGUNTA -->
+    <div class="theory-content" id="theory-text">
+        Buscando fragmentos de teoria e fixação na base de dados...
+    </div>
+
+    <!-- ALTERNATIVAS DO EXERCÍCIO (Oculto na Teoria) -->
+    <div id="exercise-options" style="display: none; max-width: 800px; margin: 0 auto 30px; display: flex; flex-direction: column; gap: 10px; padding: 0 20px;">
+        <!-- Injetado via JS -->
+    </div>
+
+    <!-- CONTROLES -->
+    <div class="bottom-nav">
+        <button class="btn-nav" id="btn-prev" onclick="prevPill()"><i class="fa-solid fa-backward-step"></i> Anterior</button>
+        <button class="btn-nav" id="btn-cavar" onclick="cavarMaisFundo()" style="display:none; background: #8B0000; color: #FFF; box-shadow: 0 4px 10px rgba(139, 0, 0, 0.4); border:1px solid #FF4500; text-transform:uppercase; font-size:0.8rem;"><i class="fa-solid fa-skull"></i> Cavar Fundo</button>
+        <button class="btn-nav primary" id="btn-next" onclick="nextPill()">Avançar <i class="fa-solid fa-forward-step"></i></button>
+    </div>
+
+    <script src="teoria_360.js?v=9"></script>
+</body>
+</html>

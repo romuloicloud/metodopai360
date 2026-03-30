@@ -94,13 +94,15 @@ async function carregarQuestoes() {
                       .replace(/ \* /g, ' &middot; ');
         };
 
+        // Mapeamento via UUID Universal
         const brasaoMap = {
-            'edital_pmerj': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg.png',
-            'edital_pf': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Bras%C3%A3o_da_Pol%C3%ADcia_Federal_do_Brasil.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Federal_do_Brasil.svg.png',
-            'edital_prf': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Bras%C3%A3o_Pol%C3%ADcia_Rodovi%C3%A1ria_Federal.svg/300px-Bras%C3%A3o_Pol%C3%ADcia_Rodovi%C3%A1ria_Federal.svg.png',
-            'edital_caixa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Caixa_Econ%C3%B4mica_Federal_logo.svg/300px-Caixa_Econ%C3%B4mica_Federal_logo.svg.png',
-            'edital_petrobras': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Petrobras_Logo.png/300px-Petrobras_Logo.png',
-            'edital_bb': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Banco_do_Brasil_logo.svg/300px-Banco_do_Brasil_logo.svg.png',
+            '11111111-1111-1111-1111-111111111111': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg.png',
+            '42baa8fb-2130-4864-966b-923c0bf3f9a0': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bras%C3%A3o_do_estado_do_Rio_de_Janeiro.svg/200px-Bras%C3%A3o_do_estado_do_Rio_de_Janeiro.svg.png',
+            '9167b605-0081-4f93-adc7-ea406aa5a11a': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Bras%C3%A3o_do_Col%C3%A9gio_Pedro_II.png/300px-Bras%C3%A3o_do_Col%C3%A9gio_Pedro_II.png',
+            '489086a5-3172-449b-be54-fc2e9fe0ed54': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Petrobras_Logo.svg/512px-Petrobras_Logo.svg.png',
+            '33333333-3333-3333-3333-333333333333': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Caixa_Econ%C3%B4mica_Federal_logo.svg/512px-Caixa_Econ%C3%B4mica_Federal_logo.svg.png',
+            '44444444-4444-4444-4444-444444444444': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Banco_do_Brasil_logo.svg/512px-Banco_do_Brasil_logo.svg.png',
+            '22222222-2222-2222-2222-222222222222': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Bras%C3%A3o_TJRJ.png/300px-Bras%C3%A3o_TJRJ.png',
             'edital_correios': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Correios_%282014%29_logo.svg/300px-Correios_%282014%29_logo.svg.png',
             'edital_essa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/S%C3%ADmbolo_do_Ex%C3%A9rcito_Brasileiro.svg/300px-S%C3%ADmbolo_do_Ex%C3%A9rcito_Brasileiro.svg.png',
             'edital_espcex': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Bras%C3%A3o_EsPCEx.png/300px-Bras%C3%A3o_EsPCEx.png',
@@ -432,8 +434,12 @@ function exibirDashboard() {
     supabaseDb.from('diagnosticos_resultados').insert([{
         pontuacao_geral: totalAcertos,
         meta_objetivo: sessionStorage.getItem('recruta_meta') || 'Não informada',
-        status_pagamento: 'pendente'
-    }]).then(res => console.log('Resultado de Posse Analisada salvo com sucesso.'));
+        status_pagamento: 'pendente',
+        user_id: sessionStorage.getItem('recruta_id') || null,
+        nome_responsavel: sessionStorage.getItem('recruta_nome') || 'Desconhecido',
+        telefone_whatsapp: sessionStorage.getItem('recruta_whatsapp') || null,
+        funil_status: 'diagnostico_concluido'
+    }]).then(res => console.log('Resultado de Posse Analisada (Lead) salvo com sucesso.'));
 }
 
 if(document.getElementById('btn-conquistar-vaga')) {
