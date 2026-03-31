@@ -1,18 +1,40 @@
 {
+  "version": 2,
+  "name": "metododopai360",
+  "framework": null,
   "buildCommand": null,
   "outputDirectory": "app",
-  "framework": null,
-  "installCommand": "echo 'sem dependencias de build'",
-  "env": {
-    "SUPABASE_URL": "@supabase_url",
-    "SUPABASE_ANON_KEY": "@supabase_anon_key"
-  },
+  "installCommand": "npm install",
+
+  "rewrites": [
+    { "source": "/api/tts",    "destination": "/api/tts"    },
+    { "source": "/api/config", "destination": "/api/config" },
+
+    { "source": "/missao",                  "destination": "/missao.html"                  },
+    { "source": "/rota_estudos",            "destination": "/rota_estudos.html"            },
+    { "source": "/teoria_360",              "destination": "/teoria_360.html"              },
+    { "source": "/treinamento_360",         "destination": "/treinamento_360.html"         },
+    { "source": "/tela_catalogo_concursos", "destination": "/tela_catalogo_concursos.html" },
+    { "source": "/acesso_liberado",         "destination": "/acesso_liberado.html"         },
+    { "source": "/tela_gps_concurso",       "destination": "/tela_gps_concurso.html"       },
+    { "source": "/tela_perfil",             "destination": "/tela_perfil.html"             }
+  ],
+
   "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin",  "value": "*"                   },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS"    },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type"        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" }
+        { "key": "X-Content-Type-Options", "value": "nosniff"                     },
+        { "key": "X-Frame-Options",        "value": "DENY"                        },
+        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" }
       ]
     }
   ]

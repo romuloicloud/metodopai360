@@ -19,5 +19,14 @@ yarn-error.log*
 dist/
 build/
 
-# Arquivo de chaves dinamico
+# Arquivo de chaves dinamico (gerado localmente — em prod é servido via /api/config)
 app/config.js
+
+# Marketing (assets grandes, nao vao pro repositorio)
+marketing/audio_testes/
+marketing/audio_finais/
+marketing/screenshots/
+marketing/video_out/
+
+# Puppeteer cache
+.cache/
