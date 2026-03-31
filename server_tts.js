@@ -1,11 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config(); // Lê o .env padrão
 require('dotenv').config({ path: '.env.local', override: true }); // FORÇA o .env.local a esmagar as chaves antigas!
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve os arquivos estáticos da pasta /app
+app.use(express.static(path.resolve(__dirname, 'app')));
 
 app.post('/api/tts', async (req, res) => {
     const { texto } = req.body;
