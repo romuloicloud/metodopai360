@@ -12,12 +12,12 @@
 const { executarIngestion } = require('../engine_ingestao');
 
 const CONFIG = {
-  orgao_match: 'Polícia Federal - Agente',
+  orgao_match: 'Polícia Federal (PF)',
   concurso_nome: 'PF - Agente Federal 2025',
   concurso_banca: 'CEBRASPE',
 
   concurso_gps: {
-    orgao: 'Polícia Federal - Agente',
+    orgao: 'Polícia Federal (PF)',
     cargo: 'Agente de Polícia Federal',
     banca: 'CEBRASPE',
     status_edital: 'previsto',

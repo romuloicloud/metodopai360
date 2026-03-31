@@ -79,7 +79,16 @@ async function executarIngestion(config) {
   // 1b. Garante registro em concursos_gps com ponte concurso_ref_id preenchida
   const gpsExist = await supaSelect('concursos_gps', { orgao: `eq.${orgao_match}`, select: 'id,concurso_ref_id' });
   if (gpsExist.length === 0) {
-    await supaInsert('concursos_gps', { ...concurso_gps, concurso_ref_id: concursoId });
+    // Apenas colunas que existem em concursos_gps (cargo, vagas, remuneracao, banca não existem)
+    const gpsPayloadSafe = {
+      orgao:        concurso_gps.orgao,
+      familia:      concurso_gps.familia      || 'geral',
+      esfera:       concurso_gps.esfera       || 'federal',
+      uf:           concurso_gps.uf           || 'BR',
+      status_edital: concurso_gps.status_edital || 'previsto',
+      concurso_ref_id: concursoId
+    };
+    await supaInsert('concursos_gps', gpsPayloadSafe);
     console.log('  ✅ concursos_gps: criado com ponte.');
   } else if (!gpsExist[0].concurso_ref_id) {
     // Preenche a ponte se ainda estiver vazia (registros legados)

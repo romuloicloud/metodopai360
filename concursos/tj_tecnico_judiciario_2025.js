@@ -12,12 +12,12 @@
 const { executarIngestion } = require('../engine_ingestao');
 
 const CONFIG = {
-  orgao_match: 'Tribunal de Justiça - Técnico',
+  orgao_match: 'TJ-RJ',
   concurso_nome: 'TJ - Técnico Judiciário 2025',
   concurso_banca: 'FCC',
 
   concurso_gps: {
-    orgao: 'Tribunal de Justiça - Técnico',
+    orgao: 'TJ-RJ',
     cargo: 'Técnico Judiciário - Área Administrativa',
     banca: 'FCC',
     status_edital: 'previsto',

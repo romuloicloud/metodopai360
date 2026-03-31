@@ -19,7 +19,7 @@ const headers = {
 
 async function main() {
     const res = await fetch(
-        `${SUPA_URL}/rest/v1/concursos_gps?select=id,orgao,cargo,concurso_ref_id&order=orgao`,
+        `${SUPA_URL}/rest/v1/concursos_gps?select=id,orgao,concurso_ref_id&order=orgao`,
         { headers }
     );
     const data = await res.json();
@@ -32,7 +32,7 @@ async function main() {
         const status = g.concurso_ref_id ? '✅ COM CONTEÚDO' : '⚠️  SEM CONTEÚDO';
         console.log(`\n${status}`);
         console.log(`  Órgão : ${g.orgao}`);
-        console.log(`  Cargo : ${g.cargo}`);
+        console.log(`  Ponte : ${g.concurso_ref_id || 'SEM CONTEÚDO'}`);
         console.log(`  GPS ID: ${g.id}`);
         console.log(`  onclick: direcionarCatalogo('...', '...', '...', '${g.orgao}', '${g.id}')`);
     });

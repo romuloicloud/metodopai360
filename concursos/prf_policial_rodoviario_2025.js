@@ -12,12 +12,12 @@
 const { executarIngestion } = require('../engine_ingestao');
 
 const CONFIG = {
-  orgao_match: 'Polícia Rodoviária Federal',
+  orgao_match: 'Polícia Rodoviária Federal (PRF)',
   concurso_nome: 'PRF - Policial Rodoviário Federal 2025',
   concurso_banca: 'CEBRASPE',
 
   concurso_gps: {
-    orgao: 'Polícia Rodoviária Federal',
+    orgao: 'Polícia Rodoviária Federal (PRF)',
     cargo: 'Policial Rodoviário Federal',
     banca: 'CEBRASPE',
     status_edital: 'previsto',
