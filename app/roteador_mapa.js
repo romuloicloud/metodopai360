@@ -1,21 +1,29 @@
+const MODULOS_PMERJ = [
+    // ── Língua Portuguesa ─────────────────────────────────────────────────────
+    { id: 0,  disciplina: "Língua Portuguesa",             topico: "Interpretação e Compreensão de Textos",            descricao: "Como a FGV esconde respostas em paráfrases — pare de perder pontos no texto.",          icon: "fa-book-open"         },
+    { id: 1,  disciplina: "Língua Portuguesa",             topico: "Sintaxe e Regência",                               descricao: "A estrutura das frases e a ditadura do verbo regente na prova da FGV.",                  icon: "fa-language"          },
+    { id: 2,  disciplina: "Língua Portuguesa",             topico: "Ortografia e Semântica",                           descricao: "Polissemia, homônimos e a armadilha das palavras de duplo sentido.",                    icon: "fa-spell-check"       },
+    // ── Matemática Básica ─────────────────────────────────────────────────────
+    { id: 3,  disciplina: "Matemática Básica",             topico: "Conceitos Iniciais (Conjuntos)",                   descricao: "Conjuntos, operações e Princípio Fundamental da Contagem.",                            icon: "fa-calculator"        },
+    { id: 4,  disciplina: "Matemática Básica",             topico: "Juros Simples e Compostos",                        descricao: "A bomba do fator T — como a banca disfarça o tempo e faz você errar.",                  icon: "fa-percent"           },
+    { id: 5,  disciplina: "Matemática Básica",             topico: "Porcentagem e Frações",                            descricao: "Tesoura de cálculo mental: corte zeros e acerte porcentagem em 10 segundos.",           icon: "fa-dice"              },
+    // ── Direitos Humanos ──────────────────────────────────────────────────────
+    { id: 6,  disciplina: "Direitos Humanos",              topico: "Pacto de San José da Costa Rica",                  descricao: "Tratado essencial — direitos civis, políticos e garantias fundamentais.",                icon: "fa-handshake-angle"   },
+    { id: 7,  disciplina: "Direitos Humanos",              topico: "Constituição Federal — Art. 5º e Direitos Fundamentais", descricao: "Os incisos do Art. 5º que mais caem em provas de segurança pública.",          icon: "fa-globe"             },
+    // ── Legislação Aplicada ───────────────────────────────────────────────────
+    { id: 8,  disciplina: "Legislação Aplicada",           topico: "Estatuto dos Policiais Militares (RJ)",            descricao: "Hierarquia, disciplina e prerrogativas — o que a FGV cobra do Estatuto.",               icon: "fa-shield-halved"     },
+    { id: 9,  disciplina: "Legislação Aplicada",           topico: "Regulamento Disciplinar e Código de Ética",        descricao: "Infrações, punições e os limites da conduta policial.",                                 icon: "fa-file-signature"    },
+    // ── Direito Penal e Processual Penal ─────────────────────────────────────
+    { id: 10, disciplina: "Direito Penal e Processual Penal", topico: "Crimes contra a Pessoa e o Patrimônio",         descricao: "Homicídio (Art. 121), Furto, Roubo e Extorsão — diferencie sem errar.",                icon: "fa-gavel"             },
+    { id: 11, disciplina: "Direito Penal e Processual Penal", topico: "Flagrante, Prisão e Processo Penal",            descricao: "Espécies de prisão, flagrante próprio/impróprio e o CPP na prática.",                  icon: "fa-mask"              },
+];
+
 const MAPA_MODULOS = {
-    // Banco PMERJ Universal
-    '11111111-1111-1111-1111-111111111111': [
-        { id: 0, disciplina: "Português", topico: "Interpretação de Textos", descricao: "Aprenda como a banca esconde as respostas no texto e pare de perder pontos.", icon: "fa-book-open" },
-        { id: 1, disciplina: "Português", topico: "Sintaxe e Regência", descricao: "A estrutura das frases e a relação de poder entre os verbos e nomes.", icon: "fa-language" },
-        { id: 2, disciplina: "Matemática", topico: "Razão, Proporção e Regra de Três", descricao: "Atalhos de cálculo mental para destruir contas em menos de 1 minuto.", icon: "fa-calculator" },
-        { id: 3, disciplina: "Matemática", topico: "Porcentagem e Juros Simples", descricao: "As armadilhas financeiras que despencam em todas as provas militares.", icon: "fa-percent" },
-        { id: 4, disciplina: "Matemática", topico: "Probabilidade e Análise Combinatória", descricao: "Acerte a chance de eventos críticos com a técnica do princípio multiplicativo.", icon: "fa-dice" },
-        { id: 5, disciplina: "Direitos Humanos", topico: "DUDH (Declaração Universal)", descricao: "A base internacional cobrada nas avaliações modernas.", icon: "fa-globe" },
-        { id: 6, disciplina: "Direitos Humanos", topico: "Pacto de San José da Costa Rica", descricao: "Tratado essencial de direitos civis e políticos.", icon: "fa-handshake-angle" },
-        { id: 7, disciplina: "Direito Penal", topico: "Crimes contra a Vida", descricao: "A anatomia do Homicídio (Art. 121) e qualificadoras.", icon: "fa-gavel" },
-        { id: 8, disciplina: "Direito Penal", topico: "Crimes contra o Patrimônio", descricao: "Diferencie Furto, Roubo e Extorsão sem errar na hora do desespero.", icon: "fa-mask" },
-        { id: 9, disciplina: "Direito Administrativo", topico: "Poderes Administrativos", descricao: "Poder de Polícia, Hierárquico e Disciplinar.", icon: "fa-building-shield" },
-        { id: 10, disciplina: "Direito Administrativo", topico: "Atos Administrativos", descricao: "Requisitos, Atributos e a Anulação (CO FIFOMOB).", icon: "fa-file-signature" },
-        { id: 11, disciplina: "Legislação Aplicada", topico: "Estatuto da PMERJ", descricao: "Hierarquia, Disciplina e Prerrogativas Militares.", icon: "fa-shield-halved" },
-        { id: 12, disciplina: "Legislação Aplicada", topico: "Estatuto do Desarmamento", descricao: "Regras sobre posse, porte e crimes bélicos.", icon: "fa-gun" },
-        { id: 13, disciplina: "Legislação de Trânsito", topico: "CTB - Aspectos Penais", descricao: "Crimes de trânsito que envolvem atividade policial preventiva.", icon: "fa-car-burst" }
-    ],
+    // ── PMERJ — GPS IDs reais (catálogo + ingestão) + legado ─────────────────
+    '37a79dcc-3c56-4615-ac27-d04ec5a86d07': MODULOS_PMERJ, // PMERJ (catálogo)
+    '7ccb9092-5445-433c-a85d-23892ee7a5f3': MODULOS_PMERJ, // Polícia Militar PMERJ (ingestão)
+    '11111111-1111-1111-1111-111111111111': MODULOS_PMERJ, // legado (retrocompatibilidade)
+
     // Fallback genérico para outros concursos em implantação
     'DEFAULT': [
         {
