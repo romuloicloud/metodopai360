@@ -30,3 +30,5 @@ marketing/video_out/
 
 # Puppeteer cache
 .cache/
+
+.vercel

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/missao.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/tela_catalogo_concursos.html)",
+      "WebFetch(domain:elevenlabs.io)",
+      "WebFetch(domain:api.elevenlabs.io)"
+    ]
+  }
+}

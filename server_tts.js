@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 // Serve os arquivos estáticos da pasta /app
-app.use(express.static(path.resolve(__dirname, 'app')));
+// extensions: ['html'] permite acessar /missao em vez de /missao.html
+app.use(express.static(path.resolve(__dirname, 'app'), { extensions: ['html'] }));
 
 app.post('/api/tts', async (req, res) => {
     const { texto } = req.body;
