@@ -1,11 +1,12 @@
 // Service Worker — Método do Pai 360
-const CACHE = 'pai360-v2';
+const CACHE = 'pai360-v4';
 
 const STATIC = [
     '/',
     '/tela_catalogo_concursos',
     '/style.css',
     '/app-icon.png',
+    '/apple-touch-icon.png',
     '/manifest.json',
     '/backend_onboarding.js',
     '/guard_acesso.js',
