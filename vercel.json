@@ -6,6 +6,11 @@
   "outputDirectory": "app",
   "installCommand": "npm install",
 
+  "redirects": [
+    { "source": "/landing/(.*)", "destination": "/tela_catalogo_concursos", "permanent": true },
+    { "source": "/landing",      "destination": "/tela_catalogo_concursos", "permanent": true }
+  ],
+
   "rewrites": [
     { "source": "/api/tts",    "destination": "/api/tts"    },
     { "source": "/api/config", "destination": "/api/config" },
