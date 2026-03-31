@@ -400,7 +400,7 @@ async function falarTextoGemini(texto) {
     document.getElementById('status-audio').innerText = "CONECTANDO GEMINI 3...";
 
     try {
-        const response = await fetch('http://localhost:3000/api/tts', {
+        const response = await fetch('/api/tts', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ texto, voz: 'masculino_militar_agressivo' })

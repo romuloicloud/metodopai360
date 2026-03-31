@@ -121,6 +121,7 @@ async function carregarQuestoes() {
         'b8c9dd22-e037-488c-b39c-ad3b4ebf89c1': 'edital_colegio_naval', // Colégio Naval
         '3fda4434-c074-41c0-9837-935dff2ef84b': 'edital_fuzileiro',     // Fuzileiros Navais
         '0aec31cd-cf9d-4a46-9207-8ce226c78ed5': 'fallback_policia_civil', // PCERJ
+        'd5d8339d-5662-4021-8f96-a712aa60a50a': 'edital_inss',           // INSS Técnico do Seguro Social
         // ── Legacy (retrocompatibilidade) ─────────────────────────────────
         '9167b605-0081-4f93-adc7-ea406aa5a11a': 'edital_pedro_ii',
         '42baa8fb-2130-4864-966b-923c0bf3f9a0': 'edital_faetec',

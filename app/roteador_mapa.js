@@ -18,11 +18,35 @@ const MODULOS_PMERJ = [
     { id: 11, disciplina: "Direito Penal e Processual Penal", topico: "Flagrante, Prisão e Processo Penal",            descricao: "Espécies de prisão, flagrante próprio/impróprio e o CPP na prática.",                  icon: "fa-mask"              },
 ];
 
+const MODULOS_INSS = [
+    // ── Língua Portuguesa ─────────────────────────────────────────────────────
+    { id: 0,  disciplina: "Língua Portuguesa",                   topico: "Interpretação e Compreensão de Textos",                       descricao: "Como a banca explora inferências e paráfrases em textos de legislação previdenciária.",  icon: "fa-book-open"         },
+    { id: 1,  disciplina: "Língua Portuguesa",                   topico: "Coesão e Coerência Textual",                                  descricao: "Conectivos, progressão temática e os erros que derrubam candidatos na redação.",         icon: "fa-spell-check"       },
+    { id: 2,  disciplina: "Língua Portuguesa",                   topico: "Gramática Aplicada — Concordância, Regência e Crase",         descricao: "As regras gramaticais que mais caem em provas do INSS — com exemplos reais de editais.", icon: "fa-language"          },
+    // ── Raciocínio Lógico e Quantitativo ──────────────────────────────────────
+    { id: 3,  disciplina: "Raciocínio Lógico e Quantitativo",   topico: "Lógica Proposicional — Conectivos e Tabelas-Verdade",         descricao: "Deduza gabaritos usando tabelas-verdade — o método mais rápido para lógica em prova.",   icon: "fa-brain"             },
+    { id: 4,  disciplina: "Raciocínio Lógico e Quantitativo",   topico: "Raciocínio Numérico — Razão, Proporção e Porcentagem",        descricao: "Atalhos de cálculo mental para resolver contas de benefícios em segundos.",             icon: "fa-calculator"        },
+    { id: 5,  disciplina: "Raciocínio Lógico e Quantitativo",   topico: "Probabilidade e Estatística Básica",                          descricao: "Frequência, média, mediana e moda — o que o INSS adora cobrar em dados populacionais.", icon: "fa-percent"           },
+    // ── Legislação Previdenciária ─────────────────────────────────────────────
+    { id: 6,  disciplina: "Legislação Previdenciária",           topico: "Seguridade Social — CF/88 Arts. 194 a 204",                  descricao: "A base constitucional: princípios, objetivos e financiamento da Seguridade Social.",    icon: "fa-scale-balanced"    },
+    { id: 7,  disciplina: "Legislação Previdenciária",           topico: "Benefícios da Previdência Social — Lei 8.213/1991",          descricao: "Aposentadorias, auxílios, salário-maternidade e pensão por morte — espécies e carências.", icon: "fa-file-shield"      },
+    { id: 8,  disciplina: "Legislação Previdenciária",           topico: "Custeio da Previdência Social — Lei 8.212/1991",             descricao: "Alíquotas, bases de cálculo e obrigações do empregador e do segurado.",                icon: "fa-coins"             },
+    { id: 9,  disciplina: "Legislação Previdenciária",           topico: "Regras de Transição da Reforma da Previdência — EC 103/2019", descricao: "Idade mínima, pontos de transição e as novas regras de aposentadoria pós-reforma.",   icon: "fa-gavel"             },
+    // ── Direito Administrativo ────────────────────────────────────────────────
+    { id: 10, disciplina: "Noções de Direito Administrativo",   topico: "Princípios da Administração Pública — LIMPE e outros",       descricao: "LIMPE + Supremacia do Interesse Público — o filtro para eliminar alternativas erradas.", icon: "fa-building-columns"  },
+    { id: 11, disciplina: "Noções de Direito Administrativo",   topico: "Atos Administrativos e Poderes da Administração",            descricao: "Atributos, requisitos e a diferença entre Anulação e Revogação sem errar.",            icon: "fa-file-signature"    },
+    // ── Atualidades ───────────────────────────────────────────────────────────
+    { id: 12, disciplina: "Atualidades e Seguridade Social no Brasil", topico: "INSS na Prática — Estrutura, Missão e Serviços Digitais", descricao: "Meu INSS, CNIS, canais de atendimento e a estrutura organizacional da autarquia.", icon: "fa-shield-halved"     },
+];
+
 const MAPA_MODULOS = {
     // ── PMERJ — GPS IDs reais (catálogo + ingestão) + legado ─────────────────
     '37a79dcc-3c56-4615-ac27-d04ec5a86d07': MODULOS_PMERJ, // PMERJ (catálogo)
     '7ccb9092-5445-433c-a85d-23892ee7a5f3': MODULOS_PMERJ, // Polícia Militar PMERJ (ingestão)
     '11111111-1111-1111-1111-111111111111': MODULOS_PMERJ, // legado (retrocompatibilidade)
+
+    // ── INSS ──────────────────────────────────────────────────────────────────
+    'd5d8339d-5662-4021-8f96-a712aa60a50a': MODULOS_INSS,  // INSS Técnico do Seguro Social
 
     // Fallback genérico para outros concursos em implantação
     'DEFAULT': [

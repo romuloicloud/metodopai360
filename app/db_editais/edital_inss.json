@@ -1,0 +1,127 @@
+{
+  "orgao": "INSS — Técnico do Seguro Social",
+  "nivel": "Nível Médio",
+  "versao_edital": "2026",
+  "questoes": [
+    {
+      "c": "Língua Portuguesa",
+      "t": "Leia o trecho: 'A Previdência Social tem por fim assegurar aos seus beneficiários meios indispensáveis de manutenção, por motivo de incapacidade, desemprego involuntário, idade avançada, tempo de serviço, encargos familiares e prisão ou morte daqueles de quem dependiam economicamente.' O tema central do texto é:",
+      "o": ["A administração financeira do INSS", "A finalidade da Previdência Social e seus beneficiários", "Os critérios de concessão de aposentadoria por tempo de serviço", "A prisão como requisito exclusivo para concessão de benefícios"],
+      "a": 1
+    },
+    {
+      "c": "Língua Portuguesa",
+      "t": "Assinale a alternativa em que a concordância verbal está correta segundo a norma culta:",
+      "o": ["Fazem dez anos que o INSS foi criado.", "Faz dez anos que o INSS foi criado.", "Fazem dez anos que o INSS foram criado.", "Faz dez anos que o INSS foram criado."],
+      "a": 1
+    },
+    {
+      "c": "Língua Portuguesa",
+      "t": "A palavra 'Benefício' e 'Beneficência' têm em comum a mesma:",
+      "o": ["Classe gramatical", "Raiz lexical (radical)", "Desinência nominal", "Sufixo derivacional"],
+      "a": 1
+    },
+    {
+      "c": "Raciocínio Lógico",
+      "t": "Se todo segurado obrigatório contribui para o INSS e João é segurado obrigatório, pode-se concluir que:",
+      "o": ["João pode ou não contribuir, dependendo do salário", "João contribui para o INSS", "Nem todo contribuinte é segurado obrigatório", "João é isento se tiver renda inferior ao mínimo"],
+      "a": 1
+    },
+    {
+      "c": "Raciocínio Lógico",
+      "t": "Um beneficiário recebe R$ 1.412,00 (salário mínimo) e terá reajuste de 6,5%. Qual o novo valor do benefício?",
+      "o": ["R$ 1.497,98", "R$ 1.503,78", "R$ 1.486,80", "R$ 1.505,78"],
+      "a": 1
+    },
+    {
+      "c": "Raciocínio Lógico",
+      "t": "Em um grupo de 200 servidores do INSS, 40% são Técnicos do Seguro Social e 25% desses técnicos são mulheres. Quantas mulheres técnicas há no grupo?",
+      "o": ["20", "25", "30", "50"],
+      "a": 0
+    },
+    {
+      "c": "Legislação Previdenciária",
+      "t": "Segundo a Constituição Federal de 1988 (Art. 194), a Seguridade Social compreende:",
+      "o": ["Apenas Previdência Social e Saúde", "Previdência Social, Saúde e Assistência Social", "Previdência Social, Saúde e Educação", "Assistência Social, Saúde e Trabalho"],
+      "a": 1
+    },
+    {
+      "c": "Legislação Previdenciária",
+      "t": "De acordo com a Lei 8.213/91, o salário-maternidade é devido pelo período de:",
+      "o": ["90 dias", "120 dias", "150 dias", "180 dias"],
+      "a": 1
+    },
+    {
+      "c": "Legislação Previdenciária",
+      "t": "Pela Lei 8.212/91, qual é a alíquota de contribuição previdenciária do empregador sobre a folha de salários?",
+      "o": ["11%", "20%", "22%", "15%"],
+      "a": 1
+    },
+    {
+      "c": "Legislação Previdenciária",
+      "t": "A Emenda Constitucional 103/2019 (Reforma da Previdência) estabeleceu como idade mínima para aposentadoria por idade no Regime Geral de Previdência Social (RGPS):",
+      "o": ["60 anos para homens e 55 para mulheres", "65 anos para homens e 62 para mulheres", "62 anos para homens e 60 para mulheres", "65 anos para ambos os sexos"],
+      "a": 1
+    },
+    {
+      "c": "Direito Administrativo",
+      "t": "O princípio da Administração Pública que obriga o servidor a agir apenas nos limites estabelecidos em lei é o princípio da:",
+      "o": ["Moralidade", "Eficiência", "Legalidade", "Publicidade"],
+      "a": 2
+    },
+    {
+      "c": "Direito Administrativo",
+      "t": "São atributos do Ato Administrativo, EXCETO:",
+      "o": ["Presunção de legitimidade", "Imperatividade", "Autoexecutoriedade", "Irrevogabilidade"],
+      "a": 3
+    },
+    {
+      "c": "Legislação Previdenciária",
+      "t": "Segundo a Lei 8.213/91, o auxílio-acidente é pago ao segurado que, após consolidação das lesões decorrentes de acidente, resultar sequela que implique:",
+      "o": ["Incapacidade total e permanente para o trabalho", "Redução da capacidade para o trabalho que habitualmente exercia", "Impossibilidade de qualquer atividade", "Necessidade de assistência permanente de terceiros"],
+      "a": 1
+    },
+    {
+      "c": "Língua Portuguesa",
+      "t": "Em qual das alternativas a crase está empregada corretamente?",
+      "o": ["Ele entregou o requerimento à INSS.", "O servidor foi à reunião do setor.", "Ela estava à sua frente.", "Refiro-me à você, servidor."],
+      "a": 1
+    },
+    {
+      "c": "Raciocínio Lógico",
+      "t": "Se A implica B e B implica C, então A implica C. Essa forma de raciocínio é conhecida como:",
+      "o": ["Silogismo disjuntivo", "Modus Ponens", "Silogismo hipotético", "Modus Tollens"],
+      "a": 2
+    },
+    {
+      "c": "Legislação Previdenciária",
+      "t": "O prazo de carência para aposentadoria por invalidez, no caso de acidente de qualquer natureza, é de:",
+      "o": ["12 contribuições mensais", "Sem carência", "24 contribuições mensais", "36 contribuições mensais"],
+      "a": 1
+    },
+    {
+      "c": "Direito Administrativo",
+      "t": "O servidor público estável somente perderá o cargo em caso de:",
+      "o": ["Reprovação em avaliação periódica de desempenho", "Sentença judicial transitada em julgado, processo administrativo ou avaliação periódica negativa", "Decisão do superior hierárquico", "Ineficiência comprovada por memorando interno"],
+      "a": 1
+    },
+    {
+      "c": "Específicas",
+      "t": "O benefício de prestação continuada (BPC), pago pelo INSS, corresponde a:",
+      "o": ["Meio salário mínimo para idosos acima de 60 anos", "Um salário mínimo para idosos acima de 65 anos ou pessoas com deficiência em situação de miserabilidade", "Dois salários mínimos para deficientes permanentes", "Um salário mínimo para qualquer pessoa em situação de pobreza"],
+      "a": 1
+    },
+    {
+      "c": "Específicas",
+      "t": "A Previdência Social no Brasil é organizada sob qual sistema de financiamento?",
+      "o": ["Capitalização individual plena", "Repartição simples (solidariedade entre gerações)", "Misto (capitalização e repartição em partes iguais)", "Fundo privado exclusivo"],
+      "a": 1
+    },
+    {
+      "c": "Específicas",
+      "t": "Qual canal digital do INSS permite ao cidadão solicitar benefícios, agendar perícias e consultar extratos sem sair de casa?",
+      "o": ["CNIS Online", "Meu INSS (aplicativo e portal gov.br)", "Portal da Transparência", "e-Social Beneficiário"],
+      "a": 1
+    }
+  ]
+}
