@@ -113,8 +113,22 @@
             <p style="color: #94A3B8; font-size: 0.9rem;">Selecione o seu edital para iniciar o rastreamento genético.</p>
         </header>
 
+        <!-- DESTAQUE: INSS 8.500 VAGAS -->
+        <div class="hero-target" style="background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(5,46,22,0.9) 100%); border-color: #22c55e; box-shadow: 0 0 30px rgba(34,197,94,0.25);">
+            <h2 class="hero-title" style="color: #4ade80;">INSS — 8.500 Vagas Nacionais</h2>
+            <p style="color: #CBD5E1; margin-bottom: 10px; font-size: 1.05rem; max-width: 640px; margin-left: auto; margin-right: auto;">
+                O maior concurso federal de 2026 está se formando. Técnico do Seguro Social: R$ 6.355 de entrada, atuação em todo o Brasil. Edital previsto para o 2º semestre — quem começar agora chega na prova dominando.
+            </p>
+            <p style="color: #86efac; font-size: 0.85rem; margin-bottom: 20px; font-weight: bold;">
+                <i class="fa-solid fa-fire"></i> MAIS QUENTE DO BRASIL · 8.500 VAGAS · NÍVEL MÉDIO · NACIONAL
+            </p>
+            <button class="btn-giant pulse" style="max-width: 420px; margin: 0 auto; background: #16a34a; border-color: #15803d; box-shadow: 0 0 15px rgba(34,197,94,0.4);" onclick="direcionarCatalogo('previdenciario', 'federal', 'BR', 'INSS - Técnico do Seguro Social', 'INSS_PREVISTO')">
+                <i class="fa-solid fa-shield-halved"></i> COMEÇAR PREPARAÇÃO INSS AGORA
+            </button>
+        </div>
+
         <!-- ALVO PRINCIPAL: PMERJ -->
-        <div class="hero-target">
+        <div class="hero-target" style="margin-top: 20px;">
             <h2 class="hero-title">Polícia Militar do Estado do Rio de Janeiro</h2>
             <p style="color: #CBD5E1; margin-bottom: 25px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                 O maior concurso Policial da década acaba de sofrer vazamento estrutural. Inicie seu nivelamento tático e descubra o seu Gap exato até a farda antes da prova.
@@ -124,7 +138,18 @@
             </button>
         </div>
 
-        <h3 style="color: #F8FAFC; margin-bottom: 15px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Forças Policiais / Segurança</h3>
+        <h3 style="color: #F8FAFC; margin-bottom: 15px; margin-top: 30px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Previdência e Administração Federal</h3>
+        <div class="grid-targets">
+            <div class="target-card" style="border-color: rgba(34,197,94,0.4); background: rgba(5,46,22,0.4);" onclick="direcionarCatalogo('previdenciario', 'federal', 'BR', 'INSS - Técnico do Seguro Social', 'INSS_PREVISTO')">
+                <div class="target-info">
+                    <h3 style="color: #4ade80;">INSS <span style="background:rgba(34,197,94,0.2); color:#4ade80; border:1px solid #22c55e; padding:2px 6px; border-radius:4px; font-size:0.65rem; margin-left:8px; vertical-align:middle;">8.500 VAGAS</span></h3>
+                    <span>Técnico do Seguro Social · Nacional</span>
+                </div>
+                <div class="target-icon" style="color: #4ade80;"><i class="fa-solid fa-shield-halved"></i></div>
+            </div>
+        </div>
+
+        <h3 style="color: #F8FAFC; margin-bottom: 15px; margin-top: 25px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Forças Policiais / Segurança</h3>
         <div class="grid-targets">
             <div class="target-card" onclick="direcionarCatalogo('policial', 'federal', 'BR', 'Polícia Federal (PF)', 'dbfb7aad-7808-4dd2-90cf-953c382b6243')">
                 <div class="target-info">
@@ -207,6 +232,38 @@
                     <span>Técnico Judiciário 2025</span>
                 </div>
                 <div class="target-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            </div>
+        </div>
+
+        <h3 style="color: #F8FAFC; margin-bottom: 15px; margin-top: 25px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">Forças Armadas — Carreira Militar</h3>
+        <div class="grid-targets">
+            <div class="target-card" onclick="direcionarCatalogo('militar', 'federal', 'BR', 'EsPCEx', '197be82e-0283-4373-95e7-5c3054de730e')">
+                <div class="target-info">
+                    <h3>Exército — EsPCEx <span class="badge-ouro">Oficial</span></h3>
+                    <span>Cadete · Carreira de Oficial</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-star"></i></div>
+            </div>
+            <div class="target-card" onclick="direcionarCatalogo('militar', 'federal', 'BR', 'EEAr', 'e68079a2-e467-4cfb-9859-80e97053f2d1')">
+                <div class="target-info">
+                    <h3>Aeronáutica — EEAR</h3>
+                    <span>Sargento Especialista FAB</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-jet-fighter"></i></div>
+            </div>
+            <div class="target-card" onclick="direcionarCatalogo('militar', 'federal', 'BR', 'Colégio Naval (CN)', 'b8c9dd22-e037-488c-b39c-ad3b4ebf89c1')">
+                <div class="target-info">
+                    <h3>Marinha — Colégio Naval</h3>
+                    <span>Aspirante Naval · Carreira de Oficial</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-anchor"></i></div>
+            </div>
+            <div class="target-card" onclick="direcionarCatalogo('militar', 'federal', 'BR', 'Fuzileiros Navais', '3fda4434-c074-41c0-9837-935dff2ef84b')">
+                <div class="target-info">
+                    <h3>Marinha — Fuzileiros Navais</h3>
+                    <span>Soldado Fuzileiro Naval</span>
+                </div>
+                <div class="target-icon"><i class="fa-solid fa-shield"></i></div>
             </div>
         </div>
     </div>

@@ -22,6 +22,10 @@ const CONCURSOS = [
   { key: 'caixa',    label: 'Caixa - Técnico Bancário 2024', arquivo: './concursos/caixa_tecnico_bancario_2024' },
   { key: 'correios', label: 'Correios - Carteiro 2025',      arquivo: './concursos/correios_carteiro_2025'    },
   { key: 'tj',       label: 'TJ - Técnico Judiciário 2025',  arquivo: './concursos/tj_tecnico_judiciario_2025' },
+  { key: 'inss',     label: 'INSS - Técnico do Seguro Social 2026', arquivo: './concursos/inss_tecnico_previdenciario_2026' },
+  { key: 'espcex',   label: 'EsPCEx - Cadete do Exército 2026',     arquivo: './concursos/espcex_cadete_exercito_2026'     },
+  { key: 'eear',     label: 'EEAR - Sargento da Aeronáutica 2026',  arquivo: './concursos/eear_sargento_aeronautica_2026'  },
+  { key: 'naval',    label: 'Colégio Naval - Aspirante 2026',       arquivo: './concursos/colegio_naval_2026'              },
 ];
 
 const PAUSA_MS = 2000; // 2s entre cada concurso
