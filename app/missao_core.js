@@ -35,6 +35,53 @@ const categorias = ['Português', 'Direito', 'Exatas', 'Informática', 'Específ
 let scores = { 'Português': 0, 'Direito': 0, 'Exatas': 0, 'Informática': 0, 'Específicas': 0 };
 let maxScores = { 'Português': 2, 'Direito': 3, 'Exatas': 2, 'Informática': 1, 'Específicas': 2 };
 
+// Fallback DB: carrega exercicios_forja quando JSON local não existe
+async function carregarQuestoesDB(gpsId) {
+    try {
+        if (!supabaseDb || !gpsId) return false;
+
+        // Se for placeholder, busca pelo orgao
+        let gpsQuery = supabaseDb.from('concursos_gps').select('concurso_ref_id');
+        if (gpsId === 'INSS_PREVISTO') {
+            gpsQuery = gpsQuery.ilike('orgao', '%INSS%').limit(1);
+        } else {
+            gpsQuery = gpsQuery.eq('id', gpsId);
+        }
+        const { data: gpsRaw } = await gpsQuery;
+        const gpsData = Array.isArray(gpsRaw) ? gpsRaw[0] : gpsRaw;
+        if (!gpsData?.concurso_ref_id) return false;
+
+        const { data: discData } = await supabaseDb
+            .from('disciplinas').select('id').eq('concurso_id', gpsData.concurso_ref_id);
+        if (!discData?.length) return false;
+
+        const { data: modData } = await supabaseDb
+            .from('modulos').select('id').in('disciplina_id', discData.map(d => d.id));
+        if (!modData?.length) return false;
+
+        const { data: pilData } = await supabaseDb
+            .from('pilulas_forja').select('id').in('modulo_id', modData.map(m => m.id));
+        if (!pilData?.length) return false;
+
+        const { data: exData } = await supabaseDb
+            .from('exercicios_forja').select('*')
+            .in('pilula_id', pilData.map(p => p.id)).limit(40);
+        if (!exData?.length) return false;
+
+        quizData = exData.sort(() => 0.5 - Math.random()).slice(0, 10).map(ex => ({
+            c: 'Específicas',
+            t: ex.pergunta,
+            o: ex.alternativas,
+            a: ex.correta
+        }));
+        console.log(`[DB 360] ${quizData.length} questões carregadas do banco Supabase.`);
+        return quizData.length > 0;
+    } catch (err) {
+        console.error('[DB 360] Falha no fallback DB:', err);
+        return false;
+    }
+}
+
 // Motor 360° - Leitor Universal JSON (Isolamento Absoluto)
 async function carregarQuestoes() {
     // WIPE DE CACHE: Zerar Arrays de sessão na montagem da tela!
@@ -58,10 +105,25 @@ async function carregarQuestoes() {
     
     // Mapeamento Tático: Do UUID blindado (Servidor) para o arquivo de teste ágil em JSON
     const cofreResolver = {
-        '11111111-1111-1111-1111-111111111111': 'edital_pmerj',
+        // ── GPS UUIDs reais → arquivo JSON local ─────────────────────────
+        '37a79dcc-3c56-4615-ac27-d04ec5a86d07': 'edital_pmerj',         // PMERJ Soldado
+        '9d1c4dae-02d3-401b-8dca-4a3bb7d92de5': 'edital_pedro_ii',      // Pedro II 6º Ano
+        'b3963977-9125-4a09-aa07-8abeb32f0a87': 'edital_faetec',        // FAETEC EF Integral
+        'dbfb7aad-7808-4dd2-90cf-953c382b6243': 'edital_pf',            // PF Agente Federal
+        'ad11f11b-4569-4541-9deb-5b51e99a827e': 'edital_prf',           // PRF Policial
+        '41242a75-1e54-46ea-a380-d50f2fd4425e': 'edital_bb',            // BB Escriturário
+        '467b071c-6faa-4d48-bd80-71173e3d623f': 'edital_caixa',         // Caixa Técnico
+        'eb1e50ac-463b-4966-b13b-07958651a002': 'edital_correios',      // Correios Carteiro
+        'd23dc002-d720-4c9d-8903-a85e4124bed8': 'edital_tjrj',          // TJ-RJ
+        '489086a5-3172-449b-be54-fc2e9fe0ed54': 'edital_petrobras',     // Petrobras
+        '197be82e-0283-4373-95e7-5c3054de730e': 'edital_espcex',        // EsPCEx Exército
+        'e68079a2-e467-4cfb-9859-80e97053f2d1': 'edital_eear',          // EEAR Aeronáutica
+        'b8c9dd22-e037-488c-b39c-ad3b4ebf89c1': 'edital_colegio_naval', // Colégio Naval
+        '3fda4434-c074-41c0-9837-935dff2ef84b': 'edital_fuzileiro',     // Fuzileiros Navais
+        '0aec31cd-cf9d-4a46-9207-8ce226c78ed5': 'fallback_policia_civil', // PCERJ
+        // ── Legacy (retrocompatibilidade) ─────────────────────────────────
         '9167b605-0081-4f93-adc7-ea406aa5a11a': 'edital_pedro_ii',
         '42baa8fb-2130-4864-966b-923c0bf3f9a0': 'edital_faetec',
-        '489086a5-3172-449b-be54-fc2e9fe0ed54': 'edital_petrobras'
     };
     
     const editalID = cofreResolver[editalUUID] || editalUUID;
@@ -118,7 +180,16 @@ async function carregarQuestoes() {
             'edital_enem': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Enem_logo.svg/300px-Enem_logo.svg.png',
             'edital_tse': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Bras%C3%A3o_do_Tribunal_Superior_Eleitoral.svg/300px-Bras%C3%A3o_do_Tribunal_Superior_Eleitoral.svg.png',
             'edital_tjrj': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Bras%C3%A3o_TJRJ.png/300px-Bras%C3%A3o_TJRJ.png',
-            'edital_tjsp': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png/300px-Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png'
+            'edital_tjsp': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png/300px-Bras%C3%A3o_do_Tribunal_de_Justi%C3%A7a_de_S%C3%A3o_Paulo.png',
+            // ── Entradas por nome de arquivo (resolvidas pelo cofreResolver) ──
+            'edital_pmerj':     'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg/300px-Bras%C3%A3o_da_Pol%C3%ADcia_Militar_do_Estado_do_Rio_de_Janeiro.svg.png',
+            'edital_pf':        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Pol%C3%ADcia_Federal_do_Brasil_bras%C3%A3o.svg/300px-Pol%C3%ADcia_Federal_do_Brasil_bras%C3%A3o.svg.png',
+            'edital_prf':       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pol%C3%ADcia_Rodovi%C3%A1ria_Federal_bras%C3%A3o.svg/300px-Pol%C3%ADcia_Rodovi%C3%A1ria_Federal_bras%C3%A3o.svg.png',
+            'edital_bb':        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Banco_do_Brasil_logo.svg/512px-Banco_do_Brasil_logo.svg.png',
+            'edital_caixa':     'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Caixa_Econ%C3%B4mica_Federal_logo.svg/512px-Caixa_Econ%C3%B4mica_Federal_logo.svg.png',
+            'edital_correios':  'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Correios_%282014%29_logo.svg/300px-Correios_%282014%29_logo.svg.png',
+            'edital_petrobras': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Petrobras_Logo.svg/512px-Petrobras_Logo.svg.png',
+            'edital_inss':      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Bras%C3%A3o_do_INSS.svg/300px-Bras%C3%A3o_do_INSS.svg.png',
         };
 
         // Escudo Tático Dinâmico: Se houver logo cadastrada, troca o ícone padrão pelo Brasão Oficial do Órgão
@@ -160,28 +231,35 @@ async function carregarQuestoes() {
         console.log(`[MÉTODO 360] Cofre aberto e Normalizado! ${quizData.length} questões na agulha.`);
 
     } catch (e) {
-        console.error('[INTEGRIDADE 360] Erro ou Cofre Ausente: Bloqueando Tática de Fallback.', e);
-        ui.textoQuestao.innerHTML = `
-            <div style="text-align: center; color: #FFF; padding: 20px;">
-                <i class="fa-solid fa-lock" style="font-size: 3rem; color: #D4AF37; margin-bottom: 20px;"></i>
-                <h2 style="font-weight: 900; margin-bottom: 10px; color:#F8FAFC;">BANCO DE QUESTÕES EM CONSTRUÇÃO</h2>
-                <p style="color: #94A3B8; font-size: 0.95rem; line-height: 1.5;">
-                    O Método do Pai não utiliza dados genéricos de "tapa-buraco".<br>
-                    Nossa Squad de Especialistas está analisando rigorosamente o último edital e a doutrina da banca correspondente a <strong>${orgao || 'este Cargo'}</strong>.<br><br>
-                    O seu Diagnóstico Exato de Nivelamento estará disponível em breve.
-                </p>
-                <button onclick="window.location.href='tela_catalogo_concursos.html'" style="margin-top: 20px; background: #D4AF37; color: #000; border: none; padding: 12px 25px; font-weight: 900; border-radius: 5px; cursor: pointer; text-transform: uppercase;">Retornar ao Catálogo</button>
-            </div>
-        `;
-        ui.opcoesGrid.innerHTML = '';
-        if(ui.metaQuestao) ui.metaQuestao.style.display = 'none';
-        
-        const nextBtn = document.getElementById('next-btn');
-        if(nextBtn) nextBtn.style.display = 'none';
-        const prog = document.getElementById('hq-progress');
-        if(prog) prog.style.display = 'none';
-        
-        return; // ABORTAR FLUXO DA MISSÃO TOTALMENTE. NADA DE START_TIMER.
+        console.warn('[INTEGRIDADE 360] JSON não encontrado. Tentando banco Supabase...', e.message);
+
+        // Fallback DB: consulta exercicios_forja via GPS → concurso → disciplinas → exercicios
+        const dbCarregado = await carregarQuestoesDB(editalUUID);
+
+        if (!dbCarregado) {
+            ui.textoQuestao.innerHTML = `
+                <div style="text-align: center; color: #FFF; padding: 20px;">
+                    <i class="fa-solid fa-lock" style="font-size: 3rem; color: #D4AF37; margin-bottom: 20px;"></i>
+                    <h2 style="font-weight: 900; margin-bottom: 10px; color:#F8FAFC;">BANCO DE QUESTÕES EM CONSTRUÇÃO</h2>
+                    <p style="color: #94A3B8; font-size: 0.95rem; line-height: 1.5;">
+                        O Método do Pai não utiliza dados genéricos de "tapa-buraco".<br>
+                        Nossa Squad de Especialistas está analisando rigorosamente o último edital e a doutrina da banca correspondente a <strong>${orgao || 'este Cargo'}</strong>.<br><br>
+                        O seu Diagnóstico Exato de Nivelamento estará disponível em breve.
+                    </p>
+                    <button onclick="window.location.href='tela_catalogo_concursos.html'" style="margin-top: 20px; background: #D4AF37; color: #000; border: none; padding: 12px 25px; font-weight: 900; border-radius: 5px; cursor: pointer; text-transform: uppercase;">Retornar ao Catálogo</button>
+                </div>
+            `;
+            ui.opcoesGrid.innerHTML = '';
+            if(ui.metaQuestao) ui.metaQuestao.style.display = 'none';
+            const nextBtn = document.getElementById('next-btn');
+            if(nextBtn) nextBtn.style.display = 'none';
+            const prog = document.getElementById('hq-progress');
+            if(prog) prog.style.display = 'none';
+            return; // ABORTAR FLUXO DA MISSÃO TOTALMENTE.
+        }
+
+        // DB carregou — continua normalmente (quizData já populado por carregarQuestoesDB)
+        console.log('[DB 360] Banco Supabase ativado com sucesso. Continuando fluxo...');
     }
 
     // Calcular Pesos Dinâmicos da Prova
