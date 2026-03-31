@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Liberado — Squad da Vitória</title>
+    <link rel="icon" href="/app-icon.png?v=5" type="image/png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0F172A;
+            color: #F8FAFC;
+            font-family: 'Inter', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.9);
+            border: 2px solid #10B981;
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+        }
+        .icon { font-size: 4rem; margin-bottom: 20px; }
+        h1 { color: #10B981; font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
+        p { color: #CBD5E1; font-size: 1rem; line-height: 1.6; margin-bottom: 25px; }
+        .bar-wrap { background: #0F172A; border-radius: 8px; overflow: hidden; height: 10px; margin-bottom: 12px; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, #10B981, #34D399); border-radius: 8px; animation: fill 2s ease forwards; width: 0%; }
+        @keyframes fill { to { width: 100%; } }
+        .txt-loading { color: #94A3B8; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="icon">🔓</div>
+    <h1>ACESSO LIBERADO!</h1>
+    <p>Pagamento confirmado. Seu Método do Pai está desbloqueado.<br>Redirecionando para sua Jornada Tática...</p>
+    <div class="bar-wrap"><div class="bar-fill" id="bar"></div></div>
+    <p class="txt-loading" id="txt">Liberando acesso à arena de estudos...</p>
+</div>
+
+<script>
+    // 1. Grava o flag de acesso liberado
+    localStorage.setItem('recruta_pago', '1');
+
+    // 2. Tenta atualizar o status no Supabase (best-effort, sem bloquear)
+    (async function () {
+        try {
+            const envEl = document.getElementById('__ENV__');
+            if (!envEl && !window.ENV) return;
+            const url = (window.ENV || {}).SUPABASE_URL || '';
+            const key = (window.ENV || {}).SUPABASE_ANON_KEY || '';
+            if (!url || !key) return;
+
+            const userId = sessionStorage.getItem('recruta_id');
+            if (!userId) return;
+
+            await fetch(`${url}/rest/v1/diagnosticos_resultados?user_id=eq.${userId}&order=created_at.desc&limit=1`, {
+                method: 'PATCH',
+                headers: {
+                    'apikey': key,
+                    'Authorization': `Bearer ${key}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({ status_pagamento: 'pago', funil_status: 'acesso_liberado' })
+            });
+        } catch (_) { /* não bloqueia o redirect */ }
+    })();
+
+    // 3. Redireciona após 2.5 s (tempo da animação da barra)
+    const destino = sessionStorage.getItem('intencao_url') || 'rota_estudos.html';
+    sessionStorage.removeItem('intencao_url');
+
+    setTimeout(() => {
+        document.getElementById('txt').innerText = 'Arena de estudos pronta. Avançando...';
+        setTimeout(() => { window.location.replace(destino); }, 500);
+    }, 2000);
+</script>
+</body>
+</html>
