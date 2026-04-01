@@ -5,6 +5,11 @@
   "buildCommand": null,
   "outputDirectory": "app",
   "installCommand": "npm install",
+  "functions": {
+    "api/tts.js":       { "memory": 512, "maxDuration": 30 },
+    "api/config.js":    { "memory": 128, "maxDuration": 5  },
+    "api/whatsapp.js":  { "memory": 256, "maxDuration": 15 }
+  },
 
   "redirects": [
     { "source": "/landing/(.*)",       "destination": "/tela_catalogo_concursos", "permanent": true },
