@@ -30,13 +30,13 @@ export default async function handler(req, res) {
 
         const texto = `Oi ${primeiro}! 👋\n\nVi que você fez o diagnóstico e ficou bem próximo da sua aprovação...\n\nSó que travou no último passo. O que aconteceu?\n\nPosso te ajudar a destrancar o acesso agora com uma condição especial. 🎯`;
 
-        const token = process.env.WHATSAPP_TOKEN;
-        const phone = process.env.WHATSAPP_PHONE_ID;
+        const waToken = process.env.WHATSAPP_TOKEN;
+        const phone   = process.env.WHATSAPP_PHONE_ID;
 
-        if (token && phone) {
+        if (waToken && phone) {
             await fetch(`https://graph.facebook.com/v22.0/${phone}/messages`, {
                 method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+                headers: { 'Authorization': `Bearer ${waToken}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify({ messaging_product: 'whatsapp', to: from, type: 'text', text: { body: texto } })
             });
         }
