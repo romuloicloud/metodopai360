@@ -80,7 +80,7 @@ Como você já conhece o método, vou liberar o acesso completo com um desconto 
 ✅ Questões reais filtradas pelo que cai
 
 👉 Acesse agora com condição especial:
-https://pay.kiwify.com.br/PkM1Eae
+https://pay.kiwify.com.br/aNysDXa
 
 Esse link com desconto fica disponível por 24h. Qualquer dúvida é só falar aqui. 💪`;
 }
