@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         const ate      = new Date(agora.getTime() - 23 * 60 * 60 * 1000).toISOString();
 
         const resp = await fetch(
-            `${SUPABASE_URL}/rest/v1/usuarios?created_at=gte.${de}&created_at=lte.${ate}&pago=is.null&select=nome_guerra,whatsapp`,
+            `${SUPABASE_URL}/rest/v1/usuarios?created_at=gte.${de}&created_at=lte.${ate}&select=nome_guerra,whatsapp`,
             {
                 headers: {
                     'apikey': SUPABASE_KEY,
