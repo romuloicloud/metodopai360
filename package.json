@@ -2,8 +2,12 @@
   "name": "metododopai360",
   "version": "1.0.0",
   "private": true,
-  "engines": { "node": "20.x" },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
+    "@supabase/supabase-js": "^2.101.1",
+    "dotenv": "^17.4.0",
     "google-tts-api": "^2.0.2"
   },
   "devDependencies": {
