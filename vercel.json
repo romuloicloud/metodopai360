@@ -15,6 +15,10 @@
     { "source": "/favicon-32.png",     "destination": "/app-icon.png",            "permanent": false }
   ],
 
+  "crons": [
+    { "path": "/api/cron_funil", "schedule": "0 13 * * *" }
+  ],
+
   "rewrites": [
     { "source": "/missao",                  "destination": "/missao.html"                  },
     { "source": "/rota_estudos",            "destination": "/rota_estudos.html"            },
