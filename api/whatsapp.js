@@ -80,7 +80,7 @@ Como você já conhece o método, vou liberar o acesso completo com um desconto 
 ✅ Questões reais filtradas pelo que cai
 
 👉 Acesse agora com condição especial:
-https://kiwify.app/PkM1Eae
+https://pay.kiwify.com.br/PkM1Eae
 
 Esse link com desconto fica disponível por 24h. Qualquer dúvida é só falar aqui. 💪`;
 }
@@ -158,7 +158,7 @@ export default async function handler(req, res) {
             } else if (estagio === 'CONVERTIDO') {
                 // Já pagou — mensagem de boas-vindas
                 await enviarMensagem(telefone,
-                    `Olá ${primeiro}! Seja bem-vindo ao Método do Pai 360°! 🎖️\n\nSeu acesso está ativo em metododopai.com\n\nQualquer dúvida pode falar aqui. Bons estudos! 💪`
+                    `Olá ${primeiro}! Seja bem-vindo ao Método do Pai 360°! 🎖️\n\nSeu acesso está ativo em app.metododopai.com\n\nQualquer dúvida pode falar aqui. Bons estudos! 💪`
                 );
             }
 
