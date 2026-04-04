@@ -1,5 +1,5 @@
 // Service Worker — Método do Pai 360
-const CACHE = 'pai360-v4';
+const CACHE = 'pai360-v5';
 
 const STATIC = [
     '/',
