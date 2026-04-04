@@ -9,7 +9,6 @@
   "redirects": [
     { "source": "/landing/(.*)",       "destination": "/tela_catalogo_concursos", "permanent": true },
     { "source": "/landing",            "destination": "/tela_catalogo_concursos", "permanent": true },
-    { "source": "https://www.metododopai.com/:path*", "destination": "https://metododopai.com/:path*", "permanent": true },
     { "source": "/apple-touch-icon.png", "destination": "/app-icon.png",          "permanent": false },
     { "source": "/icon-192.png",       "destination": "/app-icon.png",            "permanent": false },
     { "source": "/icon-512.png",       "destination": "/app-icon.png",            "permanent": false },
