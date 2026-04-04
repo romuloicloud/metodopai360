@@ -1,5 +1,5 @@
-const supabaseUrl = window.ENV.SUPABASE_URL;
-const supabaseKey = window.ENV.SUPABASE_ANON_KEY;
+const supabaseUrl = (window.ENV && window.ENV.SUPABASE_URL)  || '';
+const supabaseKey = (window.ENV && window.ENV.SUPABASE_ANON_KEY) || '';
 
 let appSupabase;
 try {

@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios'; // Simulação para webhook do bot/ads
 
-const supabaseUrl = window.ENV.SUPABASE_URL;
-const supabaseKey = window.ENV.SUPABASE_ANON_KEY; 
+const supabaseUrl = (window.ENV && window.ENV.SUPABASE_URL) || '';
+const supabaseKey = (window.ENV && window.ENV.SUPABASE_ANON_KEY) || ''; 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Webhook simulado do N8N / Chatbot / Meta Conversions API

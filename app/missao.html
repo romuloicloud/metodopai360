@@ -2,6 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <!-- Redireciona para seleção de concurso se vier sem sessionStorage -->
+    <script>
+        if (!sessionStorage.getItem('recruta_concurso_id')) {
+            window.location.replace('/');
+        }
+    </script>
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#0F172A">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,8 +18,6 @@
     <title>Método do Pai 360 - Diagnóstico de Guerra</title>
     <link rel="icon" href="/app-icon.png?v=5" type="image/png">
     <link rel="stylesheet" href="/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="/api/config"></script>
 </head>
@@ -48,6 +52,35 @@
                     <div id="meta-questao" style="font-size: 0.85rem; color: #D4AF37; margin-bottom: 15px; font-weight: bold;">Mapeando...</div>
                     <div class="opcoes-grid" id="opcoes-grid" style="transition: transform 0.3s ease-in-out;">
                         <!-- Botões injetados dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Gate de Captura (Aparece após o Quiz, antes do resultado) -->
+                <div id="gate-captura" style="display: none; text-align: center; padding: 10px 0;">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">🧬</div>
+                    <h2 style="color: #FFD700; font-size: 1.4rem; margin-bottom: 6px;">DNA Processado!</h2>
+                    <p style="color: #CBD5E1; font-size: 0.95rem; margin-bottom: 18px; line-height: 1.5;">
+                        Seu mapa de aprovação está pronto.<br>
+                        <strong style="color: #4FA5FF;">Para onde envio seu resultado?</strong>
+                    </p>
+                    <div style="background: rgba(15,23,42,0.8); border: 1px solid rgba(255,215,0,0.3); border-radius: 14px; padding: 20px;">
+                        <input type="text" id="gate-nome" placeholder="Seu primeiro nome" autocomplete="given-name"
+                            style="width:100%; box-sizing:border-box; padding:13px 16px; margin-bottom:10px;
+                                   border-radius:10px; border:1px solid rgba(255,255,255,0.15);
+                                   background:rgba(255,255,255,0.06); color:#F8FAFC; font-size:1rem;">
+                        <input type="tel" id="gate-whatsapp" placeholder="WhatsApp com DDD" autocomplete="tel" maxlength="15"
+                            style="width:100%; box-sizing:border-box; padding:13px 16px; margin-bottom:16px;
+                                   border-radius:10px; border:1px solid rgba(255,255,255,0.15);
+                                   background:rgba(255,255,255,0.06); color:#F8FAFC; font-size:1rem;">
+                        <button id="btn-gate-revelar" onclick="revelarResultado()"
+                            style="width:100%; padding:16px; border-radius:12px; border:none; cursor:pointer;
+                                   background:linear-gradient(135deg,#16a34a,#15803d);
+                                   color:#fff; font-size:1.1rem; font-weight:900; letter-spacing:0.5px;">
+                            VER MEU RESULTADO AGORA →
+                        </button>
+                        <p style="color:#475569; font-size:0.72rem; margin-top:10px;">
+                            🔒 Seus dados são privados. Sem spam.
+                        </p>
                     </div>
                 </div>
 
@@ -89,71 +122,948 @@
             <div id="feedback" class="feedback-toast hidden"></div>
         </div>
         
-        <!-- Paywall -->
-        <div id="paywall" class="screen">
-            <h2 style="color: #FFD700; margin-bottom: 10px;">Missão Inicial Concluída! 🎯</h2>
-            <div class="relatorio-lock" style="border: 2px solid #FFD700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); background: rgba(15, 23, 42, 0.6); border-radius: 15px; padding: 25px; width: 100%; max-width: 500px;">
-                <p style="font-size: 1.2rem; margin-bottom: 15px; font-weight: bold;">🔒 Seu mapa genético da Aprovação está trancado.</p>
-                <div class="message-parents" style="background: rgba(30, 41, 59, 1); padding: 15px; border-radius: 10px; border-left: 4px solid #4FA5FF; margin-bottom: 20px;">
-                    <p style="font-size: 1.1rem; color: #4FA5FF; margin-top: 0;"><strong>Método do Pai 360° - O Guia Definitivo</strong></p>
-                    <p style="margin-bottom: 0; line-height: 1.5; font-size: 0.95rem;">Isolamos as falhas no seu DNA de estudos e geramos uma rota imbatível focada nas bancas do seu concurso. Antecipe-se à concorrência nacional e destrave sua vaga agora.</p>
-                </div>
-                
-                <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed rgba(255,255,255,0.2);">
-                    <div style="text-decoration: line-through; color: #94A3B8; font-size: 1rem;">Lote Padrão: R$ 147,00</div>
-                    <div style="color: #10B981; font-size: 2rem; font-weight: 900; margin: 5px 0;">R$ 97,00 <span style="font-size: 0.9rem; font-weight: normal; color: #FFF;">(Acesso Principal)</span></div>
-                    <div style="color: #FBBF24; font-size: 0.85rem; font-weight: bold; margin-top: 5px;">⚠️ Lote Exclusivo de Lançamento: Válido APENAS para os 100 primeiros candidatos! Após o limite, o valor retornará a R$ 147,00.</div>
-                </div>
+        <!-- Paywall — 4 Camadas -->
+        <div id="paywall" class="screen" style="padding: 0;">
+        <style>
+            /* ── Paywall Styles ─────────────────────────────────────── */
+            .pw-wrap {
+                max-width: 500px;
+                margin: 0 auto;
+                padding: 20px 16px 40px;
+            }
 
-                <!-- Adicionando o Order Bump / Upsell -->
-                <div style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #10B981;">
-                    <div style="display: flex; align-items: flex-start; justify-content: space-between;">
-                        <input type="checkbox" checked id="simulados-addon" style="width: 22px; height: 22px; margin-top: 2px; accent-color: #10B981; cursor: pointer;">
-                        <div style="margin-left: 10px;">
-                            <span style="font-size: 1rem; font-weight: bold; color: #10B981;">[ SIM ] Quero destravar os Simulados Semanais Táticos</span>
-                            <p style="font-size: 0.85rem; color: #CBD5E1; margin: 6px 0 0 0;">(Oferta Única) Adicione acesso ininterrupto a <strong>provas semanais completas</strong> com rankings e métricas de guerra por apenas <strong>R$ 9,90 mensais</strong>. Essa assinatura otimizará seus tempos.</p>
-                        </div>
-                    </div>
-                </div>
+            /* CAMADA 1 — Resultado bloqueado */
+            .pw-c1-header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .pw-c1-header .pw-emoji { font-size: 2.8rem; }
+            .pw-c1-header h2 {
+                color: #FFD700;
+                font-size: 1.45rem;
+                margin: 8px 0 4px;
+            }
+            .pw-c1-header p {
+                color: #94A3B8;
+                font-size: 0.88rem;
+                margin: 0;
+            }
+            .pw-resultado-parcial {
+                background: rgba(15,23,42,0.9);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 12px;
+                padding: 16px;
+                margin-bottom: 18px;
+                position: relative;
+                overflow: hidden;
+            }
+            .pw-resultado-parcial .pw-linha {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                font-size: 0.9rem;
+                color: #CBD5E1;
+            }
+            .pw-resultado-parcial .pw-linha:last-child { border-bottom: none; }
+            .pw-resultado-parcial .pw-linha strong { color: #F8FAFC; }
+            .pw-lock-overlay {
+                position: absolute;
+                bottom: 0; left: 0; right: 0;
+                height: 80px;
+                background: linear-gradient(to top, rgba(10,14,26,1) 50%, transparent);
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                padding-bottom: 10px;
+            }
+            .pw-lock-overlay span {
+                font-size: 0.8rem;
+                color: #FFD700;
+                font-weight: 700;
+            }
 
-                <!-- CHECKOUT OFICIAL KIWIFY -->
-                <a href="https://pay.kiwify.com.br/PkM1Eae" target="_blank" style="text-decoration: none;">
-                    <button class="btn-giant pulse" style="width: 100%; background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);">DESBLOQUEAR MEU ACESSO E REIVINDICAR VAGA</button>
-                </a>
-                
-                <div style="margin-top: 15px; font-size: 0.8rem; color: #64748B;">
-                    🔒 Pagamento 100% Seguro via Kiwify. Acesso imediato à plataforma.
+            /* CAMADA 2 — Vídeo / preview da plataforma */
+            .pw-video-wrap {
+                border-radius: 14px;
+                overflow: hidden;
+                border: 2px solid rgba(79,165,255,0.3);
+                margin-bottom: 18px;
+                background: #0a0e1a;
+                position: relative;
+            }
+            .pw-video-wrap video {
+                width: 100%;
+                display: block;
+                max-height: 240px;
+                object-fit: cover;
+            }
+            .pw-video-placeholder {
+                width: 100%;
+                height: 180px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+            }
+            .pw-video-placeholder .play-icon {
+                width: 60px; height: 60px;
+                border-radius: 50%;
+                background: rgba(79,165,255,0.2);
+                border: 2px solid #4FA5FF;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 1.8rem;
+            }
+            .pw-video-placeholder p {
+                color: #94A3B8;
+                font-size: 0.82rem;
+                margin: 0;
+                text-align: center;
+            }
+            .pw-video-label {
+                position: absolute;
+                top: 10px; left: 10px;
+                background: rgba(239,68,68,0.9);
+                color: #fff;
+                font-size: 0.65rem;
+                font-weight: 900;
+                padding: 3px 8px;
+                border-radius: 4px;
+                letter-spacing: 1px;
+            }
+
+            /* CAMADA 3 — Prova social + urgência */
+            .pw-social {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 18px;
+            }
+            .pw-social-card {
+                flex: 1;
+                background: rgba(15,23,42,0.8);
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 10px;
+                padding: 12px 10px;
+                text-align: center;
+            }
+            .pw-social-card .val {
+                font-size: 1.4rem;
+                font-weight: 900;
+                color: #F8FAFC;
+                display: block;
+            }
+            .pw-social-card .lbl {
+                font-size: 0.7rem;
+                color: #64748B;
+                text-transform: uppercase;
+                margin-top: 2px;
+                display: block;
+            }
+            .pw-countdown-box {
+                background: rgba(239,68,68,0.1);
+                border: 1px solid rgba(239,68,68,0.4);
+                border-radius: 10px;
+                padding: 12px 16px;
+                margin-bottom: 18px;
+                text-align: center;
+            }
+            .pw-countdown-box .pw-cd-label {
+                font-size: 0.75rem;
+                color: #fca5a5;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+            .pw-countdown-box .pw-cd-timer {
+                font-size: 1.5rem;
+                font-weight: 900;
+                color: #EF4444;
+                margin-top: 4px;
+                font-variant-numeric: tabular-nums;
+            }
+            .pw-urgencia-txt {
+                font-size: 0.82rem;
+                font-weight: 700;
+                text-align: center;
+                padding: 8px 12px;
+                border-radius: 8px;
+                border: 1px solid #FFD700;
+                color: #FFD700;
+                margin-bottom: 18px;
+                background: rgba(0,0,0,0.3);
+            }
+
+            /* CAMADA 4 — Preço + CTA */
+            .pw-beneficios {
+                background: rgba(30,41,59,0.9);
+                border-left: 3px solid #4FA5FF;
+                border-radius: 0 10px 10px 0;
+                padding: 14px 16px;
+                margin-bottom: 16px;
+            }
+            .pw-beneficios p {
+                font-size: 0.75rem;
+                color: #4FA5FF;
+                font-weight: 900;
+                text-transform: uppercase;
+                margin: 0 0 8px 0;
+            }
+            .pw-beneficios ul {
+                margin: 0;
+                padding-left: 16px;
+                color: #CBD5E1;
+                font-size: 0.88rem;
+                line-height: 1.9;
+            }
+            .pw-preco-box {
+                background: rgba(0,0,0,0.5);
+                border: 1px dashed rgba(255,255,255,0.15);
+                border-radius: 10px;
+                padding: 16px;
+                margin-bottom: 14px;
+                text-align: center;
+            }
+            .pw-preco-box .de {
+                text-decoration: line-through;
+                color: #64748B;
+                font-size: 0.9rem;
+            }
+            .pw-preco-box .por {
+                color: #10B981;
+                font-size: 2.4rem;
+                font-weight: 900;
+                line-height: 1.1;
+            }
+            .pw-preco-box .aviso {
+                color: #FBBF24;
+                font-size: 0.78rem;
+                font-weight: 700;
+                margin-top: 6px;
+            }
+            .pw-order-bump {
+                background: rgba(16,185,129,0.07);
+                border: 1px solid rgba(16,185,129,0.35);
+                border-radius: 10px;
+                padding: 12px 14px;
+                margin-bottom: 16px;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .pw-order-bump label {
+                display: flex; gap: 10px; cursor: pointer; width: 100%;
+            }
+            .pw-order-bump input { margin-top: 3px; accent-color: #10B981; flex-shrink: 0; }
+            .pw-order-bump .ob-titulo { color: #10B981; font-size: 0.9rem; font-weight: 700; }
+            .pw-order-bump .ob-detalhe { color: #64748B; font-size: 0.78rem; margin-top: 4px; }
+            .pw-cta-btn {
+                display: block;
+                width: 100%;
+                padding: 18px;
+                border-radius: 14px;
+                border: none;
+                cursor: pointer;
+                background: linear-gradient(135deg, #eab308 0%, #b45309 100%);
+                color: #000;
+                font-size: 1.1rem;
+                font-weight: 900;
+                letter-spacing: 0.3px;
+                text-align: center;
+                text-decoration: none;
+                box-shadow: 0 0 25px rgba(234,179,8,0.4);
+                animation: pulseGold 2s infinite;
+            }
+            @keyframes pulseGold {
+                0%, 100% { box-shadow: 0 0 20px rgba(234,179,8,0.4); }
+                50%       { box-shadow: 0 0 40px rgba(234,179,8,0.7); }
+            }
+            .pw-garantia {
+                display: flex;
+                justify-content: center;
+                gap: 14px;
+                flex-wrap: wrap;
+                margin-top: 14px;
+            }
+            .pw-garantia span {
+                color: #475569;
+                font-size: 0.72rem;
+            }
+        </style>
+
+        <div class="pw-wrap">
+
+            <!-- ── CAMADA 1: Resultado parcial bloqueado ───────────────── -->
+            <div class="pw-c1-header">
+                <div class="pw-emoji" id="pw-emoji">🎯</div>
+                <h2 id="pw-titulo">Seu DNA foi processado!</h2>
+                <p id="pw-subtitulo">Rota personalizada pronta. Veja o que foi detectado:</p>
+            </div>
+
+            <div class="pw-resultado-parcial">
+                <div class="pw-linha">
+                    <span>Nível de Memorização</span>
+                    <strong id="pw-res-mem">—</strong>
+                </div>
+                <div class="pw-linha">
+                    <span>Disciplina mais forte</span>
+                    <strong id="pw-res-forte" style="color: #10B981;">—</strong>
+                </div>
+                <div class="pw-linha">
+                    <span>Ponto crítico detectado</span>
+                    <strong id="pw-res-critico" style="color: #EF4444; filter: blur(4px); user-select:none;">🔒 Português</strong>
+                </div>
+                <div class="pw-linha">
+                    <span>Rota de estudos</span>
+                    <strong style="color: #FFD700; filter: blur(4px); user-select:none;">🔒 Ver plano</strong>
+                </div>
+                <div class="pw-lock-overlay">
+                    <span>🔒 Desbloqueie para ver análise completa</span>
                 </div>
             </div>
-        </div>
+
+            <!-- Gap box (injetado via JS) -->
+            <div id="pw-gap-box" style="background:rgba(239,68,68,0.1); border:1px solid #EF4444; border-radius:10px; padding:13px 15px; margin-bottom:18px; display:none;">
+                <p id="pw-gap-texto" style="color:#fca5a5; font-size:0.9rem; margin:0; line-height:1.6;"></p>
+            </div>
+
+            <!-- ── CAMADA 2: Preview animado da plataforma ─────────────── -->
+            <div class="pw-video-wrap" style="border-radius:14px; overflow:hidden; border:2px solid rgba(79,165,255,0.3); margin-bottom:18px; background:#080e1a; position:relative;">
+                <span class="pw-video-label">AO VIVO NA PLATAFORMA</span>
+                <div id="pw-preview" style="width:100%; height:260px; position:relative; overflow:hidden; font-family:'Nunito',sans-serif;">
+
+                    <!-- Slide 1: Áudio da teoria tocando -->
+                    <div class="pw-slide" id="pw-slide-1" style="position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:space-between;opacity:1;transition:opacity 0.6s;">
+                        <div style="font-size:0.7rem;color:#475569;text-transform:uppercase;letter-spacing:1px;">📖 Teoria em Áudio — <span id="pw-s1-orgao" style="color:#4FA5FF;">seu concurso</span></div>
+                        <div>
+                            <div style="color:#94A3B8;font-size:0.75rem;margin-bottom:6px;">Disciplina: <strong style="color:#F8FAFC;" id="pw-s1-disc">Direito Constitucional</strong></div>
+                            <div style="background:rgba(15,23,42,0.9);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;">
+                                <div style="color:#CBD5E1;font-size:0.82rem;line-height:1.6;margin-bottom:12px;" id="pw-s1-texto">
+                                    "Os direitos fundamentais são cláusulas pétreas — não podem ser abolidos nem por emenda constitucional. Isso cai em <strong style="color:#FFD700;">toda banca</strong> de concurso policial..."
+                                </div>
+                                <!-- Barra de áudio animada -->
+                                <div style="display:flex;align-items:center;gap:8px;">
+                                    <div style="width:28px;height:28px;border-radius:50%;background:#4FA5FF;display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">▶</div>
+                                    <div style="flex:1;position:relative;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;">
+                                        <div id="pw-audio-bar" style="height:100%;border-radius:2px;background:#4FA5FF;width:0%;transition:width 0.5s linear;"></div>
+                                    </div>
+                                    <div style="font-size:0.7rem;color:#475569;" id="pw-audio-tempo">0:00</div>
+                                </div>
+                                <!-- Ondas sonoras animadas -->
+                                <div style="display:flex;align-items:flex-end;gap:3px;height:20px;margin-top:8px;" id="pw-waves">
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                    <div class="pw-wave" style="width:3px;background:#4FA5FF;border-radius:2px;opacity:0.6;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="font-size:0.7rem;color:#475569;text-align:center;">🎧 Estude no transporte, na academia, em qualquer lugar</div>
+                    </div>
+
+                    <!-- Slide 2: Questão filtrada pela banca -->
+                    <div class="pw-slide" id="pw-slide-2" style="position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:space-between;opacity:0;transition:opacity 0.6s;">
+                        <div style="font-size:0.7rem;color:#475569;text-transform:uppercase;letter-spacing:1px;">📝 Questões — Filtradas pela banca de <span id="pw-s2-orgao" style="color:#EF4444;">seu concurso</span></div>
+                        <div>
+                            <div style="background:rgba(15,23,42,0.9);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px;">
+                                <div style="font-size:0.78rem;color:#FFD700;font-weight:700;margin-bottom:8px;" id="pw-s2-banca">Banca · Questão real</div>
+                                <div style="font-size:0.8rem;color:#CBD5E1;line-height:1.5;margin-bottom:12px;" id="pw-s2-questao">
+                                    "Assinale a alternativa que apresenta corretamente um direito fundamental de 2ª geração:"
+                                </div>
+                                <!-- Alternativas com highlight na correta -->
+                                <div id="pw-s2-alt-a" style="font-size:0.75rem;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.04);color:#94A3B8;margin-bottom:4px;border:1px solid transparent;transition:all 0.4s;">A) Direito à vida</div>
+                                <div id="pw-s2-alt-b" style="font-size:0.75rem;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.04);color:#94A3B8;margin-bottom:4px;border:1px solid transparent;transition:all 0.4s;">B) Direito à saúde ✓</div>
+                                <div id="pw-s2-alt-c" style="font-size:0.75rem;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.04);color:#94A3B8;border:1px solid transparent;transition:all 0.4s;">C) Direito ao voto</div>
+                            </div>
+                        </div>
+                        <div style="font-size:0.7rem;color:#475569;text-align:center;">🎯 Questões reais ordenadas por frequência de cobrança</div>
+                    </div>
+
+                    <!-- Slide 3: Rota de estudos com progresso -->
+                    <div class="pw-slide" id="pw-slide-3" style="position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:space-between;opacity:0;transition:opacity 0.6s;">
+                        <div style="font-size:0.7rem;color:#475569;text-transform:uppercase;letter-spacing:1px;">🗺️ Rota Personalizada — <span id="pw-s3-orgao" style="color:#10B981;">seu concurso</span></div>
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                            <div id="pw-rota-1" style="display:flex;align-items:center;gap:10px;background:rgba(15,23,42,0.9);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:10px;opacity:0;transform:translateX(-12px);transition:all 0.5s;">
+                                <div style="width:28px;height:28px;border-radius:50%;background:#10B981;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;color:#000;">✓</div>
+                                <div style="flex:1;">
+                                    <div style="font-size:0.78rem;color:#F8FAFC;font-weight:700;">Português — Interpretação de Texto</div>
+                                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:4px;"><div style="height:100%;width:85%;background:#10B981;border-radius:2px;"></div></div>
+                                </div>
+                                <span style="font-size:0.7rem;color:#10B981;font-weight:700;">85%</span>
+                            </div>
+                            <div id="pw-rota-2" style="display:flex;align-items:center;gap:10px;background:rgba(15,23,42,0.9);border:1px solid rgba(234,179,8,0.3);border-radius:8px;padding:10px;opacity:0;transform:translateX(-12px);transition:all 0.5s 0.15s;">
+                                <div style="width:28px;height:28px;border-radius:50%;background:#eab308;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;color:#000;">2</div>
+                                <div style="flex:1;">
+                                    <div style="font-size:0.78rem;color:#F8FAFC;font-weight:700;" id="pw-rota-2-disc">Direito Constitucional</div>
+                                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:4px;"><div id="pw-rota-2-bar" style="height:100%;width:42%;background:#eab308;border-radius:2px;transition:width 1s 1s;"></div></div>
+                                </div>
+                                <span id="pw-rota-2-pct" style="font-size:0.7rem;color:#eab308;font-weight:700;">42%</span>
+                            </div>
+                            <div id="pw-rota-3" style="display:flex;align-items:center;gap:10px;background:rgba(15,23,42,0.9);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:10px;opacity:0;transform:translateX(-12px);transition:all 0.5s 0.3s;">
+                                <div style="width:28px;height:28px;border-radius:50%;background:rgba(239,68,68,0.3);border:1px solid #EF4444;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;color:#EF4444;">3</div>
+                                <div style="flex:1;">
+                                    <div style="font-size:0.78rem;color:#F8FAFC;font-weight:700;" id="pw-rota-3-disc">Matemática / Raciocínio</div>
+                                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:4px;"><div style="height:100%;width:18%;background:#EF4444;border-radius:2px;"></div></div>
+                                </div>
+                                <span style="font-size:0.7rem;color:#EF4444;font-weight:700;">18%</span>
+                            </div>
+                        </div>
+                        <div style="font-size:0.7rem;color:#475569;text-align:center;">📈 Progresso calculado pelo seu diagnóstico</div>
+                    </div>
+
+                    <!-- Indicadores de slide -->
+                    <div style="position:absolute;bottom:6px;left:50%;transform:translateX(-50%);display:flex;gap:5px;">
+                        <div class="pw-dot" id="pw-dot-1" style="width:6px;height:6px;border-radius:50%;background:#4FA5FF;transition:all 0.3s;"></div>
+                        <div class="pw-dot" id="pw-dot-2" style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div>
+                        <div class="pw-dot" id="pw-dot-3" style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.3s;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                @keyframes waveAnim {
+                    0%,100% { height: 4px; }
+                    50%     { height: 16px; }
+                }
+                .pw-wave { animation: waveAnim 0.8s ease-in-out infinite; }
+                .pw-wave:nth-child(1) { animation-delay: 0s; }
+                .pw-wave:nth-child(2) { animation-delay: 0.1s; }
+                .pw-wave:nth-child(3) { animation-delay: 0.2s; }
+                .pw-wave:nth-child(4) { animation-delay: 0.3s; }
+                .pw-wave:nth-child(5) { animation-delay: 0.4s; }
+                .pw-wave:nth-child(6) { animation-delay: 0.3s; }
+                .pw-wave:nth-child(7) { animation-delay: 0.2s; }
+                .pw-wave:nth-child(8) { animation-delay: 0.1s; }
+            </style>
+
+            <!-- ── CAMADA 3: Prova social + contador de urgência ─────── -->
+            <div class="pw-social">
+                <div class="pw-social-card">
+                    <span class="val" id="pw-ativos">247</span>
+                    <span class="lbl">Candidatos ativos</span>
+                </div>
+                <div class="pw-social-card">
+                    <span class="val" id="pw-vagas-disp" style="color:#10B981;">—</span>
+                    <span class="lbl">Vagas no edital</span>
+                </div>
+                <div class="pw-social-card">
+                    <span class="val" style="color:#FBBF24;">97</span>
+                    <span class="lbl">Reais · hoje</span>
+                </div>
+            </div>
+
+            <!-- Contador regressivo (aparece quando há data de prova) -->
+            <div class="pw-countdown-box" id="pw-countdown-box" style="display:none;">
+                <div class="pw-cd-label" id="pw-cd-label">Tempo para a prova</div>
+                <div class="pw-cd-timer" id="pw-cd-timer">00d 00h 00m 00s</div>
+            </div>
+
+            <!-- Urgência por concurso -->
+            <div class="pw-urgencia-txt" id="pw-urgencia">⚡ Carregando...</div>
+
+            <!-- ── CAMADA 4: Benefícios + Preço + CTA ──────────────────── -->
+            <div class="pw-beneficios">
+                <p>O que você desbloqueia agora:</p>
+                <ul id="pw-beneficios-lista">
+                    <li>Rota personalizada para o seu concurso</li>
+                    <li>Teoria em áudio — estude onde estiver</li>
+                    <li>Questões filtradas pela banca do seu edital</li>
+                    <li>Acesso via app — sem prazo de validade</li>
+                </ul>
+            </div>
+
+            <div class="pw-preco-box">
+                <div class="de">De R$ 147,00</div>
+                <div class="por">R$ 97<span style="font-size:1rem; color:#94A3B8;">,00</span></div>
+                <div class="aviso">⚠️ Preço de lançamento — primeiros 100 candidatos</div>
+            </div>
+
+            <!-- Order Bump -->
+            <div class="pw-order-bump">
+                <label>
+                    <input type="checkbox" checked id="simulados-addon">
+                    <div>
+                        <div class="ob-titulo">+ Simulados Semanais Táticos — R$ 9,90/mês</div>
+                        <div class="ob-detalhe">Provas completas semanais com ranking. Cancele quando quiser.</div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- CTA -->
+            <a id="pw-btn-cta" class="pw-cta-btn" href="https://pay.kiwify.com.br/aNysDXa" target="_blank" rel="noopener">
+                🔓 DESBLOQUEAR ACESSO COMPLETO — R$ 97
+            </a>
+
+            <!-- Garantia -->
+            <div class="pw-garantia">
+                <span>🔒 Kiwify — Pagamento seguro</span>
+                <span>✅ Acesso imediato</span>
+                <span>↩️ 7 dias de garantia</span>
+            </div>
+
+        </div><!-- /.pw-wrap -->
+        </div><!-- /#paywall -->
     </div>
 
     <audio id="audio-player"></audio>
-    <script src="/missao_core.js?v=9999"></script>
+    <!-- CDNs carregam aqui — após o DOM, sem bloquear renderização -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/backend_onboarding.js?v=9"></script>
+    <script src="/missao_core.js?v=10001"></script>
     <script>
+        // ── Gate de Captura de Lead ──────────────────────────────────────────────
+        // Intercept: missao_core.js chama window.exibirDashboard() após o quiz.
+        // Aqui sobrescrevemos para mostrar o gate ANTES do dashboard.
+        window._gateConcluido = false;
+
+        // Máscara WhatsApp no gate
+        document.addEventListener('DOMContentLoaded', () => {
+            const gateWa = document.getElementById('gate-whatsapp');
+            if (gateWa) {
+                gateWa.addEventListener('input', function(e) {
+                    let x = e.target.value.replace(/\D/g,'').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                    e.target.value = !x[2] ? x[1] : '('+x[1]+') '+x[2]+(x[3] ? '-'+x[3] : '');
+                });
+            }
+        });
+
+        async function revelarResultado() {
+            const nome = (document.getElementById('gate-nome').value || '').trim();
+            const wa   = (document.getElementById('gate-whatsapp').value || '').trim();
+            const btn  = document.getElementById('btn-gate-revelar');
+
+            if (!nome || wa.replace(/\D/g,'').length < 10) {
+                document.getElementById('gate-nome').style.borderColor = nome ? '' : '#EF4444';
+                document.getElementById('gate-whatsapp').style.borderColor = wa.replace(/\D/g,'').length < 10 ? '#EF4444' : '';
+                return;
+            }
+
+            btn.innerText = 'Liberando acesso...';
+            btn.disabled = true;
+
+            // Persiste para uso no restante do funil
+            sessionStorage.setItem('recruta_nome', nome);
+            sessionStorage.setItem('recruta_whatsapp', wa);
+
+            // Salva lead no Supabase (best-effort)
+            try {
+                if (typeof salvarAlistamento === 'function') {
+                    await salvarAlistamento(nome, '', wa);
+                }
+            } catch(e) { console.warn('[GATE] Supabase offline, seguindo em frente.', e); }
+
+            // Esconde gate e mostra dashboard real
+            document.getElementById('gate-captura').style.display = 'none';
+            window._gateConcluido = true;
+            if (typeof _mostrarDashboardReal === 'function') _mostrarDashboardReal();
+        }
+
         console.log('[HTML BOOT] Analisando ambiente de Missão. Scripts carregados.');
-        
+
         // Start do Cronômetro Tático (isolado para não conflitar com script.js)
         document.addEventListener('DOMContentLoaded', () => {
             console.log('[HTML BOOT] DOMContentLoaded disparado. Iniciando Relógio.');
+
             iniciarCronometroTatico();
-            
-            // Bypass de Segurança Máxima (Double Kick)
-            setTimeout(() => {
-                if(typeof carregarQuestoes === 'function') {
-                    console.log('[HTML BOOT] carregarQuestoes EXISTE. Forçando double kick.');
-                    // Executa somente se a Questão 1 ainda estiver morta (textoQuestao for original)
+
+            // Aguarda missao_core.js estar pronto com retries
+            let _tentativas = 0;
+            function _aguardarCore() {
+                _tentativas++;
+                if (typeof carregarQuestoes === 'function') {
                     const titleText = document.getElementById('texto-questao').innerText;
-                    if(titleText.includes('Preparando Teste Tático')) {
-                        console.warn('[HTML BOOT] ALERTA: missao_core.js não assumiu a tela sozinho. Empurrando.');
+                    if (titleText.includes('Preparando Teste Tático')) {
                         carregarQuestoes();
                     }
+                } else if (_tentativas < 10) {
+                    setTimeout(_aguardarCore, 400);
                 } else {
-                    console.error('[ERRO ABSOLUTO] carregarQuestoes NÃO É FUNÇÃO. O missao_core.js quebrou ou não foi carregado!');
                     document.getElementById('texto-questao').innerText = 'ERRO DE COMUNICAÇÃO (SCRIPT MORTO)';
                 }
-            }, 600);
+            }
+            setTimeout(_aguardarCore, 400);
         });
+
+        // ── Personalização do Paywall ────────────────────────────────────────────
+        // Chamada pelo missao_core.js (via showScreen('paywall') / transição automática)
+        // Usa dados do sessionStorage para adaptar a copy ao concurso escolhido
+        const CONCURSO_MAP = {
+            'PMERJ': {
+                emoji: '👮', curto: 'PM-RJ', full: 'PMERJ — Soldado',
+                cor: '#EF4444',
+                urgencia: '🚨 Edital no ar — concorrência crescendo todo dia',
+                subtitulo: 'Rota tática para o maior concurso policial do RJ.',
+                beneficios: [
+                    'Rota personalizada para a banca da <strong>PMERJ</strong>',
+                    'Questões reais filtradas por <strong>disciplina e peso</strong> no edital',
+                    'Teoria em áudio — estude no caminho para o trabalho',
+                    'Acesso pelo celular, sem prazo de validade',
+                ],
+                cta: '👮 GARANTIR MINHA VAGA NA PM-RJ',
+            },
+            'PMSP - Soldado 2026': {
+                emoji: '🛡️', curto: 'PM-SP', full: 'PM-SP — Soldado',
+                cor: '#60a5fa',
+                urgencia: '📅 Prova em 20/07/2026 — menos de 4 meses',
+                subtitulo: 'Banca VUNESP. Rota adaptada para o padrão de cobrança de São Paulo.',
+                beneficios: [
+                    'Rota específica para a <strong>banca VUNESP</strong>',
+                    'Disciplinas priorizadas pelo <strong>histórico de provas da PM-SP</strong>',
+                    'Cronograma de estudo ajustado para os dias restantes até 20/07',
+                    'Teoria em áudio — estude no trânsito de SP',
+                ],
+                cta: '🛡️ GARANTIR MINHA VAGA NA PM-SP',
+            },
+            'ESA': {
+                emoji: '🎖️', curto: 'ESA', full: 'ESA — Sargento do Exército',
+                cor: '#4ade80',
+                urgencia: '✅ Inscrições abertas — 1.200 vagas disponíveis agora',
+                subtitulo: 'Carreira militar federal. Rota construída sobre o edital oficial.',
+                beneficios: [
+                    'Rota baseada no <strong>edital oficial da ESA 2026</strong>',
+                    'Conteúdo de Matemática e Português com foco no <strong>padrão militar</strong>',
+                    'Teoria em áudio — ideal para treino e disciplina de rotina',
+                    'Acesso vitalício — acompanha revisões até a prova',
+                ],
+                cta: '🎖️ GARANTIR MINHA VAGA NA ESA',
+            },
+            'INSS - Técnico do Seguro Social': {
+                emoji: '📋', curto: 'INSS', full: 'INSS — Técnico do Seguro Social',
+                cor: '#4ade80',
+                urgencia: '🔥 8.500 vagas — maior concurso federal de 2026',
+                subtitulo: 'Quem começa agora chega na prova com meses de vantagem.',
+                beneficios: [
+                    'Rota focada nas <strong>8.500 vagas do INSS 2026</strong>',
+                    'Conteúdo alinhado ao perfil histórico da banca (CEBRASPE/FCC)',
+                    'Teoria em áudio para Legislação Previdenciária e Direito',
+                    'Questões com filtro por nível de dificuldade e frequência de cobrança',
+                ],
+                cta: '📋 COMEÇAR PREPARAÇÃO DO INSS AGORA',
+            },
+            'EEAr': {
+                emoji: '✈️', curto: 'EEAR', full: 'EEAR — Sargento da Aeronáutica',
+                cor: '#93c5fd',
+                urgencia: '📅 Edital previsto para 2026 — antecipação é vantagem',
+                subtitulo: 'Força Aérea Brasileira. Rota construída sobre as provas anteriores.',
+                beneficios: [
+                    'Rota alinhada ao <strong>padrão histórico da EEAR</strong>',
+                    'Foco em Inglês, Física e Matemática — disciplinas-chave da FAB',
+                    'Teoria em áudio para estudar em qualquer horário',
+                    'Questões filtradas pelas <strong>edições anteriores da EEAR</strong>',
+                ],
+                cta: '✈️ GARANTIR MINHA VAGA NA AERONÁUTICA',
+            },
+            'EsPCEx': {
+                emoji: '⭐', curto: 'EsPCEx', full: 'EsPCEx — Cadete do Exército',
+                cor: '#fbbf24',
+                urgencia: '⭐ Porta de entrada para Oficial do Exército — prepare-se agora',
+                subtitulo: 'Carreira de Oficial. Alta concorrência exige antecipação.',
+                beneficios: [
+                    'Rota para o <strong>perfil de exigência da EsPCEx</strong>',
+                    'Matemática e Português com profundidade de nível vestibular militar',
+                    'Teoria em áudio — estude com disciplina e consistência',
+                    'Acesso vitalício com revisões até a data da prova',
+                ],
+                cta: '⭐ GARANTIR MINHA VAGA NA EsPCEx',
+            },
+            'Polícia Federal (PF)': {
+                emoji: '🏛️', curto: 'PF', full: 'Polícia Federal',
+                cor: '#a78bfa',
+                urgencia: '🏛️ Elite federal — concorrência nacional, prepare-se com antecedência',
+                subtitulo: 'A carreira mais disputada do país. Rota adaptada ao nível exigido.',
+                beneficios: [
+                    'Rota no <strong>nível de exigência da Polícia Federal</strong>',
+                    'Direito Penal, Constitucional e Administrativo com foco na banca CEBRASPE',
+                    'Teoria em áudio para o volume alto de conteúdo jurídico',
+                    'Questões filtradas por <strong>peso e frequência nos últimos editais da PF</strong>',
+                ],
+                cta: '🏛️ COMEÇAR PREPARAÇÃO PF AGORA',
+            },
+            'Petrobras': {
+                emoji: '⚡', curto: 'Petrobras', full: 'Petrobras — Técnico/Engenheiro',
+                cor: '#34d399',
+                urgencia: '⚡ Maior salário inicial entre os concursos — R$ 7.014 de entrada',
+                subtitulo: '900 vagas. Rota para Técnico e Engenheiro com foco na banca CESGRANRIO.',
+                beneficios: [
+                    'Rota para o <strong>perfil da banca CESGRANRIO</strong>',
+                    'Conteúdo técnico e de raciocínio lógico no nível Petrobras',
+                    'Teoria em áudio — estude nos deslocamentos',
+                    'Questões filtradas pelo <strong>histórico de provas da Petrobras</strong>',
+                ],
+                cta: '⚡ COMEÇAR PREPARAÇÃO PETROBRAS AGORA',
+            },
+        };
+
+        // Dados de prova por concurso (para o contador regressivo)
+        const PROVA_DATAS = {
+            'PMSP - Soldado 2026': '2026-07-20',
+        };
+
+        // Dados de vagas por concurso (para o card de prova social)
+        const VAGAS_MAP = {
+            'PMERJ':                           '3.000+',
+            'PMSP - Soldado 2026':             '2.700',
+            'ESA':                             '1.200',
+            'INSS - Técnico do Seguro Social': '8.500',
+            'EEAr':                            '220',
+            'EsPCEx':                          '440',
+            'Polícia Federal (PF)':            'Nacional',
+            'Petrobras':                       '900',
+        };
+
+        function personalizarPaywall() {
+            const orgao    = sessionStorage.getItem('recruta_orgao') || '';
+            const nome     = (sessionStorage.getItem('recruta_nome') || 'Candidato').split(' ')[0];
+            const gapTexto = sessionStorage.getItem('pw_gap_texto')  || '';
+            const memTexto = sessionStorage.getItem('pw_mem_texto')  || '';
+            const forteDisc= sessionStorage.getItem('pw_forte_disc') || '—';
+            const criticoDisc= sessionStorage.getItem('pw_critico_disc') || '—';
+
+            const d = CONCURSO_MAP[orgao] || {
+                emoji: '🎯', curto: orgao || 'seu concurso', full: orgao || 'seu concurso',
+                cor: '#FFD700',
+                urgencia: '⚡ Diagnóstico concluído — sua rota personalizada está pronta',
+                subtitulo: 'Rota personalizada pronta. Veja o que foi detectado:',
+                beneficios: [
+                    'Rota personalizada para o <strong>seu concurso</strong>',
+                    'Questões reais filtradas por disciplina',
+                    'Teoria em áudio — estude onde estiver',
+                    'Acesso vitalício pelo celular',
+                ],
+                cta: '🔓 DESBLOQUEAR ACESSO COMPLETO — R$ 97',
+            };
+
+            // ── Cabeçalho ──────────────────────────────────────────────
+            document.getElementById('pw-emoji').innerText     = d.emoji;
+            document.getElementById('pw-titulo').innerText    = `${nome}, seu DNA foi processado!`;
+            document.getElementById('pw-subtitulo').innerText = d.subtitulo;
+
+            // ── Resultado parcial (Camada 1) ───────────────────────────
+            if (memTexto)    document.getElementById('pw-res-mem').innerText    = memTexto;
+            if (forteDisc)   document.getElementById('pw-res-forte').innerText  = forteDisc;
+            if (criticoDisc) {
+                const el = document.getElementById('pw-res-critico');
+                el.style.filter = 'blur(5px)';
+                el.innerText = '🔒 ' + criticoDisc;
+            }
+
+            // ── Urgência ───────────────────────────────────────────────
+            const urgEl = document.getElementById('pw-urgencia');
+            if (urgEl) {
+                urgEl.innerHTML = d.urgencia;
+                urgEl.style.borderColor = d.cor;
+                urgEl.style.color       = d.cor;
+            }
+
+            // ── Vagas (prova social) ───────────────────────────────────
+            const vagasEl = document.getElementById('pw-vagas-disp');
+            if (vagasEl) vagasEl.innerText = VAGAS_MAP[orgao] || '—';
+
+            // ── Contador regressivo (se houver data de prova) ──────────
+            const dataProva = PROVA_DATAS[orgao] || sessionStorage.getItem('recruta_data_prova');
+            if (dataProva) {
+                const boxEl   = document.getElementById('pw-countdown-box');
+                const timerEl = document.getElementById('pw-cd-timer');
+                const labelEl = document.getElementById('pw-cd-label');
+                if (boxEl && timerEl) {
+                    boxEl.style.display = 'block';
+                    if (labelEl) labelEl.innerText = `Tempo para a prova — ${d.curto}`;
+                    const alvo = new Date(dataProva).getTime();
+                    setInterval(() => {
+                        const dist = alvo - Date.now();
+                        if (dist <= 0) { timerEl.innerText = '🔥 PROVA HOJE!'; return; }
+                        const dd = Math.floor(dist / 86400000);
+                        const hh = Math.floor((dist % 86400000) / 3600000);
+                        const mm = Math.floor((dist % 3600000)  / 60000);
+                        const ss = Math.floor((dist % 60000)    / 1000);
+                        timerEl.innerText = `${dd}d ${String(hh).padStart(2,'0')}h ${String(mm).padStart(2,'0')}m ${String(ss).padStart(2,'0')}s`;
+                    }, 1000);
+                }
+            }
+
+            // ── Benefícios ─────────────────────────────────────────────
+            const listaEl = document.getElementById('pw-beneficios-lista');
+            if (listaEl) listaEl.innerHTML = d.beneficios.map(b => `<li>${b}</li>`).join('');
+
+            // ── Botão CTA ──────────────────────────────────────────────
+            const ctaEl = document.getElementById('pw-btn-cta');
+            if (ctaEl) ctaEl.innerText = d.cta;
+
+            // ── Gap box ────────────────────────────────────────────────
+            if (gapTexto) {
+                document.getElementById('pw-gap-texto').innerText = gapTexto;
+                document.getElementById('pw-gap-box').style.display = 'block';
+            }
+
+            // ── Contador de "candidatos ativos" (simulado realista) ────
+            const base = Math.floor(Math.random() * 80) + 190; // 190–270
+            document.getElementById('pw-ativos').innerText = base;
+            setInterval(() => {
+                const atual = parseInt(document.getElementById('pw-ativos').innerText);
+                const delta = Math.random() > 0.5 ? 1 : -1;
+                const novo  = Math.max(150, Math.min(350, atual + delta));
+                document.getElementById('pw-ativos').innerText = novo;
+            }, 7000);
+        }
+
+        // ── Conteúdo do preview por concurso ────────────────────────────────────
+        const PREVIEW_CONTENT = {
+            'PMERJ': {
+                disc: 'Direito Penal Militar',
+                banca: 'Padrão PMERJ · Questão real',
+                questao: '"É circunstância que agrava a pena do militar: praticar o crime prevalecendo-se do cargo ou em serviço:"',
+                rotaDisc2: 'Legislação Policial',
+                rotaDisc3: 'Matemática / Lógica',
+            },
+            'PMSP - Soldado 2026': {
+                disc: 'Português — Banca VUNESP',
+                banca: 'VUNESP · Questão real PM-SP',
+                questao: '"Assinale a alternativa em que a concordância verbal está correta de acordo com a norma culta:"',
+                rotaDisc2: 'Direito Constitucional',
+                rotaDisc3: 'Matemática / Raciocínio',
+            },
+            'ESA': {
+                disc: 'Matemática — Banca ESA',
+                banca: 'Padrão ESA · Questão real',
+                questao: '"Um soldado percorre 120 km em 2h. Mantendo a mesma velocidade, quantos km percorrerá em 3h30min?"',
+                rotaDisc2: 'Português / Redação',
+                rotaDisc3: 'Física / Ciências',
+            },
+            'INSS - Técnico do Seguro Social': {
+                disc: 'Legislação Previdenciária',
+                banca: 'CEBRASPE/FCC · Questão real INSS',
+                questao: '"O segurado que se afasta do trabalho por doença fará jus ao auxílio-doença após quantos dias de carência?"',
+                rotaDisc2: 'Direito Administrativo',
+                rotaDisc3: 'Informática / TI',
+            },
+            'EEAr': {
+                disc: 'Inglês — Banca EEAR',
+                banca: 'Padrão EEAR · Questão real FAB',
+                questao: '"Choose the alternative that correctly completes the sentence: \'The aircraft ___ flying at 35,000 feet when...\'"',
+                rotaDisc2: 'Física / Ciências',
+                rotaDisc3: 'Matemática',
+            },
+        };
+        const PREVIEW_DEFAULT = {
+            disc: 'Direito Constitucional',
+            banca: 'Banca do seu concurso · Questão real',
+            questao: '"Assinale a alternativa que apresenta corretamente um direito fundamental de 2ª geração:"',
+            rotaDisc2: 'Direito Constitucional',
+            rotaDisc3: 'Matemática / Raciocínio',
+        };
+
+        function iniciarPreviewAnimado() {
+            const orgao = sessionStorage.getItem('recruta_orgao') || '';
+            const info  = CONCURSO_MAP[orgao] || { curto: orgao || 'seu concurso' };
+            const pc    = PREVIEW_CONTENT[orgao] || PREVIEW_DEFAULT;
+
+            // Preenche textos do slide 1
+            ['pw-s1-orgao','pw-s2-orgao','pw-s3-orgao'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = info.curto;
+            });
+            const s1disc = document.getElementById('pw-s1-disc');
+            if (s1disc) s1disc.innerText = pc.disc;
+
+            // Slide 2 — questão
+            const s2banca = document.getElementById('pw-s2-banca');
+            if (s2banca) s2banca.innerText = pc.banca;
+            const s2q = document.getElementById('pw-s2-questao');
+            if (s2q) s2q.innerText = pc.questao;
+
+            // Slide 3 — rota
+            const r2 = document.getElementById('pw-rota-2-disc');
+            if (r2) r2.innerText = pc.rotaDisc2;
+            const r3 = document.getElementById('pw-rota-3-disc');
+            if (r3) r3.innerText = pc.rotaDisc3;
+
+            // Slide 1: barra de áudio avançando
+            let audioSecs = 0;
+            const audioDur = 28;
+            const audioInterval = setInterval(() => {
+                audioSecs++;
+                const pct = (audioSecs / audioDur) * 100;
+                const barEl = document.getElementById('pw-audio-bar');
+                const tempoEl = document.getElementById('pw-audio-tempo');
+                if (barEl) barEl.style.width = Math.min(pct, 100) + '%';
+                if (tempoEl) tempoEl.innerText = `0:${String(audioSecs).padStart(2,'0')}`;
+                if (audioSecs >= audioDur) clearInterval(audioInterval);
+            }, 500);
+
+            // Rotação de slides: 1 → 2 → 3 → 1...
+            const slides = ['pw-slide-1','pw-slide-2','pw-slide-3'];
+            const dots   = ['pw-dot-1','pw-dot-2','pw-dot-3'];
+            let atual = 0;
+
+            function irParaSlide(idx) {
+                slides.forEach((id, i) => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.opacity = i === idx ? '1' : '0';
+                });
+                dots.forEach((id, i) => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.background = i === idx ? '#4FA5FF' : 'rgba(255,255,255,0.2)';
+                });
+
+                // Slide 3: anima as linhas de rota entrando
+                if (idx === 2) {
+                    setTimeout(() => {
+                        ['pw-rota-1','pw-rota-2','pw-rota-3'].forEach(rid => {
+                            const r = document.getElementById(rid);
+                            if (r) { r.style.opacity = '1'; r.style.transform = 'translateX(0)'; }
+                        });
+                    }, 200);
+                } else {
+                    ['pw-rota-1','pw-rota-2','pw-rota-3'].forEach(rid => {
+                        const r = document.getElementById(rid);
+                        if (r) { r.style.opacity = '0'; r.style.transform = 'translateX(-12px)'; }
+                    });
+                }
+
+                // Slide 2: highlight da alternativa correta
+                if (idx === 1) {
+                    setTimeout(() => {
+                        const altB = document.getElementById('pw-s2-alt-b');
+                        if (altB) {
+                            altB.style.background = 'rgba(16,185,129,0.2)';
+                            altB.style.borderColor = '#10B981';
+                            altB.style.color = '#10B981';
+                        }
+                    }, 1200);
+                } else {
+                    const altB = document.getElementById('pw-s2-alt-b');
+                    if (altB) {
+                        altB.style.background = 'rgba(255,255,255,0.04)';
+                        altB.style.borderColor = 'transparent';
+                        altB.style.color = '#94A3B8';
+                    }
+                }
+            }
+
+            setInterval(() => {
+                atual = (atual + 1) % 3;
+                irParaSlide(atual);
+            }, 4000);
+        }
+
+        // Observa quando o paywall se torna visível (classe 'active') para personalizar
+        const _paywallEl = document.getElementById('paywall');
+        if (_paywallEl) {
+            new MutationObserver(() => {
+                if (_paywallEl.classList.contains('active')) {
+                    personalizarPaywall();
+                    iniciarPreviewAnimado();
+                }
+            }).observe(_paywallEl, { attributes: true, attributeFilter: ['class'] });
+        }
+
 
         // Lógica do Cronômetro On-Time
         function iniciarCronometroTatico() {

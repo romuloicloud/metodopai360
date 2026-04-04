@@ -1,12 +1,12 @@
-const supabaseUrl = window.ENV.SUPABASE_URL;
-const supabaseKey = window.ENV.SUPABASE_ANON_KEY;
+const _coreSupabaseUrl = (window.ENV && window.ENV.SUPABASE_URL)  || '';
+const _coreSupabaseKey = (window.ENV && window.ENV.SUPABASE_ANON_KEY) || '';
 
 let supabaseDb;
 try {
     if(!window.supabase) {
         console.warn('[RADAR] CDN do Supabase NÃO detectado! Banco offline, habilitando Modo Rigoroso (Mock).');
     } else {
-        supabaseDb = window.supabase.createClient(supabaseUrl, supabaseKey);
+        supabaseDb = window.supabase.createClient(_coreSupabaseUrl, _coreSupabaseKey);
         console.log('[RADAR] Supabase instanciado com sucesso.');
     }
 } catch (e) {
@@ -122,6 +122,8 @@ async function carregarQuestoes() {
         '3fda4434-c074-41c0-9837-935dff2ef84b': 'edital_fuzileiro',     // Fuzileiros Navais
         '0aec31cd-cf9d-4a46-9207-8ce226c78ed5': 'fallback_policia_civil', // PCERJ
         'd5d8339d-5662-4021-8f96-a712aa60a50a': 'edital_inss',           // INSS Técnico do Seguro Social
+        '38b02499-6bb1-48b0-96fb-b56b381bc3d9': 'edital_essa',           // ESA Sargento do Exército
+        'PMSP_PREVISTO':                         'edital_pmerj',          // PM-SP (usa base PMERJ até JSON próprio)
         // ── Legacy (retrocompatibilidade) ─────────────────────────────────
         '9167b605-0081-4f93-adc7-ea406aa5a11a': 'edital_pedro_ii',
         '42baa8fb-2130-4864-966b-923c0bf3f9a0': 'edital_faetec',
@@ -381,38 +383,67 @@ function responder(btn, selecionada, correta, categoria) {
     }, 600); // Mostra verde/vermelho rápido e corta
 }
 
+// Expõe a função real do dashboard para ser chamada pelo gate após cadastro
+window._mostrarDashboardReal = function() {
+    ui.dashboard.style.opacity = '0';
+    ui.dashboard.style.display = 'block';
+    setTimeout(() => {
+        ui.dashboard.style.transition = 'opacity 1s ease-in-out';
+        ui.dashboard.style.opacity = '1';
+    }, 50);
+
+    // Gatilho Autônomo de Vendas (12 segundos analisando o Radar -> Paywall)
+    setTimeout(() => {
+        if(ui.dashboard.style.display !== 'none') {
+            console.log('[PAYWALL] Iniciando transição mandatória fade-to-paywall...');
+            ui.dashboard.style.opacity = '0';
+            setTimeout(() => {
+                showScreen('paywall');
+                document.getElementById('paywall').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('paywall').style.transition = 'opacity 1s ease-in-out';
+                    document.getElementById('paywall').style.opacity = '1';
+                }, 50);
+            }, 1000);
+        }
+    }, 12000);
+};
+
 function exibirDashboard() {
-    // UI Fade Transition (Fade-to-Paywall preparation)
+    // UI Fade Transition — esconde quiz, mostra gate de captura primeiro
     ui.quizArea.classList.add('slide-exit-left');
-    
+
     setTimeout(() => {
         ui.quizArea.style.display = 'none';
         ui.quizArea.classList.remove('slide-exit-left');
-        
-        ui.dashboard.style.opacity = '0';
-        ui.dashboard.style.display = 'block';
-        
-        setTimeout(() => {
-            ui.dashboard.style.transition = 'opacity 1s ease-in-out';
-            ui.dashboard.style.opacity = '1';
-        }, 50);
 
-        // Gatilho Autônomo de Vendas (12 segundos analisando o Radar -> Paywall)
-        setTimeout(() => {
-            if(ui.dashboard.style.display !== 'none') {
-                console.log('[PAYWALL] Iniciando transição mandatória fade-to-paywall...');
-                ui.dashboard.style.opacity = '0';
-                setTimeout(() => {
-                    showScreen('paywall');
-                    document.getElementById('paywall').style.opacity = '0';
-                    setTimeout(() => {
-                        document.getElementById('paywall').style.transition = 'opacity 1s ease-in-out';
-                        document.getElementById('paywall').style.opacity = '1';
-                    }, 50);
-                }, 1000); // Aguarda Fade Out Total
-            }
-        }, 12000);
-        
+        // Se o lead já estava cadastrado (sessão existente), pula o gate
+        const nomeExistente = sessionStorage.getItem('recruta_nome');
+        const waExistente   = sessionStorage.getItem('recruta_whatsapp');
+        if (nomeExistente && waExistente) {
+            window._gateConcluido = true;
+        }
+
+        if (window._gateConcluido) {
+            // Já temos o lead — mostra dashboard direto
+            if (typeof window._mostrarDashboardReal === 'function') window._mostrarDashboardReal();
+            return;
+        }
+
+        // Mostra gate de captura
+        const gate = document.getElementById('gate-captura');
+        if (gate) {
+            gate.style.opacity = '0';
+            gate.style.display = 'block';
+            setTimeout(() => {
+                gate.style.transition = 'opacity 0.6s ease';
+                gate.style.opacity = '1';
+            }, 50);
+        } else {
+            // Fallback: gate não encontrado, mostra dashboard direto
+            if (typeof window._mostrarDashboardReal === 'function') window._mostrarDashboardReal();
+        }
+
     }, 300);
 
     ui.progressFill.style.width = '100%';
@@ -436,11 +467,20 @@ function exibirDashboard() {
         memEl.innerText = `${mediaSecs.toFixed(1)}s (Fio da Navalha)`;
         memEl.style.color = '#10B981';
         memDet.innerText = 'Sua latência cognitiva superou a média! Acesso neural ultrarrápido.';
+        sessionStorage.setItem('pw_mem_texto', `${mediaSecs.toFixed(1)}s — Acima da média`);
     } else {
         memEl.innerText = `${mediaSecs.toFixed(1)}s (Lentidão Detectada)`;
         memEl.style.color = '#EF4444';
         memDet.innerHTML = `Risco de tempo em prova real. Aprovados batem <b>${mediaAprovadosSecs}s</b>. Mapeie treinos de velocidade de leitura.`;
+        sessionStorage.setItem('pw_mem_texto', `${mediaSecs.toFixed(1)}s — Atenção necessária`);
     }
+
+    // Salva disciplina mais forte e ponto crítico para o paywall
+    const scoreEntries = Object.entries(scores);
+    const forte   = scoreEntries.reduce((a,b) => b[1] > a[1] ? b : a, scoreEntries[0]);
+    const critico = scoreEntries.reduce((a,b) => b[1] < a[1] ? b : a, scoreEntries[0]);
+    sessionStorage.setItem('pw_forte_disc',   forte[0]);
+    sessionStorage.setItem('pw_critico_disc', critico[0]);
 
     // 2. Gap de Posse Real
     const totalAcertos = Object.values(scores).reduce((a,b)=>a+b, 0);
@@ -451,12 +491,15 @@ function exibirDashboard() {
     const gapEl = document.getElementById('dash-gap');
     document.getElementById('dash-corte').innerText = `${notaCorteOriginal}%`;
 
+    const orgaoSessao = sessionStorage.getItem('recruta_orgao') || 'seu concurso';
     if (gap >= 0) {
         gapEl.innerText = `+${gap.toFixed(1)}% (VOCÊ É A POSSE)`;
         gapEl.style.color = '#10B981';
+        sessionStorage.setItem('pw_gap_texto', `Você está acima da nota de corte projetada para ${orgaoSessao}. Mantenha o ritmo — a vaga está ao seu alcance.`);
     } else {
         gapEl.innerText = `${gap.toFixed(1)}% (FORA DOS CLASSIFICADOS)`;
         gapEl.style.color = '#EF4444';
+        sessionStorage.setItem('pw_gap_texto', `Você está ${Math.abs(gap).toFixed(0)}% abaixo da nota de corte projetada para ${orgaoSessao}. A rota certa fecha esse gap em semanas.`);
     }
 
     // 3. Gráfico de Teia - DUAS CAMADAS

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Método do Pai 360 — Preparação para Concursos</title>
+    <title>Método do Pai 360 — Diagnóstico Gratuito</title>
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
@@ -15,8 +15,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/app-icon.png">
 
     <!-- SEO / OG -->
-    <meta name="description" content="Descubra seu gap no edital em 10 questões. Rota de estudos personalizada para PMERJ, INSS, PF, PRF e mais.">
-    <meta property="og:title" content="Método do Pai 360">
+    <meta name="description" content="Descubra seu gap no edital em 10 questões. Rota de estudos personalizada para PMERJ, INSS, ESA, PM-SP e mais.">
+    <meta property="og:title" content="Método do Pai 360 — Diagnóstico Gratuito">
     <meta property="og:description" content="Diagnóstico gratuito: veja onde você está em relação ao seu concurso em 10 questões.">
     <meta property="og:image" content="https://metododopai.com/app-icon.png">
     <meta property="og:url" content="https://metododopai.com">
@@ -25,101 +25,276 @@
     <link rel="icon" href="/app-icon.png" type="image/png">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="/api/config"></script>
 
     <style>
-        body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-        #app { width: 100%; max-width: 480px; padding: 24px 20px; }
-        .form-container input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.05);
-            color: #F8FAFC;
-            font-size: 1rem;
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #0F172A;
         }
-        .form-container input::placeholder { color: #64748B; }
-        .form-container input:focus { outline: none; border-color: #4FA5FF; }
+        #app {
+            width: 100%;
+            max-width: 480px;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .concurso-pill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .concurso-pill:hover, .concurso-pill:active {
+            border-color: #4FA5FF;
+            background: rgba(30, 41, 59, 0.9);
+            transform: translateY(-2px);
+        }
+        .pill-left { text-align: left; }
+        .pill-nome { color: #F8FAFC; font-size: 1rem; font-weight: 700; }
+        .pill-detalhe { color: #94A3B8; font-size: 0.78rem; margin-top: 2px; }
+        .pill-badge {
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .badge-aberto { background: rgba(16,185,129,0.2); color: #10B981; border: 1px solid #10B981; }
+        .badge-breve  { background: rgba(234,179,8,0.2);  color: #eab308; border: 1px solid #eab308; }
+        .badge-quente { background: rgba(239,68,68,0.2);  color: #EF4444; border: 1px solid #EF4444; }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 18px 0;
+            color: #475569;
+            font-size: 0.8rem;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
         @media (max-width: 480px) {
-            #app { padding: 20px 16px; }
-            h1 { font-size: 1.4rem; }
+            #app { padding: 16px 14px; }
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <div id="onboarding" class="screen active" style="text-align:center;">
-            <img src="/app-icon.png?v=5" alt="Método do Pai 360"
-                 style="width:80px;height:80px;border-radius:15px;margin-bottom:20px;box-shadow:0 4px 15px rgba(0,0,0,0.5);">
+        <img src="/app-icon.png?v=5" alt="Método do Pai 360"
+             style="width:70px;height:70px;border-radius:14px;margin-bottom:16px;box-shadow:0 4px 15px rgba(0,0,0,0.5);">
 
-            <h1 style="margin-top:0;">Criação de Perfil Estratégico</h1>
-            <p style="color:#94A3B8;">Mapeamento de DNA da aprovação. Prepare seu arsenal.</p>
+        <h1 style="margin:0 0 6px 0; font-size:1.5rem; color:#F8FAFC;">Diagnóstico Gratuito</h1>
+        <p style="color:#94A3B8; font-size:0.9rem; margin-bottom:4px;">10 questões · Resultado imediato · Sem cadastro</p>
+        <p style="color:#4FA5FF; font-size:0.85rem; font-weight:700; margin-bottom:22px;">
+            ▼ Escolha seu concurso e comece agora
+        </p>
 
-            <div class="alerta-estudo" style="margin-bottom:24px;">
-                <strong>ATENÇÃO CANDIDATO:</strong><br>
-                Tenha sempre <strong>papel e caneta</strong> em mãos para cálculos e rascunhos. O preparo começa na base.
+        <!-- DESTAQUES EM ABERTO -->
+        <div onclick="irConcurso('previdenciario','federal','BR','INSS - Técnico do Seguro Social','d5d8339d-5662-4021-8f96-a712aa60a50a')"
+             class="concurso-pill" style="border-color:rgba(16,185,129,0.4); background:rgba(5,46,22,0.4);">
+            <div class="pill-left">
+                <div class="pill-nome">📋 INSS — Técnico do Seguro Social</div>
+                <div class="pill-detalhe">8.500 vagas · Nacional · R$ 5.905</div>
             </div>
-
-            <form id="form-alistamento" class="form-container">
-                <input type="text"  id="nome_guerra" placeholder="Nome Completo" required autocomplete="name">
-                <input type="email" id="email"       placeholder="E-mail de Acesso" required autocomplete="email">
-                <input type="tel"   id="whatsapp"    placeholder="WhatsApp com DDD" required maxlength="15" autocomplete="tel">
-                <button type="submit" id="btn-alistar" class="btn-giant pulse" style="width:100%;">
-                    CONFIGURAR PERFIL
-                </button>
-            </form>
-
-            <p id="pwa-dica" style="display:none; margin-top:20px; font-size:0.8rem; color:#64748B; line-height:1.5;">
-                📱 <strong>Dica:</strong> Adicione à sua Tela Inicial para acesso rápido como um app!<br>
-                iPhone: botão Compartilhar → "Adicionar à Tela de Início"<br>
-                Android: menu do navegador → "Adicionar à tela inicial"
-            </p>
+            <span class="pill-badge badge-quente">🔥 +QUENTE</span>
         </div>
+
+        <div onclick="irConcurso('policial','estadual','RJ','PMERJ','37a79dcc-3c56-4615-ac27-d04ec5a86d07')"
+             class="concurso-pill" style="border-color:rgba(239,68,68,0.4); background:rgba(60,10,10,0.4);">
+            <div class="pill-left">
+                <div class="pill-nome">👮 PM-RJ — Soldado</div>
+                <div class="pill-detalhe">3.000+ vagas · Rio de Janeiro · R$ 3.500</div>
+            </div>
+            <span class="pill-badge badge-aberto">ABERTO</span>
+        </div>
+
+        <div onclick="irConcurso('policial','estadual','SP','PMSP - Soldado 2026','PMSP_PREVISTO')"
+             class="concurso-pill" style="border-color:rgba(26,82,118,0.6); background:rgba(10,30,60,0.5);">
+            <div class="pill-left">
+                <div class="pill-nome">🛡️ PM-SP — Soldado</div>
+                <div class="pill-detalhe">2.700 vagas · São Paulo · R$ 4.500 · Prova: 20/07/2026</div>
+            </div>
+            <span class="pill-badge badge-aberto">ABERTO</span>
+        </div>
+
+        <div onclick="irConcurso('militar','federal','BR','ESA','38b02499-6bb1-48b0-96fb-b56b381bc3d9')"
+             class="concurso-pill" style="border-color:rgba(45,106,79,0.5); background:rgba(10,40,20,0.4);">
+            <div class="pill-left">
+                <div class="pill-nome">🎖️ ESA — Sargento do Exército</div>
+                <div class="pill-detalhe">1.200 vagas · Nacional · Inscrições: 30/03/2026</div>
+            </div>
+            <span class="pill-badge badge-aberto">ABERTO</span>
+        </div>
+
+        <div class="divider">outros concursos</div>
+
+        <!-- MAIS CONCURSOS -->
+        <div onclick="irConcurso('militar','federal','BR','EEAr','e68079a2-e467-4cfb-9859-80e97053f2d1')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">✈️ EEAR — Sargento da Aeronáutica</div>
+                <div class="pill-detalhe">220 vagas · Nacional · R$ 4.736</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('militar','federal','BR','EsPCEx','197be82e-0283-4373-95e7-5c3054de730e')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">⭐ EsPCEx — Cadete do Exército</div>
+                <div class="pill-detalhe">440 vagas · Oficial · R$ 12.000+ carreira</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('policial','federal','BR','Polícia Federal (PF)','dbfb7aad-7808-4dd2-90cf-953c382b6243')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">🏛️ Polícia Federal</div>
+                <div class="pill-detalhe">Nacional · Elite · CEBRASPE</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('policial','federal','BR','Polícia Rodoviária Federal (PRF)','ad11f11b-4569-4541-9deb-5b51e99a827e')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">🚔 PRF — Policial Rodoviário Federal</div>
+                <div class="pill-detalhe">Nacional · R$ 9.654 · CEBRASPE</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('policial','estadual','RJ','PCERJ','0aec31cd-cf9d-4a46-9207-8ce226c78ed5')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">🔍 Polícia Civil RJ — Agente / Delegado</div>
+                <div class="pill-detalhe">Estadual · Rio de Janeiro</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div class="divider">militares</div>
+
+        <div onclick="irConcurso('militar','federal','BR','Colégio Naval (CN)','b8c9dd22-e037-488c-b39c-ad3b4ebf89c1')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">⚓ Marinha — Colégio Naval</div>
+                <div class="pill-detalhe">Aspirante Naval · Carreira de Oficial</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('militar','federal','BR','Fuzileiros Navais','3fda4434-c074-41c0-9837-935dff2ef84b')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">🛡️ Marinha — Fuzileiros Navais</div>
+                <div class="pill-detalhe">Soldado Fuzileiro · Nacional</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div class="divider">estatais e bancos</div>
+
+        <div onclick="irConcurso('estatal','federal','BR','Petrobras','489086a5-3172-449b-be54-fc2e9fe0ed54')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">⚡ Petrobras — Técnico / Engenheiro</div>
+                <div class="pill-detalhe">900 vagas · R$ 7.014 inicial · CESGRANRIO</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('bancario','federal','BR','Caixa Econômica Federal - Técnico Bancário','467b071c-6faa-4d48-bd80-71173e3d623f')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">🏦 Caixa Econômica — Técnico Bancário</div>
+                <div class="pill-detalhe">Nacional · R$ 3.762 · CESGRANRIO</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('bancario','federal','BR','Banco do Brasil - Escriturário','41242a75-1e54-46ea-a380-d50f2fd4425e')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">💛 Banco do Brasil — Escriturário</div>
+                <div class="pill-detalhe">Nacional · R$ 3.022 · CESGRANRIO</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('estatal','federal','BR','Correios - Carteiro','eb1e50ac-463b-4966-b13b-07958651a002')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">📦 Correios — Carteiro / Operador</div>
+                <div class="pill-detalhe">Nacional · Nível médio · AOCP</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div class="divider">tribunais e jurídico</div>
+
+        <div onclick="irConcurso('tribunal','estadual','RJ','TJ-RJ','d23dc002-d720-4c9d-8903-a85e4124bed8')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">⚖️ TJ-RJ — Técnico Judiciário</div>
+                <div class="pill-detalhe">Estadual · Rio de Janeiro · Nível médio</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div class="divider">colégios e escolas militares</div>
+
+        <div onclick="irConcurso('escolar','federal','RJ','Pedro II - 6º Ano EF 2026','9d1c4dae-02d3-401b-8dca-4a3bb7d92de5')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">📚 Colégio Pedro II — 6º Ano</div>
+                <div class="pill-detalhe">Rio de Janeiro · Ensino Fundamental</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <div onclick="irConcurso('escolar','estadual','RJ','FAETEC - EF Integral 2026.1','b3963977-9125-4a09-aa07-8abeb32f0a87')"
+             class="concurso-pill">
+            <div class="pill-left">
+                <div class="pill-nome">🔧 FAETEC RJ — EF Integral</div>
+                <div class="pill-detalhe">Rio de Janeiro · 2026.1</div>
+            </div>
+            <span class="pill-badge badge-breve">EM BREVE</span>
+        </div>
+
+        <p style="color:#475569; font-size:0.75rem; margin-top:20px;">
+            🔒 Diagnóstico 100% gratuito. Sem cartão de crédito.
+        </p>
     </div>
 
-    <script src="/backend_onboarding.js?v=6"></script>
     <script>
-        // Máscara WhatsApp
-        document.getElementById('whatsapp').addEventListener('input', function(e) {
-            let x = e.target.value.replace(/\D/g,'').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-            e.target.value = !x[2] ? x[1] : '('+x[1]+') '+x[2]+(x[3] ? '-'+x[3] : '');
-        });
+        function irConcurso(familia, esfera, uf, orgao, cid) {
+            sessionStorage.setItem('recruta_familia', familia);
+            sessionStorage.setItem('recruta_esfera', esfera);
+            sessionStorage.setItem('recruta_uf', uf || 'BR');
+            sessionStorage.setItem('recruta_orgao', orgao);
+            sessionStorage.setItem('recruta_status_edital', 'aberto');
+            sessionStorage.setItem('recruta_concurso_id', cid);
+            window.location.href = 'missao.html';
+        }
 
-        document.getElementById('form-alistamento').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('btn-alistar');
-            btn.innerText = 'Configurando...';
-            btn.disabled = true;
-            try {
-                const ok = await salvarAlistamento(
-                    document.getElementById('nome_guerra').value,
-                    document.getElementById('email').value,
-                    document.getElementById('whatsapp').value
-                );
-                if (ok) {
-                    window.location.href = 'tela_catalogo_concursos.html';
-                } else {
-                    alert('Falha na conexão. Tente novamente.');
-                    btn.innerText = 'CONFIGURAR PERFIL';
-                    btn.disabled = false;
-                }
-            } catch(err) {
-                alert('Erro crítico. Tente novamente.');
-                btn.innerText = 'CONFIGURAR PERFIL';
-                btn.disabled = false;
-            }
-        });
-
-        // Mostra dica PWA se não estiver rodando como app instalado
-        const isApp = window.matchMedia('(display-mode: standalone)').matches
-                   || window.navigator.standalone;
-        if (!isApp) document.getElementById('pwa-dica').style.display = 'block';
-
-        // Registra Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').catch(() => {});
         }

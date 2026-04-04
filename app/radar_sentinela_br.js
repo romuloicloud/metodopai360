@@ -13,8 +13,8 @@ const cheerio = require('cheerio');
 const { createClient } = require('@supabase/supabase-js');
 
 // Configurações Banco de Dados
-const supabaseUrl = window.ENV.SUPABASE_URL;
-const supabaseKey = window.ENV.SUPABASE_ANON_KEY; 
+const supabaseUrl = (window.ENV && window.ENV.SUPABASE_URL) || '';
+const supabaseKey = (window.ENV && window.ENV.SUPABASE_ANON_KEY) || ''; 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Mapeamento territorial para o faro fino

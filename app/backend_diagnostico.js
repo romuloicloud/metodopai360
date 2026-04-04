@@ -1,8 +1,8 @@
 const { createClient } = require('@supabase/supabase-js');
 
 // Usando as credenciais públicas que já temos
-const supabaseUrl = window.ENV.SUPABASE_URL;
-const supabaseKey = window.ENV.SUPABASE_ANON_KEY;
+const supabaseUrl = (window.ENV && window.ENV.SUPABASE_URL) || '';
+const supabaseKey = (window.ENV && window.ENV.SUPABASE_ANON_KEY) || '';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function fetchDiagnosticoQuestions(nivel) {
